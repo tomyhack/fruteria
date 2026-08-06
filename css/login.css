@@ -1,0 +1,215 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f8f1;
+
+}
+
+.auth-page{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:30px;
+
+    background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+    url("../img/jpg/fruits_background.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+}
+
+.auth-card{
+
+    width:100%;
+    max-width:460px;
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:40px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+}
+
+.brand{
+
+    text-align:center;
+    margin-bottom:30px;
+
+}
+
+.brand h1{
+
+    color:#2e7d32;
+    margin-bottom:10px;
+
+}
+
+.brand p{
+
+    color:#666;
+
+}
+
+.tab-buttons{
+
+    display:flex;
+    margin-bottom:25px;
+
+}
+
+.tab{
+
+    flex:1;
+
+    padding:14px;
+
+    border:none;
+
+    background:#ddd;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.tab:first-child{
+
+    border-radius:8px 0 0 8px;
+
+}
+
+.tab:last-child{
+
+    border-radius:0 8px 8px 0;
+
+}
+
+.tab.active{
+
+    background:#2e7d32;
+    color:white;
+
+}
+
+.auth-form{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+label{
+
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:bold;
+
+}
+
+input{
+
+    padding:12px;
+
+    border:1px solid #bbb;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+}
+
+input:focus{
+
+    outline:none;
+    border-color:#2e7d32;
+
+}
+
+.primary-btn{
+
+    margin-top:25px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#4caf50;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.primary-btn:hover{
+
+    background:#388e3c;
+
+}
+
+.message{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+}
+
+.success{
+
+    color:#2e7d32;
+
+}
+
+.error{
+
+    color:#d32f2f;
+
+}
+
+@media(max-width:600px){
+
+.auth-card{
+
+    padding:25px;
+
+}
+
+.brand h1{
+
+    font-size:30px;
+
+}
+
+}
