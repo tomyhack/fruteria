@@ -11,11 +11,22 @@
     <header class="site-header">
         <div class="header-inner">
             <div class="logo">
-                <div class="logo-mark">N</div>
+                <div class="logo-mark" aria-label="Espacio para el logo">
+                    <a href="main.html" class="logo-link">
+                        <img src="../img/png/logo.png" alt="Logo Frutería Nancy" />
+                    </a>
+                </div>
                 <div>
                     <span class="logo-name">Frutería Nancy</span>
                 </div>
             </div>
+
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="menu-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
 
             <nav class="main-nav">
                 <a class="nav-link" href="main.html">Inicio</a>
@@ -30,11 +41,11 @@
                 </a>
 
                 <div class="profile-menu">
-                    <button class="profile-button" type="button">Perfil <span class="profile-icon">👤</span></button>
+                    <button class="profile-button" type="button"><span class="profile-label">Perfil</span><span class="profile-icon">👤</span></button>
                     <div class="profile-dropdown">
                         <a href="login.html">Iniciar sesión</a>
-                        <a href="login.html">Registrarte</a>
-                        <a href="login.html">Cerrar sesión</a>
+                        <a href="register.html">Registrarte</a>
+                        <a href="../php/logout.php">Cerrar sesión</a>
                     </div>
                 </div>
             </div>
@@ -240,5 +251,6 @@
             });
         });
     </script>
+
 </body>
 </html>

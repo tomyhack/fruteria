@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frutería Nancy | Iniciar sesión</title>
+    <title>Frutería Nancy | Registrarse</title>
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
     <main class="auth-page">
-        <form class="auth-card auth-form" action="../php/login.php" method="POST">
+        <form id="registerForm" class="auth-card auth-form" action="../php/register.php" method="POST">
             <div class="brand">
                 <h1>Frutería Nancy</h1>
                 <p>Productos de producción propia.</p>
                 <a class="back-link" href="main.html">← Volver a la tienda</a>
             </div>
 
-            <h2>Iniciar sesión</h2>
+            <h2>Registrarse</h2>
 
             <label for="username">Usuario</label>
-            <input id="username" type="text" name="username" placeholder="Ingrese su usuario" required>
+            <input id="username" type="text" name="username" placeholder="Elija un usuario" required>
 
             <label for="password">Contraseña</label>
-            <input id="password" type="password" name="password" placeholder="Ingrese su contraseña" required>
+            <input id="password" type="password" name="password" placeholder="Cree una contraseña" required>
 
-            <button type="submit" class="primary-btn">Ingresar</button>
+            <button type="submit" class="primary-btn">Crear cuenta</button>
             <div id="feedback" class="message"></div>
 
-            <p class="auth-switch">¿No tienes cuenta? <a href="register.html">Regístrate aquí</a>.</p>
+            <p class="auth-switch">¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>.</p>
         </form>
     </main>
 
