@@ -21,6 +21,7 @@
                 </div>
             </div>
 
+            <!-- En celular, este checkbox muestra u oculta el menú con CSS. -->
             <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <label for="nav-toggle" class="menu-toggle" aria-label="Abrir menú">
                 <span></span>
@@ -82,6 +83,7 @@
     </footer>
 
     <script>
+        // Debe ser la misma clave que usa store.html para leer el mismo carrito.
         const CART_KEY = 'fruteria-cart';
         let purchaseCompleted = false;
 
@@ -97,6 +99,7 @@
             purchaseCompleted = false;
             renderCart();
         }
+        // Formatea el total como dinero de Uruguay.
         function formatCurrency(value) {
             return new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU', maximumFractionDigits: 0 }).format(value);
         }
@@ -116,6 +119,7 @@
                 if (message) message.style.display = purchaseCompleted ? 'block' : 'none';
                 return;
             }
+            // Suma precio por cantidad de todos los productos del carrito.
             const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
             if (totalElement) totalElement.textContent = formatCurrency(total);
             if (message) message.style.display = 'none';

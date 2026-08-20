@@ -4,6 +4,7 @@
 }
 
 .support-grid {
+    /* Coloca las preguntas y los contactos lado a lado en escritorio. */
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(280px, 1fr);
     gap: 24px;
@@ -63,6 +64,7 @@
 }
 
 @media (max-width: 900px) {
+    /* En tablet o celular las tarjetas se apilan para conservar la lectura. */
     .support-grid {
         grid-template-columns: 1fr;
     }

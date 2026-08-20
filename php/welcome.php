@@ -1,6 +1,8 @@
 <?php
+// Recupera la sesión creada en login.php.
 session_start();
 
+// Protege esta página: sin sesión, el usuario vuelve al inicio de sesión.
 if (!isset($_SESSION["username"])) {
     header("Location: ../html/login.html?error=Inicia sesión primero");
     exit();
@@ -17,6 +19,7 @@ if (!isset($_SESSION["username"])) {
 <body>
     <main class="auth-page">
         <div class="auth-card welcome-card">
+            <!-- htmlspecialchars evita que un nombre de usuario se interprete como HTML. -->
             <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION["username"]); ?>.</h1>
             <p>Has iniciado sesión correctamente.</p>
             <a class="primary-btn" href="../html/main.html">Ir a la tienda</a>

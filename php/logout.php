@@ -1,4 +1,5 @@
 <?php
+// Elimina los datos de la sesión actual antes de volver al login.
 session_start();
 session_unset();
 session_destroy();

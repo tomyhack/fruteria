@@ -4,6 +4,7 @@
 }
 
 .cart-layout {
+    /* Separa la lista de productos del resumen de compra. */
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
     gap: 24px;
@@ -100,6 +101,7 @@
 }
 
 .cart-summary {
+    /* El resumen queda visible mientras se recorre una lista larga. */
     position: sticky;
     top: 124px;
     display: grid;
@@ -151,6 +153,7 @@
 }
 
 @media (max-width: 900px) {
+    /* En pantallas angostas la lista y el resumen pasan a una sola columna. */
     .cart-layout {
         grid-template-columns: 1fr;
     }

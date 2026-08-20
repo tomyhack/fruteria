@@ -27,6 +27,7 @@ input:focus-visible {
 }
 
 .auth-page {
+    /* Centra el formulario sobre la imagen de fondo. */
     display: flex;
     min-height: 100vh;
     min-height: 100svh;
@@ -160,6 +161,7 @@ input:focus-visible {
 }
 
 @media (max-width: 600px) {
+    /* Reduce los espacios para que el formulario entre cómodo en un celular. */
     .auth-page {
         padding: 20px 14px;
         align-items: flex-start;

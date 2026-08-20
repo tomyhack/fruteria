@@ -21,6 +21,7 @@
                 </div>
             </div>
 
+            <!-- En celular, este checkbox muestra u oculta el menú con CSS. -->
             <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <label for="nav-toggle" class="menu-toggle" aria-label="Abrir menú">
                 <span></span>
@@ -216,7 +217,9 @@
     </footer>
 
     <script>
+        // localStorage conserva el carrito aunque se cambie de página.
         const CART_KEY = 'fruteria-cart';
+        // Si aún no hay carrito, devuelve una lista vacía.
         function readCart() {
             try {
                 return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
@@ -227,6 +230,7 @@
         function saveCart(items) {
             localStorage.setItem(CART_KEY, JSON.stringify(items));
         }
+        // Si el producto ya existe aumenta su cantidad; si no, lo agrega.
         function addToCart(name, price) {
             const cart = readCart();
             const item = cart.find((entry) => entry.name === name);

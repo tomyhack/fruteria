@@ -12,6 +12,7 @@
 }
 
 .product-grid {
+    /* Tres columnas en pantallas grandes; los media queries las reducen abajo. */
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
@@ -102,12 +103,14 @@
 }
 
 @media (max-width: 900px) {
+    /* En tablet se muestran dos productos por fila. */
     .product-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 620px) {
+    /* En celular cada producto ocupa una fila completa. */
     .store-section {
         padding: 20px;
         margin-bottom: 20px;
