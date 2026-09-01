@@ -50,6 +50,7 @@
                         <a href="../php/logout.php">Cerrar sesión</a>
                     </div>
                 </div>
+                <button class="language-toggle" type="button" data-language-toggle aria-label="Cambiar idioma a Inglés" title="Cambiar idioma a Inglés">EN</button>
             </div>
         </div>
     </header>
@@ -217,6 +218,7 @@
         <p>Frutería Nancy | Productos de producción propia.</p>
     </footer>
 
+    <script src="../js/translate.js"></script>
     <script>
         // localStorage conserva el carrito aunque se cambie de página.
         const CART_KEY = 'fruteria-cart';
@@ -243,15 +245,17 @@
             saveCart(cart);
         }
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.add-btn').forEach((button) => {
-                button.addEventListener('click', () => {
-                    addToCart(button.dataset.product, Number(button.dataset.price));
-                    button.textContent = 'Agregado';
-                    button.disabled = true;
-                    setTimeout(() => {
-                        button.textContent = 'Agregar al carrito';
-                        button.disabled = false;
-                    }, 900);
+            window.i18nReady.then(() => {
+                document.querySelectorAll('.add-btn').forEach((button) => {
+                    button.addEventListener('click', () => {
+                        addToCart(button.dataset.product, Number(button.dataset.price));
+                        button.textContent = window.i18n.t('common.added');
+                        button.disabled = true;
+                        setTimeout(() => {
+                            button.textContent = window.i18n.t('common.addToCart');
+                            button.disabled = false;
+                        }, 900);
+                    });
                 });
             });
         });

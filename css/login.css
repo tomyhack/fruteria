@@ -45,6 +45,28 @@ input:focus-visible {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+.auth-language-control {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.language-toggle {
+    min-width: 46px;
+    min-height: 38px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--primary-dark);
+    font-weight: 700;
+    background: #eef6ed;
+    border: 1px solid rgba(73, 161, 75, 0.2);
+    border-radius: 999px;
+}
+
+.language-toggle:hover {
+    background: #dff0dc;
+}
+
 .brand {
     margin-bottom: 30px;
     text-align: center;

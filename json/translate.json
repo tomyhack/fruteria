@@ -1,0 +1,256 @@
+{
+  "es": {
+    "locale": "es-UY",
+    "common": {
+      "brand": "Frutería Nancy",
+      "ownProduction": "Productos de producción propia.",
+      "languages": { "es": "Español", "en": "Inglés" },
+      "switchLanguage": "Cambiar idioma a {language}",
+      "logoAriaLabel": "Espacio para el logo",
+      "logoAlt": "Logo Frutería Nancy",
+      "openMenu": "Abrir menú",
+      "navigation": {
+        "home": "Inicio",
+        "store": "Tienda",
+        "support": "Soporte",
+        "cart": "Carrito",
+        "profile": "Perfil",
+        "login": "Iniciar sesión",
+        "register": "Registrarte",
+        "logout": "Cerrar sesión"
+      },
+      "cartAriaLabel": "Ir al carrito",
+      "imagePlaceholder": "Imagen",
+      "footer": "Frutería | Entrega de frutas frescas y tienda en línea.",
+      "storeFooter": "Frutería Nancy | Productos de producción propia.",
+      "goToStore": "Ir a la tienda",
+      "contactSupport": "Contactar soporte",
+      "addToCart": "Agregar al carrito",
+      "added": "Agregado"
+    },
+    "home": {
+      "title": "Frutería | Inicio",
+      "eyebrow": "Bienvenido a Frutería Nancy",
+      "heading": "Productos de producción propia.",
+      "intro": "Ofrecemos verduras de producción propia y frutas seleccionadas para tu mesa. Compra en línea y recoge en nuestra tienda física o pídelo directamente a domicilio.",
+      "aboutHeading": "Sobre Frutería Nancy",
+      "aboutText": "Somos una frutería familiar que cultiva sus propias verduras y selecciona frutas frescas todos los días. Nuestra misión es ofrecer productos sanos, cercanos y de calidad a nuestros clientes.",
+      "locationHeading": "Ubicación de la tienda",
+      "locationIntro": "Ven a visitarnos en nuestra tienda física o consulta la ubicación en el mapa.",
+      "address": "Vizconde de Mauá, 60000 Paysandú",
+      "department": "Departamento de Paysandú",
+      "phone": "Tel: 092 900 122",
+      "hours": "Horario: Lunes a sábado, 7:45 a 20:00"
+    },
+    "store": {
+      "title": "Frutería | Tienda",
+      "eyebrow": "Tienda en línea",
+      "heading": "Elige los productos que deseas hoy.",
+      "intro": "Explora nuestras secciones de promociones, frutas, verduras y otros productos.",
+      "sections": {
+        "promotions": { "heading": "Promociones", "description": "Ofertas especiales para llevar más fresco y ahorrar." },
+        "fruits": { "heading": "Frutas", "description": "Frutas seleccionadas para el día a día." },
+        "vegetables": { "heading": "Verduras", "description": "Verduras frescas de producción propia." },
+        "other": { "heading": "Otros productos", "description": "Complementos y productos de la tienda." }
+      },
+      "products": {
+        "fruitCombo": { "tag": "Promo", "name": "Combo de frutas", "description": "Manzana, banana y naranja en una selección especial." },
+        "vegetablesOfTheDay": { "tag": "Promo", "name": "Verduras del día", "description": "Tomate, zanahoria y lechuga para preparar en casa." },
+        "redApple": { "tag": "Fruta", "name": "Manzana roja", "description": "Fresca, dulce y ideal para meriendas." },
+        "banana": { "tag": "Fruta", "name": "Banana", "description": "Muy suave y práctica para desayunos." },
+        "orange": { "tag": "Fruta", "name": "Naranja", "description": "Jugosa y llena de vitamina C." },
+        "tomato": { "tag": "Verdura", "name": "Tomate", "description": "Perfecto para ensaladas y platos caseros." },
+        "carrot": { "tag": "Verdura", "name": "Zanahoria", "description": "Dulce, crujiente y muy versátil." },
+        "lettuce": { "tag": "Verdura", "name": "Lechuga", "description": "Ideal para preparar ensaladas frescas." },
+        "eggs": { "tag": "Otros", "name": "Huevos", "description": "Un básico para la cocina de todos los días." }
+      }
+    },
+    "support": {
+      "title": "Frutería | Soporte",
+      "heading": "Soporte y ayuda",
+      "intro": "Respondemos tus dudas sobre pedidos, entregas y productos frescos.",
+      "faqHeading": "Preguntas frecuentes",
+      "faqs": {
+        "delivery": { "question": "¿Cuánto tarda la entrega?", "answer": "Las entregas suelen realizarse en el mismo día o en el horario que confirmemos al momento de la compra." },
+        "ownProduction": { "question": "¿Los productos son de producción propia?", "answer": "Sí, muchas verduras y frutas provienen de nuestra producción y se seleccionan todos los días." },
+        "pickup": { "question": "¿Puedo retirar mi pedido en la tienda?", "answer": "Claro, puedes recoger tus productos en la tienda o pedir entrega a domicilio." }
+      },
+      "contactHeading": "Contáctanos",
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram"
+    },
+    "cart": {
+      "title": "Frutería | Carrito",
+      "heading": "Tu carrito",
+      "intro": "Agrega productos desde la tienda y bórralos cuando quieras antes de confirmar.",
+      "summary": "Resumen",
+      "total": "Total",
+      "confirmPurchase": "Confirmar compra",
+      "paymentCompleted": "Pago realizado correctamente",
+      "empty": "Tu carrito está vacío. Ve a la tienda para agregar productos.",
+      "each": "c/u",
+      "subtotal": "Subtotal",
+      "remove": "Quitar"
+    },
+    "auth": {
+      "loginTitle": "Frutería Nancy | Iniciar sesión",
+      "registerTitle": "Frutería Nancy | Registrarse",
+      "backToStore": "← Volver a la tienda",
+      "loginHeading": "Iniciar sesión",
+      "registerHeading": "Registrarse",
+      "username": "Usuario",
+      "usernameLoginPlaceholder": "Ingrese su usuario",
+      "usernameRegisterPlaceholder": "Elija un usuario",
+      "password": "Contraseña",
+      "passwordLoginPlaceholder": "Ingrese su contraseña",
+      "passwordRegisterPlaceholder": "Cree una contraseña",
+      "loginButton": "Ingresar",
+      "registerButton": "Crear cuenta",
+      "noAccount": "¿No tienes cuenta?",
+      "registerHere": "Regístrate aquí",
+      "hasAccount": "¿Ya tienes cuenta?",
+      "loginHere": "Inicia sesión aquí"
+    },
+    "welcome": {
+      "title": "Frutería Nancy | Bienvenido",
+      "heading": "Bienvenido, {username}.",
+      "message": "Has iniciado sesión correctamente."
+    },
+    "messages": {
+      "passwordLength": "La contraseña debe tener entre 8 y 16 caracteres.",
+      "invalidCredentials": "Usuario o contraseña incorrectos",
+      "registrationSuccess": "Registro realizado. Ya puedes iniciar sesión.",
+      "registrationError": "No se pudo registrar el usuario.",
+      "loginRequired": "Inicia sesión primero",
+      "logoutSuccess": "Sesión cerrada correctamente",
+      "connectionError": "Error de conexión: {error}"
+    }
+  },
+  "en": {
+    "locale": "en-US",
+    "common": {
+      "brand": "Nancy's Greengrocer",
+      "ownProduction": "Products from our own production.",
+      "languages": { "es": "Spanish", "en": "English" },
+      "switchLanguage": "Switch language to {language}",
+      "logoAriaLabel": "Logo area",
+      "logoAlt": "Nancy's Greengrocer logo",
+      "openMenu": "Open menu",
+      "navigation": {
+        "home": "Home",
+        "store": "Store",
+        "support": "Support",
+        "cart": "Cart",
+        "profile": "Profile",
+        "login": "Log in",
+        "register": "Sign up",
+        "logout": "Log out"
+      },
+      "cartAriaLabel": "Go to cart",
+      "imagePlaceholder": "Image",
+      "footer": "Greengrocer | Fresh fruit delivery and online store.",
+      "storeFooter": "Nancy's Greengrocer | Products from our own production.",
+      "goToStore": "Go to store",
+      "contactSupport": "Contact support",
+      "addToCart": "Add to cart",
+      "added": "Added"
+    },
+    "home": {
+      "title": "Greengrocer | Home",
+      "eyebrow": "Welcome to Nancy's Greengrocer",
+      "heading": "Products from our own production.",
+      "intro": "We offer vegetables from our own production and hand-picked fruit for your table. Shop online and pick up at our physical store or have your order delivered to your home.",
+      "aboutHeading": "About Nancy's Greengrocer",
+      "aboutText": "We are a family greengrocer that grows its own vegetables and selects fresh fruit every day. Our mission is to offer our customers healthy, local, high-quality products.",
+      "locationHeading": "Store location",
+      "locationIntro": "Visit us at our physical store or check the location on the map.",
+      "address": "Vizconde de Mauá, 60000 Paysandú",
+      "department": "Paysandú Department",
+      "phone": "Phone: 092 900 122",
+      "hours": "Hours: Monday to Saturday, 7:45 AM to 8:00 PM"
+    },
+    "store": {
+      "title": "Greengrocer | Store",
+      "eyebrow": "Online store",
+      "heading": "Choose the products you want today.",
+      "intro": "Browse our promotions, fruit, vegetables, and other product sections.",
+      "sections": {
+        "promotions": { "heading": "Promotions", "description": "Special offers to take home more freshness and save." },
+        "fruits": { "heading": "Fruit", "description": "Hand-picked fruit for everyday life." },
+        "vegetables": { "heading": "Vegetables", "description": "Fresh vegetables from our own production." },
+        "other": { "heading": "Other products", "description": "Extras and products from the store." }
+      },
+      "products": {
+        "fruitCombo": { "tag": "Deal", "name": "Fruit combo", "description": "Apple, banana, and orange in a special selection." },
+        "vegetablesOfTheDay": { "tag": "Deal", "name": "Vegetables of the day", "description": "Tomato, carrot, and lettuce to prepare at home." },
+        "redApple": { "tag": "Fruit", "name": "Red apple", "description": "Fresh, sweet, and ideal for snacks." },
+        "banana": { "tag": "Fruit", "name": "Banana", "description": "Very soft and convenient for breakfast." },
+        "orange": { "tag": "Fruit", "name": "Orange", "description": "Juicy and full of vitamin C." },
+        "tomato": { "tag": "Vegetable", "name": "Tomato", "description": "Perfect for salads and homemade dishes." },
+        "carrot": { "tag": "Vegetable", "name": "Carrot", "description": "Sweet, crunchy, and very versatile." },
+        "lettuce": { "tag": "Vegetable", "name": "Lettuce", "description": "Ideal for making fresh salads." },
+        "eggs": { "tag": "Other", "name": "Eggs", "description": "An everyday kitchen staple." }
+      }
+    },
+    "support": {
+      "title": "Greengrocer | Support",
+      "heading": "Support and help",
+      "intro": "We answer your questions about orders, deliveries, and fresh products.",
+      "faqHeading": "Frequently asked questions",
+      "faqs": {
+        "delivery": { "question": "How long does delivery take?", "answer": "Deliveries are usually made on the same day or during the time slot we confirm when you place your order." },
+        "ownProduction": { "question": "Are the products from your own production?", "answer": "Yes, many vegetables and fruit come from our own production and are selected every day." },
+        "pickup": { "question": "Can I pick up my order at the store?", "answer": "Of course. You can pick up your products at the store or request home delivery." }
+      },
+      "contactHeading": "Contact us",
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram"
+    },
+    "cart": {
+      "title": "Greengrocer | Cart",
+      "heading": "Your cart",
+      "intro": "Add products from the store and remove them whenever you want before confirming.",
+      "summary": "Summary",
+      "total": "Total",
+      "confirmPurchase": "Confirm purchase",
+      "paymentCompleted": "Payment completed successfully",
+      "empty": "Your cart is empty. Go to the store to add products.",
+      "each": "each",
+      "subtotal": "Subtotal",
+      "remove": "Remove"
+    },
+    "auth": {
+      "loginTitle": "Nancy's Greengrocer | Log in",
+      "registerTitle": "Nancy's Greengrocer | Sign up",
+      "backToStore": "← Back to store",
+      "loginHeading": "Log in",
+      "registerHeading": "Sign up",
+      "username": "Username",
+      "usernameLoginPlaceholder": "Enter your username",
+      "usernameRegisterPlaceholder": "Choose a username",
+      "password": "Password",
+      "passwordLoginPlaceholder": "Enter your password",
+      "passwordRegisterPlaceholder": "Create a password",
+      "loginButton": "Log in",
+      "registerButton": "Create account",
+      "noAccount": "Don't have an account?",
+      "registerHere": "Sign up here",
+      "hasAccount": "Already have an account?",
+      "loginHere": "Log in here"
+    },
+    "welcome": {
+      "title": "Nancy's Greengrocer | Welcome",
+      "heading": "Welcome, {username}.",
+      "message": "You have logged in successfully."
+    },
+    "messages": {
+      "passwordLength": "The password must contain between 8 and 16 characters.",
+      "invalidCredentials": "Incorrect username or password",
+      "registrationSuccess": "Registration completed. You can now log in.",
+      "registrationError": "The user could not be registered.",
+      "loginRequired": "Please log in first",
+      "logoutSuccess": "You have logged out successfully",
+      "connectionError": "Connection error: {error}"
+    }
+  }
+}

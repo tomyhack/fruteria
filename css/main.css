@@ -188,7 +188,8 @@ summary:focus-visible {
 }
 
 .cart-button,
-.profile-button {
+.profile-button,
+.language-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -225,6 +226,19 @@ summary:focus-visible {
     padding: 10px 16px;
     cursor: pointer;
     background: #f4f0e5;
+}
+
+.language-toggle {
+    min-width: 46px;
+    padding: 10px 12px;
+    cursor: pointer;
+    color: var(--primary-dark);
+    background: #eef6ed;
+}
+
+.language-toggle:hover {
+    background: #dff0dc;
+    transform: translateY(-1px);
 }
 
 .profile-button:hover {

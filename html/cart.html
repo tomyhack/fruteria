@@ -50,6 +50,7 @@
                         <a href="../php/logout.php">Cerrar sesión</a>
                     </div>
                 </div>
+                <button class="language-toggle" type="button" data-language-toggle aria-label="Cambiar idioma a Inglés" title="Cambiar idioma a Inglés">EN</button>
             </div>
         </div>
     </header>
@@ -83,6 +84,7 @@
         <p>Frutería | Entrega de frutas frescas y tienda en línea.</p>
     </footer>
 
+    <script src="../js/translate.js"></script>
     <script>
         // Debe ser la misma clave que usa store.html para leer el mismo carrito.
         const CART_KEY = 'fruteria-cart';
@@ -102,7 +104,13 @@
         }
         // Formatea el total como dinero de Uruguay.
         function formatCurrency(value) {
-            return new Intl.NumberFormat('es-UY', { style: 'currency', currency: 'UYU', maximumFractionDigits: 0 }).format(value);
+            return new Intl.NumberFormat(window.i18n.locale, { style: 'currency', currency: 'UYU', maximumFractionDigits: 0 }).format(value);
+        }
+        function translateCartText(key) {
+            return window.i18n.t(key);
+        }
+        function translateProductName(name) {
+            return window.i18n.translateValue(name);
         }
         function removeFromCart(name) {
             const cart = readCart().filter((item) => item.name !== name);
@@ -115,7 +123,7 @@
             const message = document.getElementById('confirm-message');
             if (!container) return;
             if (cart.length === 0) {
-                container.innerHTML = '<div class="empty-cart">Tu carrito está vacío. Ve a la tienda para agregar productos.</div>';
+                container.innerHTML = `<div class="empty-cart">${translateCartText('cart.empty')}</div>`;
                 if (totalElement) totalElement.textContent = formatCurrency(0);
                 if (message) message.style.display = purchaseCompleted ? 'block' : 'none';
                 return;
@@ -128,15 +136,15 @@
                 <div class="product-row">
                     <div class="product-card cart-product-card">
                         <div class="product-card-content">
-                            <h3>${item.name}</h3>
-                            <p>${formatCurrency(item.price)} c/u</p>
+                            <h3>${translateProductName(item.name)}</h3>
+                            <p>${formatCurrency(item.price)} ${translateCartText('cart.each')}</p>
                             <div class="product-card-footer">
-                                <span class="price">Subtotal ${formatCurrency(item.price * item.quantity)}</span>
+                                <span class="price">${translateCartText('cart.subtotal')} ${formatCurrency(item.price * item.quantity)}</span>
                                 <div class="cart-controls">
                                     <button class="quantity-btn" type="button" data-action="remove-one" data-name="${item.name}">−</button>
                                     <span class="quantity-value">${item.quantity}</span>
                                     <button class="quantity-btn" type="button" data-action="add-one" data-name="${item.name}">+</button>
-                                    <button class="remove-btn" type="button" data-action="remove" data-name="${item.name}">Quitar</button>
+                                    <button class="remove-btn" type="button" data-action="remove" data-name="${item.name}">${translateCartText('cart.remove')}</button>
                                 </div>
                             </div>
                         </div>
@@ -170,13 +178,16 @@
             });
         }
         document.addEventListener('DOMContentLoaded', () => {
-            renderCart();
-            document.getElementById('confirm-button')?.addEventListener('click', () => {
-                const cart = readCart();
-                if (cart.length === 0) return;
-                localStorage.removeItem(CART_KEY);
-                purchaseCompleted = true;
+            window.i18nReady.then(() => {
                 renderCart();
+                window.addEventListener('languagechange', renderCart);
+                document.getElementById('confirm-button')?.addEventListener('click', () => {
+                    const cart = readCart();
+                    if (cart.length === 0) return;
+                    localStorage.removeItem(CART_KEY);
+                    purchaseCompleted = true;
+                    renderCart();
+                });
             });
         });
     </script>
