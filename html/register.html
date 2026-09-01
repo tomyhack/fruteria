@@ -9,7 +9,7 @@
 </head>
 <body>
     <main class="auth-page">
-        <!-- El formulario envía los datos a register.php para crear el usuario. -->
+        <!-- El formulario crea la cuenta a través de register.php. -->
         <form id="registerForm" class="auth-card auth-form" action="../php/register.php" method="POST">
             <div class="auth-language-control">
                 <button class="language-toggle" type="button" data-language-toggle aria-label="Cambiar idioma a Inglés" title="Cambiar idioma a Inglés">EN</button>
@@ -26,7 +26,7 @@
             <input id="username" type="text" name="username" placeholder="Elija un usuario" required>
 
             <label for="password">Contraseña</label>
-            <!-- Esta regla también se comprueba nuevamente en register.php. -->
+            <!-- La longitud mínima y máxima también se valida en el backend. -->
             <input id="password" type="password" name="password" placeholder="Cree una contraseña" minlength="8" maxlength="16" required>
 
             <button type="submit" class="primary-btn">Crear cuenta</button>

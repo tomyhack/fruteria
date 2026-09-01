@@ -220,9 +220,9 @@
 
     <script src="../js/translate.js"></script>
     <script>
-        // localStorage conserva el carrito aunque se cambie de página.
+        // Se comparte el mismo carrito entre la tienda y el carrito.
         const CART_KEY = 'fruteria-cart';
-        // Si aún no hay carrito, devuelve una lista vacía.
+
         function readCart() {
             try {
                 return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
@@ -230,10 +230,12 @@
                 return [];
             }
         }
+
         function saveCart(items) {
             localStorage.setItem(CART_KEY, JSON.stringify(items));
         }
-        // Si el producto ya existe aumenta su cantidad; si no, lo agrega.
+
+        // Si el producto ya existe, aumenta su cantidad; si no, lo crea.
         function addToCart(name, price) {
             const cart = readCart();
             const item = cart.find((entry) => entry.name === name);
@@ -244,6 +246,8 @@
             }
             saveCart(cart);
         }
+
+        // Espera a que la traducción esté lista antes de enlazar los botones.
         document.addEventListener('DOMContentLoaded', () => {
             window.i18nReady.then(() => {
                 document.querySelectorAll('.add-btn').forEach((button) => {

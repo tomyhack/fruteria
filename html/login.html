@@ -9,7 +9,7 @@
 </head>
 <body>
     <main class="auth-page">
-        <!-- El formulario envía usuario y contraseña a login.php para verificar la base. -->
+        <!-- El formulario valida el acceso contra login.php. -->
         <form class="auth-card auth-form" action="../php/login.php" method="POST">
             <div class="auth-language-control">
                 <button class="language-toggle" type="button" data-language-toggle aria-label="Cambiar idioma a Inglés" title="Cambiar idioma a Inglés">EN</button>
@@ -26,7 +26,7 @@
             <input id="username" type="text" name="username" placeholder="Ingrese su usuario" required>
 
             <label for="password">Contraseña</label>
-            <!-- El navegador no permite enviar menos de 8 ni más de 16 caracteres. -->
+            <!-- La validación de longitud se repite en el servidor para seguridad. -->
             <input id="password" type="password" name="password" placeholder="Ingrese su contraseña" minlength="8" maxlength="16" required>
 
             <button type="submit" class="primary-btn">Ingresar</button>
