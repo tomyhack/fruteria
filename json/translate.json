@@ -4,7 +4,10 @@
     "common": {
       "brand": "Frutería Nancy",
       "ownProduction": "Productos de producción propia.",
-      "languages": { "es": "Español", "en": "Inglés" },
+      "languages": {
+        "es": "Español",
+        "en": "Inglés"
+      },
       "switchLanguage": "Cambiar idioma a {language}",
       "logoAriaLabel": "Espacio para el logo",
       "logoAlt": "Logo Frutería Nancy",
@@ -48,21 +51,69 @@
       "heading": "Elige los productos que deseas hoy.",
       "intro": "Explora nuestras secciones de promociones, frutas, verduras y otros productos.",
       "sections": {
-        "promotions": { "heading": "Promociones", "description": "Ofertas especiales para llevar más fresco y ahorrar." },
-        "fruits": { "heading": "Frutas", "description": "Frutas seleccionadas para el día a día." },
-        "vegetables": { "heading": "Verduras", "description": "Verduras frescas de producción propia." },
-        "other": { "heading": "Otros productos", "description": "Complementos y productos de la tienda." }
+        "promotions": {
+          "heading": "Promociones",
+          "description": "Ofertas especiales para llevar más fresco y ahorrar."
+        },
+        "fruits": {
+          "heading": "Frutas",
+          "description": "Frutas seleccionadas para el día a día."
+        },
+        "vegetables": {
+          "heading": "Verduras",
+          "description": "Verduras frescas de producción propia."
+        },
+        "other": {
+          "heading": "Otros productos",
+          "description": "Complementos y productos de la tienda."
+        }
       },
       "products": {
-        "fruitCombo": { "tag": "Promo", "name": "Combo de frutas", "description": "Manzana, banana y naranja en una selección especial." },
-        "vegetablesOfTheDay": { "tag": "Promo", "name": "Verduras del día", "description": "Tomate, zanahoria y lechuga para preparar en casa." },
-        "redApple": { "tag": "Fruta", "name": "Manzana roja", "description": "Fresca, dulce y ideal para meriendas." },
-        "banana": { "tag": "Fruta", "name": "Banana", "description": "Muy suave y práctica para desayunos." },
-        "orange": { "tag": "Fruta", "name": "Naranja", "description": "Jugosa y llena de vitamina C." },
-        "tomato": { "tag": "Verdura", "name": "Tomate", "description": "Perfecto para ensaladas y platos caseros." },
-        "carrot": { "tag": "Verdura", "name": "Zanahoria", "description": "Dulce, crujiente y muy versátil." },
-        "lettuce": { "tag": "Verdura", "name": "Lechuga", "description": "Ideal para preparar ensaladas frescas." },
-        "eggs": { "tag": "Otros", "name": "Huevos", "description": "Un básico para la cocina de todos los días." }
+        "fruitCombo": {
+          "tag": "Promo",
+          "name": "Combo de frutas",
+          "description": "Manzana, banana y naranja en una selección especial."
+        },
+        "vegetablesOfTheDay": {
+          "tag": "Promo",
+          "name": "Verduras del día",
+          "description": "Tomate, zanahoria y lechuga para preparar en casa."
+        },
+        "redApple": {
+          "tag": "Fruta",
+          "name": "Manzana roja",
+          "description": "Fresca, dulce y ideal para meriendas."
+        },
+        "banana": {
+          "tag": "Fruta",
+          "name": "Banana",
+          "description": "Muy suave y práctica para desayunos."
+        },
+        "orange": {
+          "tag": "Fruta",
+          "name": "Naranja",
+          "description": "Jugosa y llena de vitamina C."
+        },
+        "tomato": {
+          "tag": "Verdura",
+          "name": "Tomate",
+          "description": "Perfecto para ensaladas y platos caseros."
+        },
+        "carrot": {
+          "tag": "Verdura",
+          "name": "Zanahoria",
+          "description": "Dulce, crujiente y muy versátil."
+        },
+        "lettuce": {
+          "tag": "Verdura",
+          "name": "Lechuga",
+          "description": "Ideal para preparar ensaladas frescas."
+        },
+        "eggs": {
+          "tag": "Otros",
+          "name": "Huevos",
+          "description": "Un básico para la cocina de todos los días."
+        }
       }
     },
     "support": {
@@ -71,9 +122,18 @@
       "intro": "Respondemos tus dudas sobre pedidos, entregas y productos frescos.",
       "faqHeading": "Preguntas frecuentes",
       "faqs": {
-        "delivery": { "question": "¿Cuánto tarda la entrega?", "answer": "Las entregas suelen realizarse en el mismo día o en el horario que confirmemos al momento de la compra." },
-        "ownProduction": { "question": "¿Los productos son de producción propia?", "answer": "Sí, muchas verduras y frutas provienen de nuestra producción y se seleccionan todos los días." },
-        "pickup": { "question": "¿Puedo retirar mi pedido en la tienda?", "answer": "Claro, puedes recoger tus productos en la tienda o pedir entrega a domicilio." }
+        "delivery": {
+          "question": "¿Cuánto tarda la entrega?",
+          "answer": "Las entregas suelen realizarse en el mismo día o en el horario que confirmemos al momento de la compra."
+        },
+        "ownProduction": {
+          "question": "¿Los productos son de producción propia?",
+          "answer": "Sí, muchas verduras y frutas provienen de nuestra producción y se seleccionan todos los días."
+        },
+        "pickup": {
+          "question": "¿Puedo retirar mi pedido en la tienda?",
+          "answer": "Claro, puedes recoger tus productos en la tienda o pedir entrega a domicilio."
+        }
       },
       "contactHeading": "Contáctanos",
       "whatsapp": "WhatsApp",
@@ -131,7 +191,10 @@
     "common": {
       "brand": "Nancy's Greengrocer",
       "ownProduction": "Products from our own production.",
-      "languages": { "es": "Spanish", "en": "English" },
+      "languages": {
+        "es": "Spanish",
+        "en": "English"
+      },
       "switchLanguage": "Switch language to {language}",
       "logoAriaLabel": "Logo area",
       "logoAlt": "Nancy's Greengrocer logo",
@@ -175,21 +238,69 @@
       "heading": "Choose the products you want today.",
       "intro": "Browse our promotions, fruit, vegetables, and other product sections.",
       "sections": {
-        "promotions": { "heading": "Promotions", "description": "Special offers to take home more freshness and save." },
-        "fruits": { "heading": "Fruit", "description": "Hand-picked fruit for everyday life." },
-        "vegetables": { "heading": "Vegetables", "description": "Fresh vegetables from our own production." },
-        "other": { "heading": "Other products", "description": "Extras and products from the store." }
+        "promotions": {
+          "heading": "Promotions",
+          "description": "Special offers to take home more freshness and save."
+        },
+        "fruits": {
+          "heading": "Fruit",
+          "description": "Hand-picked fruit for everyday life."
+        },
+        "vegetables": {
+          "heading": "Vegetables",
+          "description": "Fresh vegetables from our own production."
+        },
+        "other": {
+          "heading": "Other products",
+          "description": "Extras and products from the store."
+        }
       },
       "products": {
-        "fruitCombo": { "tag": "Deal", "name": "Fruit combo", "description": "Apple, banana, and orange in a special selection." },
-        "vegetablesOfTheDay": { "tag": "Deal", "name": "Vegetables of the day", "description": "Tomato, carrot, and lettuce to prepare at home." },
-        "redApple": { "tag": "Fruit", "name": "Red apple", "description": "Fresh, sweet, and ideal for snacks." },
-        "banana": { "tag": "Fruit", "name": "Banana", "description": "Very soft and convenient for breakfast." },
-        "orange": { "tag": "Fruit", "name": "Orange", "description": "Juicy and full of vitamin C." },
-        "tomato": { "tag": "Vegetable", "name": "Tomato", "description": "Perfect for salads and homemade dishes." },
-        "carrot": { "tag": "Vegetable", "name": "Carrot", "description": "Sweet, crunchy, and very versatile." },
-        "lettuce": { "tag": "Vegetable", "name": "Lettuce", "description": "Ideal for making fresh salads." },
-        "eggs": { "tag": "Other", "name": "Eggs", "description": "An everyday kitchen staple." }
+        "fruitCombo": {
+          "tag": "Deal",
+          "name": "Fruit combo",
+          "description": "Apple, banana, and orange in a special selection."
+        },
+        "vegetablesOfTheDay": {
+          "tag": "Deal",
+          "name": "Vegetables of the day",
+          "description": "Tomato, carrot, and lettuce to prepare at home."
+        },
+        "redApple": {
+          "tag": "Fruit",
+          "name": "Red apple",
+          "description": "Fresh, sweet, and ideal for snacks."
+        },
+        "banana": {
+          "tag": "Fruit",
+          "name": "Banana",
+          "description": "Very soft and convenient for breakfast."
+        },
+        "orange": {
+          "tag": "Fruit",
+          "name": "Orange",
+          "description": "Juicy and full of vitamin C."
+        },
+        "tomato": {
+          "tag": "Vegetable",
+          "name": "Tomato",
+          "description": "Perfect for salads and homemade dishes."
+        },
+        "carrot": {
+          "tag": "Vegetable",
+          "name": "Carrot",
+          "description": "Sweet, crunchy, and very versatile."
+        },
+        "lettuce": {
+          "tag": "Vegetable",
+          "name": "Lettuce",
+          "description": "Ideal for making fresh salads."
+        },
+        "eggs": {
+          "tag": "Other",
+          "name": "Eggs",
+          "description": "An everyday kitchen staple."
+        }
       }
     },
     "support": {
@@ -198,9 +309,18 @@
       "intro": "We answer your questions about orders, deliveries, and fresh products.",
       "faqHeading": "Frequently asked questions",
       "faqs": {
-        "delivery": { "question": "How long does delivery take?", "answer": "Deliveries are usually made on the same day or during the time slot we confirm when you place your order." },
-        "ownProduction": { "question": "Are the products from your own production?", "answer": "Yes, many vegetables and fruit come from our own production and are selected every day." },
-        "pickup": { "question": "Can I pick up my order at the store?", "answer": "Of course. You can pick up your products at the store or request home delivery." }
+        "delivery": {
+          "question": "How long does delivery take?",
+          "answer": "Deliveries are usually made on the same day or during the time slot we confirm when you place your order."
+        },
+        "ownProduction": {
+          "question": "Are the products from your own production?",
+          "answer": "Yes, many vegetables and fruit come from our own production and are selected every day."
+        },
+        "pickup": {
+          "question": "Can I pick up my order at the store?",
+          "answer": "Of course. You can pick up your products at the store or request home delivery."
+        }
       },
       "contactHeading": "Contact us",
       "whatsapp": "WhatsApp",
