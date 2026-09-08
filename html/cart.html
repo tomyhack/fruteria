@@ -1,207 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frutería | Carrito</title>
-    <link rel="stylesheet" href="../css/main.css" />
-    <link rel="stylesheet" href="../css/cart.css" />
-    <link rel="stylesheet" href="../css/media.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutería Nancy | Carrito</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/media.css">
 </head>
 <body>
-    <header class="site-header">
+    <!-- El encabezado se repite para que la navegación esté disponible. -->
+    <header class="site-header" data-i18n-block="headerCart">
         <div class="header-inner">
             <div class="logo">
-                <div class="logo-mark" aria-label="Espacio para el logo">
-                    <a href="main.html" class="logo-link">
-                        <img src="../img/png/logo.png" alt="Logo Frutería Nancy" />
-                    </a>
-                </div>
-                <div>
-                    <span class="logo-name">Frutería Nancy</span>
-                </div>
+                <a href="index.html" class="logo-link">
+                    <img src="../img/png/logo.png" alt="Logo de Frutería Nancy">
+                </a>
+                <span class="logo-name">Frutería Nancy</span>
             </div>
 
-            <!-- En celular, este checkbox muestra u oculta el menú con CSS. -->
-            <input type="checkbox" id="nav-toggle" class="nav-toggle">
-            <label for="nav-toggle" class="menu-toggle" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-
             <nav class="main-nav">
-                <a class="nav-link" href="main.html">Inicio</a>
+                <a class="nav-link" href="index.html">Inicio</a>
                 <a class="nav-link" href="store.html">Tienda</a>
                 <a class="nav-link" href="support.html">Soporte</a>
             </nav>
 
             <div class="header-actions">
-                <a class="cart-button active" href="cart.html" aria-label="Ir al carrito">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-label">Carrito</span>
-                </a>
-
+                <a class="cart-button" href="cart.html">🛒 Carrito</a>
                 <div class="profile-menu">
-                    <button class="profile-button" type="button"><span class="profile-label">Perfil</span><span class="profile-icon">👤</span></button>
+                    <div class="profile-button">👤 Perfil</div>
                     <div class="profile-dropdown">
                         <a href="login.html">Iniciar sesión</a>
                         <a href="register.html">Registrarte</a>
                         <a href="../php/logout.php">Cerrar sesión</a>
                     </div>
                 </div>
-                <button class="language-toggle" type="button" data-language-toggle aria-label="Cambiar idioma a Inglés" title="Cambiar idioma a Inglés">EN</button>
+                <button id="lang-btn" class="language-toggle" type="button" onclick="toggleLanguage()">EN</button>
             </div>
         </div>
     </header>
 
-    <main class="page-content">
-        <section class="cart-section">
-            <div class="section-header">
-                <h1>Tu carrito</h1>
-                <p>Agrega productos desde la tienda y bórralos cuando quieras antes de confirmar.</p>
-            </div>
-
-            <div class="cart-layout">
-                <div id="cart-items" class="product-selector"></div>
-
-                <aside class="cart-summary">
-                    <h2>Resumen</h2>
-                    <div class="summary-total">
-                        <span>Total</span>
-                        <strong id="cart-total">$0</strong>
-                    </div>
-                    <div class="confirm-action">
-                        <button class="btn btn-primary confirm-button" id="confirm-button" type="button">Confirmar compra</button>
-                        <p class="confirm-message" id="confirm-message">Pago realizado correctamente</p>
-                    </div>
-                </aside>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
+    <footer class="site-footer" data-i18n-block="footer">
         <p>Frutería | Entrega de frutas frescas y tienda en línea.</p>
     </footer>
 
-    <script src="../js/translate.js"></script>
-    <script>
-        // Debe usar la misma clave que la tienda para compartir el carrito.
-        const CART_KEY = 'fruteria-cart';
-        let purchaseCompleted = false;
-
-        function readCart() {
-            try {
-                return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
-            } catch (error) {
-                return [];
-            }
-        }
-
-        function saveCart(items) {
-            localStorage.setItem(CART_KEY, JSON.stringify(items));
-            purchaseCompleted = false;
-            renderCart();
-        }
-
-        // Formatea el total como dinero en pesos uruguayos.
-        function formatCurrency(value) {
-            return new Intl.NumberFormat(window.i18n.locale, { style: 'currency', currency: 'UYU', maximumFractionDigits: 0 }).format(value);
-        }
-
-        function translateCartText(key) {
-            return window.i18n.t(key);
-        }
-
-        function translateProductName(name) {
-            return window.i18n.translateValue(name);
-        }
-
-        function removeFromCart(name) {
-            const cart = readCart().filter((item) => item.name !== name);
-            saveCart(cart);
-        }
-
-        function renderCart() {
-            const cart = readCart();
-            const container = document.getElementById('cart-items');
-            const totalElement = document.getElementById('cart-total');
-            const message = document.getElementById('confirm-message');
-            if (!container) return;
-            if (cart.length === 0) {
-                container.innerHTML = `<div class="empty-cart">${translateCartText('cart.empty')}</div>`;
-                if (totalElement) totalElement.textContent = formatCurrency(0);
-                if (message) message.style.display = purchaseCompleted ? 'block' : 'none';
-                return;
-            }
-
-            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-            if (totalElement) totalElement.textContent = formatCurrency(total);
-            if (message) message.style.display = 'none';
-            container.innerHTML = cart.map((item) => `
-                <div class="product-row">
-                    <div class="product-card cart-product-card">
-                        <div class="product-card-content">
-                            <h3>${translateProductName(item.name)}</h3>
-                            <p>${formatCurrency(item.price)} ${translateCartText('cart.each')}</p>
-                            <div class="product-card-footer">
-                                <span class="price">${translateCartText('cart.subtotal')} ${formatCurrency(item.price * item.quantity)}</span>
-                                <div class="cart-controls">
-                                    <button class="quantity-btn" type="button" data-action="remove-one" data-name="${item.name}">−</button>
-                                    <span class="quantity-value">${item.quantity}</span>
-                                    <button class="quantity-btn" type="button" data-action="add-one" data-name="${item.name}">+</button>
-                                    <button class="remove-btn" type="button" data-action="remove" data-name="${item.name}">${translateCartText('cart.remove')}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            container.querySelectorAll('[data-action="remove-one"]').forEach((button) => {
-                button.addEventListener('click', () => {
-                    const cartItems = readCart();
-                    const item = cartItems.find((entry) => entry.name === button.dataset.name);
-                    if (item && item.quantity > 1) {
-                        item.quantity -= 1;
-                        saveCart(cartItems);
-                    } else {
-                        removeFromCart(button.dataset.name);
-                    }
-                });
-            });
-
-            container.querySelectorAll('[data-action="add-one"]').forEach((button) => {
-                button.addEventListener('click', () => {
-                    const cartItems = readCart();
-                    const item = cartItems.find((entry) => entry.name === button.dataset.name);
-                    if (item) {
-                        item.quantity += 1;
-                        saveCart(cartItems);
-                    }
-                });
-            });
-
-            container.querySelectorAll('[data-action="remove"]').forEach((button) => {
-                button.addEventListener('click', () => removeFromCart(button.dataset.name));
-            });
-        }
-
-        // Se inicializa al cargar y se vuelve a renderizar si cambia el idioma.
-        document.addEventListener('DOMContentLoaded', () => {
-            window.i18nReady.then(() => {
-                renderCart();
-                window.addEventListener('languagechange', renderCart);
-                document.getElementById('confirm-button')?.addEventListener('click', () => {
-                    const cart = readCart();
-                    if (cart.length === 0) return;
-                    localStorage.removeItem(CART_KEY);
-                    purchaseCompleted = true;
-                    renderCart();
-                });
-            });
-        });
-    </script>
-
+    <script src="../js/translations.js"></script>
 </body>
 </html>

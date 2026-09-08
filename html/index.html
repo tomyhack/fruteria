@@ -1,74 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frutería | Inicio</title>
-    <link rel="stylesheet" href="../css/main.css" />
-    <link rel="stylesheet" href="../css/media.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutería Nancy | Inicio</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/media.css">
 </head>
 <body>
-    <!-- Encabezado con navegación principal y acceso al carrito. -->
-    <header class="site-header">
+    <!-- El bloque contiene los textos del encabezado para poder cambiarlos de idioma. -->
+    <header class="site-header" data-i18n-block="headerHome">
         <div class="header-inner">
             <div class="logo">
-                <div class="logo-mark" aria-label="Espacio para el logo">
-                    <a href="main.html" class="logo-link">
-                        <img src="../img/png/logo.png" alt="Logo Frutería Nancy" />
-                    </a>
-                </div>
-                <div>
-                    <span class="logo-name">Frutería Nancy</span>
-                </div>
+                <a href="index.html" class="logo-link">
+                    <img src="../img/png/logo.png" alt="Logo de Frutería Nancy">
+                </a>
+                <span class="logo-name">Frutería Nancy</span>
             </div>
-            <!-- El menú se despliega en pantallas pequeñas. -->
-            <input type="checkbox" id="nav-toggle" class="nav-toggle">
-            <label for="nav-toggle" class="menu-toggle" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
 
             <nav class="main-nav">
-                <a class="nav-link active" href="main.html">Inicio</a>
+                <a class="nav-link active" href="index.html">Inicio</a>
                 <a class="nav-link" href="store.html">Tienda</a>
                 <a class="nav-link" href="support.html">Soporte</a>
             </nav>
 
             <div class="header-actions">
-                <a class="cart-button" href="cart.html" aria-label="Ir al carrito">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-label">Carrito</span>
-                </a>
-
+                <a class="cart-button" href="cart.html">🛒 Carrito</a>
                 <div class="profile-menu">
-                    <button class="profile-button" type="button"><span class="profile-label">Perfil</span><span class="profile-icon">👤</span></button>
+                    <div class="profile-button">👤 Perfil</div>
                     <div class="profile-dropdown">
                         <a href="login.html">Iniciar sesión</a>
                         <a href="register.html">Registrarte</a>
                         <a href="../php/logout.php">Cerrar sesión</a>
                     </div>
                 </div>
-                <button class="language-toggle" type="button" data-language-toggle aria-label="Cambiar idioma a Inglés" title="Cambiar idioma a Inglés">EN</button>
+                <button id="lang-btn" class="language-toggle" type="button" onclick="toggleLanguage()">EN</button>
             </div>
         </div>
     </header>
 
     <main class="page-content">
-        <!-- Presentación principal con el mensaje de la marca. -->
-        <section class="hero-section home-hero">
-            <div class="hero-copy">
-                <span class="eyebrow">Bienvenido a Frutería Nancy</span>
-                <h1>Productos de producción propia.</h1>
-                <p>Ofrecemos verduras de producción propia y frutas seleccionadas para tu mesa. Compra en línea y recoge en nuestra tienda física o pídelo directamente a domicilio.</p>
-                <div class="hero-actions">
-                    <a href="store.html" class="btn btn-primary">Ir a la tienda</a>
-                    <a href="support.html" class="btn btn-secondary">Contactar soporte</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="about-section">
+        <!-- Esta tarjeta presenta brevemente el origen de los productos. -->
+        <section class="about-section" data-i18n-block="homeAbout">
             <div class="about-card">
                 <h2>Sobre Frutería Nancy</h2>
                 <p>Somos una frutería familiar que cultiva sus propias verduras y selecciona frutas frescas todos los días. Nuestra misión es ofrecer productos sanos, cercanos y de calidad a nuestros clientes.</p>
@@ -76,18 +49,20 @@
         </section>
 
         <section class="map-section">
-            <div class="section-header">
+            <div class="section-header" data-i18n-block="homeMapTitle">
                 <h2>Ubicación de la tienda</h2>
                 <p>Ven a visitarnos en nuestra tienda física o consulta la ubicación en el mapa.</p>
             </div>
 
             <div class="map-layout">
+                <!-- El iframe muestra la ubicación guardada en Google Maps. -->
                 <div class="map-frame">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2841.111105370098!2d-58.078432124966206!3d-32.299837739513144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95afcbe9f8f84dab%3A0x76d2877ee62e5147!2sFruteria%20Nancy.%20Verduras%20De%20Producci%C3%B3n%20Propia!5e1!3m2!1ses-419!2suy!4v1784809514677!5m2!1ses-419!2suy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <div class="location-card">
+
+                <div class="location-card" data-i18n-block="homeLocation">
                     <h3>Frutería Nancy</h3>
-                    <p>Vizconde de Mauá, 60000 Paysandú<br />Departamento de Paysandú</p>
+                    <p>Vizconde de Mauá, 60000 Paysandú<br>Departamento de Paysandú</p>
                     <p>Tel: 092 900 122</p>
                     <p>Horario: Lunes a sábado, 7:45 a 20:00</p>
                 </div>
@@ -95,10 +70,10 @@
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" data-i18n-block="footer">
         <p>Frutería | Entrega de frutas frescas y tienda en línea.</p>
     </footer>
 
-    <script src="../js/translate.js"></script>
+    <script src="../js/translations.js"></script>
 </body>
 </html>

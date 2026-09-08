@@ -1,318 +1,98 @@
-/*
-   Ajustes responsive compartidos.
-   Este archivo se carga después del CSS principal y del CSS de cada página,
-   por lo que estas reglas adaptan el diseño sin duplicar los estilos base.
-*/
-
+/* En tabletas, las columnas se apilan para aprovechar el ancho disponible. */
 @media (max-width: 900px) {
-    /* Inicio */
-    .map-layout {
-        grid-template-columns: 1fr;
+    .header-inner {
+        flex-wrap: wrap;
     }
 
-    .location-card {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .main-nav {
+        order: 3;
+        width: 100%;
     }
 
-    .location-card h3 {
-        grid-column: 1 / -1;
-    }
-
-    /* Tienda */
-    .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    /* Carrito y soporte */
-    .cart-layout,
+    .map-layout,
     .support-grid {
         grid-template-columns: 1fr;
     }
 
-    .cart-summary {
-        position: static;
+    .product-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .home-hero .hero-copy {
+        width: 75%;
     }
 }
 
-@media (max-width: 768px) {
-    /* Cabecera común: activa el menú desplegable para móvil. */
-    .header-inner {
-        position: relative;
-        gap: 8px;
-        padding: 12px 16px;
+/* En celulares se reducen los espacios y los botones ocupan todo el ancho. */
+@media (max-width: 620px) {
+    .header-inner,
+    .page-content {
+        padding-right: 16px;
+        padding-left: 16px;
     }
 
-    .logo {
-        flex: 1 1 auto;
-    }
-
-    .logo-mark {
-        width: 60px;
-        height: 60px;
-    }
-
-    .menu-toggle {
-        display: flex;
-        order: 2;
-    }
-
-    .nav-toggle:checked + .menu-toggle span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-    }
-
-    .nav-toggle:checked + .menu-toggle span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .nav-toggle:checked + .menu-toggle span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    .header-actions {
-        order: 3;
+    .header-inner,
+    .header-actions,
+    .main-nav,
+    .hero-actions,
+    .product-footer {
         gap: 8px;
     }
 
-    .main-nav {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
-        z-index: 25;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        max-height: 0;
-        padding: 0;
-        overflow: hidden;
-        pointer-events: none;
-        visibility: hidden;
-        opacity: 0;
-        background: white;
-        border: 0;
-        box-shadow: 0 14px 24px rgba(36, 48, 40, 0.08);
-        transition: max-height 0.28s ease, padding 0.28s ease, opacity 0.2s ease, visibility 0.28s ease;
-    }
-
-    .nav-toggle:checked ~ .main-nav {
-        max-height: 260px;
-        padding: 8px 16px 16px;
-        pointer-events: auto;
-        visibility: visible;
-        opacity: 1;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .main-nav .nav-link {
-        display: block;
-        width: 100%;
-        padding: 12px 16px;
-        border-radius: 10px;
-    }
-
-    .cart-button,
-    .profile-button {
-        min-height: 40px;
-    }
-
-    .cart-button {
-        padding: 9px 12px;
-    }
-
-    .cart-label {
+    .logo-name {
         display: none;
     }
 
-    .profile-button {
-        padding: 9px 12px;
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 14px;
     }
 
-    .page-content {
-        padding: 24px 16px 32px;
-    }
-
-    .hero-section,
-    .about-section,
-    .map-section {
-        margin-bottom: 32px;
+    .cart-button,
+    .profile-button,
+    .language-toggle {
+        padding: 8px 10px;
+        font-size: 14px;
     }
 
     .home-hero {
-        min-height: 390px;
-        border-radius: 24px;
+        min-height: 400px;
+        padding: 24px;
     }
-}
 
-@media (max-width: 620px) {
-    /* Márgenes y secciones comunes */
-    .page-content {
-        padding: 20px 12px 28px;
+    .home-hero .hero-copy {
+        width: 100%;
+        padding: 22px;
     }
 
     .hero-copy h1 {
-        font-size: clamp(2rem, 9vw, 2.45rem);
+        font-size: 32px;
     }
 
-    .home-hero {
-        min-height: 430px;
-        padding: 32px 24px;
-        background: linear-gradient(120deg, rgba(21, 67, 34, 0.94), rgba(38, 117, 51, 0.71)), url("../img/jpg/fruits_background.jpg") center / cover;
-    }
-
-    .hero-copy p {
-        margin: 18px 0 22px;
-        line-height: 1.65;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .hero-actions .btn {
-        width: 100%;
-    }
-
-    .about-card,
-    .location-card {
-        padding: 22px 20px;
-        border-radius: 20px;
-    }
-
-    .location-card {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .map-frame,
-    .map-frame iframe {
-        min-height: 280px;
-    }
-
-    .site-footer {
-        padding: 20px 16px;
-        font-size: 0.9rem;
-    }
-
-    /* Tienda */
-    .store-section {
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 20px;
-    }
-
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .product-image {
-        min-height: 160px;
-    }
-
+    .hero-actions,
     .product-footer {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .add-btn {
+    .btn {
         width: 100%;
     }
 
-    /* Carrito y soporte */
-    .cart-section,
-    .support-section {
-        gap: 20px;
-    }
-
-    .cart-product-card,
-    .cart-summary,
+    .store-section,
     .support-card {
         padding: 20px;
-        border-radius: 20px;
     }
 
-    .product-card-footer {
-        align-items: stretch;
+    .product-grid {
+        grid-template-columns: 1fr;
     }
 
-    .cart-controls {
-        justify-content: space-between;
-    }
-}
-
-@media (max-width: 600px) {
-    /* Formularios de acceso, registro y bienvenida. */
     .auth-page {
-        padding: 20px 14px;
-        align-items: flex-start;
+        padding: 18px;
     }
 
     .auth-card {
-        padding: 28px 24px;
-        margin: auto 0;
-    }
-
-    .brand {
-        margin-bottom: 24px;
-    }
-
-    .brand h1 {
-        font-size: clamp(1.7rem, 8vw, 2rem);
-    }
-}
-
-@media (max-width: 430px) {
-    .header-inner {
-        padding-right: 12px;
-        padding-left: 12px;
-    }
-
-    .logo-name,
-    .profile-label {
-        display: none;
-    }
-
-    .profile-button {
-        width: 40px;
-        padding: 0;
-    }
-
-    .eyebrow {
-        padding: 8px 12px;
-        margin-bottom: 14px;
-        font-size: 0.82rem;
-    }
-
-    .section-header {
-        margin-bottom: 18px;
-    }
-}
-
-@media (max-width: 380px) {
-    /* Tienda y carrito */
-    .store-section,
-    .product-info {
-        padding: 16px;
-    }
-
-    .product-card-footer {
-        flex-direction: column;
-    }
-
-    .cart-controls {
-        width: 100%;
-    }
-
-    .remove-btn {
-        margin-left: auto;
-    }
-
-    /* Formularios de acceso. */
-    .auth-page {
-        padding: 12px;
-    }
-
-    .auth-card {
-        padding: 24px 18px;
+        padding: 28px 22px;
     }
 }

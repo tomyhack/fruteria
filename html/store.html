@@ -1,269 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frutería | Tienda</title>
-    <link rel="stylesheet" href="../css/main.css" />
-    <link rel="stylesheet" href="../css/store.css" />
-    <link rel="stylesheet" href="../css/media.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutería Nancy | Tienda</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/media.css">
 </head>
 <body>
-    <header class="site-header">
+    <!-- La tienda queda vacía por ahora y conserva solo la navegación. -->
+    <header class="site-header" data-i18n-block="headerStore">
         <div class="header-inner">
             <div class="logo">
-                <div class="logo-mark" aria-label="Espacio para el logo">
-                    <a href="main.html" class="logo-link">
-                        <img src="../img/png/logo.png" alt="Logo Frutería Nancy" />
-                    </a>
-                </div>
-                <div>
-                    <span class="logo-name">Frutería Nancy</span>
-                </div>
+                <a href="index.html" class="logo-link">
+                    <img src="../img/png/logo.png" alt="Logo de Frutería Nancy">
+                </a>
+                <span class="logo-name">Frutería Nancy</span>
             </div>
 
-            <!-- En celular, este checkbox muestra u oculta el menú con CSS. -->
-            <input type="checkbox" id="nav-toggle" class="nav-toggle">
-            <label for="nav-toggle" class="menu-toggle" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-
             <nav class="main-nav">
-                <a class="nav-link" href="main.html">Inicio</a>
+                <a class="nav-link" href="index.html">Inicio</a>
                 <a class="nav-link active" href="store.html">Tienda</a>
                 <a class="nav-link" href="support.html">Soporte</a>
             </nav>
 
             <div class="header-actions">
-                <a class="cart-button" href="cart.html" aria-label="Ir al carrito">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-label">Carrito</span>
-                </a>
-
+                <a class="cart-button" href="cart.html">🛒 Carrito</a>
                 <div class="profile-menu">
-                    <button class="profile-button" type="button"><span class="profile-label">Perfil</span><span class="profile-icon">👤</span></button>
+                    <div class="profile-button">👤 Perfil</div>
                     <div class="profile-dropdown">
                         <a href="login.html">Iniciar sesión</a>
                         <a href="register.html">Registrarte</a>
                         <a href="../php/logout.php">Cerrar sesión</a>
                     </div>
                 </div>
-                <button class="language-toggle" type="button" data-language-toggle aria-label="Cambiar idioma a Inglés" title="Cambiar idioma a Inglés">EN</button>
+                <button id="lang-btn" class="language-toggle" type="button" onclick="toggleLanguage()">EN</button>
             </div>
         </div>
     </header>
 
-    <main class="page-content">
-        <section class="hero-section store-hero">
-            <div class="hero-copy">
-                <span class="eyebrow">Tienda en línea</span>
-                <h1>Elige los productos que deseas hoy.</h1>
-                <p>Explora nuestras secciones de promociones, frutas, verduras y otros productos.</p>
-            </div>
-        </section>
-
-        <section class="store-section">
-            <div class="section-header">
-                <h2>Promociones</h2>
-                <p>Ofertas especiales para llevar más fresco y ahorrar.</p>
-            </div>
-            <div class="product-grid">
-                <article class="product-card">
-                    <div class="product-image">Imagen</div>
-                    <div class="product-info">
-                        <span class="product-tag">Promo</span>
-                        <h3>Combo de frutas</h3>
-                        <p>Manzana, banana y naranja en una selección especial.</p>
-                        <div class="product-footer">
-                            <span class="price">$12.50</span>
-                            <button class="btn btn-primary add-btn" type="button" data-product="Combo de frutas" data-price="12.50">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">Imagen</div>
-                    <div class="product-info">
-                        <span class="product-tag">Promo</span>
-                        <h3>Verduras del día</h3>
-                        <p>Tomate, zanahoria y lechuga para preparar en casa.</p>
-                        <div class="product-footer">
-                            <span class="price">$9.80</span>
-                            <button class="btn btn-primary add-btn" type="button" data-product="Verduras del día" data-price="9.80">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="store-section">
-            <div class="section-header">
-                <h2>Frutas</h2>
-                <p>Frutas seleccionadas para el día a día.</p>
-            </div>
-            <div class="product-grid">
-                <article class="product-card">
-                    <div class="product-image">Imagen</div>
-                    <div class="product-info">
-                        <span class="product-tag">Fruta</span>
-                        <h3>Manzana roja</h3>
-                        <p>Fresca, dulce y ideal para meriendas.</p>
-                        <div class="product-footer">
-                            <span class="price">$3.20</span>
-                            <button class="btn btn-primary add-btn" type="button" data-product="Manzana roja" data-price="3.20">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">Imagen</div>
-                    <div class="product-info">
-                        <span class="product-tag">Fruta</span>
-                        <h3>Banana</h3>
-                        <p>Muy suave y práctica para desayunos.</p>
-                        <div class="product-footer">
-                            <span class="price">$2.50</span>
-                            <button class="btn btn-primary add-btn" type="button" data-product="Banana" data-price="2.50">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">Imagen</div>
-                    <div class="product-info">
-                        <span class="product-tag">Fruta</span>
-                        <h3>Naranja</h3>
-                        <p>Jugosa y llena de vitamina C.</p>
-                        <div class="product-footer">
-                            <span class="price">$2.90</span>
-                            <button class="btn btn-primary add-btn" type="button" data-product="Naranja" data-price="2.90">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="store-section">
-            <div class="section-header">
-                <h2>Verduras</h2>
-                <p>Verduras frescas de producción propia.</p>
-            </div>
-            <div class="product-grid">
-                <article class="product-card">
-                    <div class="product-image">Imagen</div>
-                    <div class="product-info">
-                        <span class="product-tag">Verdura</span>
-                        <h3>Tomate</h3>
-                        <p>Perfecto para ensaladas y platos caseros.</p>
-                        <div class="product-footer">
-                            <span class="price">$4.10</span>
-                            <button class="btn btn-primary add-btn" type="button" data-product="Tomate" data-price="4.10">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">Imagen</div>
-                    <div class="product-info">
-                        <span class="product-tag">Verdura</span>
-                        <h3>Zanahoria</h3>
-                        <p>Dulce, crujiente y muy versátil.</p>
-                        <div class="product-footer">
-                            <span class="price">$2.80</span>
-                            <button class="btn btn-primary add-btn" type="button" data-product="Zanahoria" data-price="2.80">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">Imagen</div>
-                    <div class="product-info">
-                        <span class="product-tag">Verdura</span>
-                        <h3>Lechuga</h3>
-                        <p>Ideal para preparar ensaladas frescas.</p>
-                        <div class="product-footer">
-                            <span class="price">$3.50</span>
-                            <button class="btn btn-primary add-btn" type="button" data-product="Lechuga" data-price="3.50">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="store-section">
-            <div class="section-header">
-                <h2>Otros productos</h2>
-                <p>Complementos y productos de la tienda.</p>
-            </div>
-            <div class="product-grid">
-                <article class="product-card">
-                    <div class="product-image">Imagen</div>
-                    <div class="product-info">
-                        <span class="product-tag">Otros</span>
-                        <h3>Huevos</h3>
-                        <p>Un básico para la cocina de todos los días.</p>
-                        <div class="product-footer">
-                            <span class="price">$5.40</span>
-                            <button class="btn btn-primary add-btn" type="button" data-product="Huevos" data-price="5.40">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <p>Frutería Nancy | Productos de producción propia.</p>
-    </footer>
-
-    <script src="../js/translate.js"></script>
-    <script>
-        // Se comparte el mismo carrito entre la tienda y el carrito.
-        const CART_KEY = 'fruteria-cart';
-
-        function readCart() {
-            try {
-                return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
-            } catch (error) {
-                return [];
-            }
-        }
-
-        function saveCart(items) {
-            localStorage.setItem(CART_KEY, JSON.stringify(items));
-        }
-
-        // Si el producto ya existe, aumenta su cantidad; si no, lo crea.
-        function addToCart(name, price) {
-            const cart = readCart();
-            const item = cart.find((entry) => entry.name === name);
-            if (item) {
-                item.quantity += 1;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
-            saveCart(cart);
-        }
-
-        // Espera a que la traducción esté lista antes de enlazar los botones.
-        document.addEventListener('DOMContentLoaded', () => {
-            window.i18nReady.then(() => {
-                document.querySelectorAll('.add-btn').forEach((button) => {
-                    button.addEventListener('click', () => {
-                        addToCart(button.dataset.product, Number(button.dataset.price));
-                        button.textContent = window.i18n.t('common.added');
-                        button.disabled = true;
-                        setTimeout(() => {
-                            button.textContent = window.i18n.t('common.addToCart');
-                            button.disabled = false;
-                        }, 900);
-                    });
-                });
-            });
-        });
-    </script>
-
+    <script src="../js/translations.js"></script>
 </body>
 </html>

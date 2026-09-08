@@ -1,11 +1,11 @@
 <?php
-// Configuración de conexión a la base de datos de XAMPP.
+// Estos datos identifican la base de datos local de la frutería.
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "fruteria";
 
-// Se reutiliza en login.php y register.php para consultar y guardar usuarios.
+// Esta conexión se reutiliza en los archivos de inicio y registro.
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {

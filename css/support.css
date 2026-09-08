@@ -1,64 +1,48 @@
+/* La cuadrícula separa las preguntas frecuentes de los datos de contacto. */
 .support-section {
     display: grid;
     gap: 24px;
 }
 
 .support-grid {
-    /* Coloca las preguntas y los contactos lado a lado en escritorio. */
     display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(280px, 1fr);
+    grid-template-columns: 3fr 2fr;
     gap: 24px;
 }
 
 .support-card {
     padding: 24px;
-    background: linear-gradient(135deg, #f4fff5 0%, #e7f8e5 100%);
-    border: 1px solid rgba(73, 161, 75, 0.2);
-    border-radius: 24px;
-    box-shadow: var(--shadow);
+    background-color: #eef9ed;
+    border: 1px solid #cbe7c9;
+    border-radius: 20px;
 }
 
 .support-card h2 {
     margin-top: 0;
 }
 
-.support-card details {
+.faq-item {
     padding: 14px 0;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid #d9ead8;
 }
 
-.support-card details:last-child {
-    padding-bottom: 0;
+.faq-item h3,
+.faq-item p {
+    margin: 0;
 }
 
-.support-card summary {
-    cursor: pointer;
-    font-weight: 700;
-}
-
-.support-card p,
-.support-card li {
-    color: var(--muted);
+.faq-item p,
+.contacts-card p {
+    margin-top: 10px;
+    color: #5f7360;
     line-height: 1.7;
 }
 
-.support-card p {
-    margin-bottom: 0;
-}
-
-.contacts-card ul {
-    display: grid;
-    gap: 12px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
 .contacts-card a {
-    color: var(--primary-dark);
-    font-weight: 700;
+    color: #287c32;
+    font-weight: bold;
 }
 
 .contacts-card a:hover {
-    color: var(--primary);
+    text-decoration: underline;
 }

@@ -1,99 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frutería | Soporte</title>
-    <link rel="stylesheet" href="../css/main.css" />
-    <link rel="stylesheet" href="../css/support.css" />
-    <link rel="stylesheet" href="../css/media.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutería Nancy | Soporte</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/support.css">
+    <link rel="stylesheet" href="../css/media.css">
 </head>
 <body>
-    <header class="site-header">
+    <!-- El encabezado permite ir a las demás páginas de la frutería. -->
+    <header class="site-header" data-i18n-block="headerSupport">
         <div class="header-inner">
             <div class="logo">
-                <div class="logo-mark" aria-label="Espacio para el logo">
-                    <a href="main.html" class="logo-link">
-                        <img src="../img/png/logo.png" alt="Logo Frutería Nancy" />
-                    </a>
-                </div>
-                <div>
-                    <span class="logo-name">Frutería Nancy</span>
-                </div>
+                <a href="index.html" class="logo-link">
+                    <img src="../img/png/logo.png" alt="Logo de Frutería Nancy">
+                </a>
+                <span class="logo-name">Frutería Nancy</span>
             </div>
 
-            <!-- En celular, este checkbox muestra u oculta el menú con CSS. -->
-            <input type="checkbox" id="nav-toggle" class="nav-toggle">
-            <label for="nav-toggle" class="menu-toggle" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-
             <nav class="main-nav">
-                <a class="nav-link" href="main.html">Inicio</a>
+                <a class="nav-link" href="index.html">Inicio</a>
                 <a class="nav-link" href="store.html">Tienda</a>
                 <a class="nav-link active" href="support.html">Soporte</a>
             </nav>
 
             <div class="header-actions">
-                <a class="cart-button" href="cart.html" aria-label="Ir al carrito">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-label">Carrito</span>
-                </a>
-
+                <a class="cart-button" href="cart.html">🛒 Carrito</a>
                 <div class="profile-menu">
-                    <button class="profile-button" type="button"><span class="profile-label">Perfil</span><span class="profile-icon">👤</span></button>
+                    <div class="profile-button">👤 Perfil</div>
                     <div class="profile-dropdown">
                         <a href="login.html">Iniciar sesión</a>
                         <a href="register.html">Registrarte</a>
                         <a href="../php/logout.php">Cerrar sesión</a>
                     </div>
                 </div>
-                <button class="language-toggle" type="button" data-language-toggle aria-label="Cambiar idioma a Inglés" title="Cambiar idioma a Inglés">EN</button>
+                <button id="lang-btn" class="language-toggle" type="button" onclick="toggleLanguage()">EN</button>
             </div>
         </div>
     </header>
 
     <main class="page-content">
-        <section class="support-section">
+        <!-- El contenido de ayuda se reemplaza completo al cambiar el idioma. -->
+        <section class="support-section" data-i18n-block="supportContent">
             <div class="section-header">
                 <h1>Soporte y ayuda</h1>
                 <p>Respondemos tus dudas sobre pedidos, entregas y productos frescos.</p>
             </div>
-
             <div class="support-grid">
                 <div class="support-card">
                     <h2>Preguntas frecuentes</h2>
-                    <details open>
-                        <summary>¿Cuánto tarda la entrega?</summary>
+                    <div class="faq-item">
+                        <h3>¿Cuánto tarda la entrega?</h3>
                         <p>Las entregas suelen realizarse en el mismo día o en el horario que confirmemos al momento de la compra.</p>
-                    </details>
-                    <details>
-                        <summary>¿Los productos son de producción propia?</summary>
+                    </div>
+                    <div class="faq-item">
+                        <h3>¿Los productos son de producción propia?</h3>
                         <p>Sí, muchas verduras y frutas provienen de nuestra producción y se seleccionan todos los días.</p>
-                    </details>
-                    <details>
-                        <summary>¿Puedo retirar mi pedido en la tienda?</summary>
+                    </div>
+                    <div class="faq-item">
+                        <h3>¿Puedo retirar mi pedido en la tienda?</h3>
                         <p>Claro, puedes recoger tus productos en la tienda o pedir entrega a domicilio.</p>
-                    </details>
+                    </div>
                 </div>
-
                 <div class="support-card contacts-card">
                     <h2>Contáctanos</h2>
-                    <ul>
-                        <li>WhatsApp: <a href="https://wa.me/59892900122" target="_blank" rel="noopener noreferrer">+598 92 900 122</a></li>
-                        <li>Instagram: <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">@fruterianancy</a></li>
-                    </ul>
+                    <p>WhatsApp: <a href="https://wa.me/59892900122">+598 92 900 122</a></p>
+                    <p>Instagram: <a href="https://www.instagram.com">@fruterianancy</a></p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" data-i18n-block="footer">
         <p>Frutería | Entrega de frutas frescas y tienda en línea.</p>
     </footer>
 
-    <script src="../js/translate.js"></script>
+    <script src="../js/translations.js"></script>
 </body>
 </html>
