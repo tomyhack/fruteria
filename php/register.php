@@ -6,17 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = trim($_POST["username"]);
     $pass = $_POST["password"];
 
-    if ($user === "" || $pass === "") {
-        header("Location: ../html/register.html?error=datos_incompletos");
-        exit();
-    }
-
-    // Esta regla también se comprueba en PHP para que no pueda evitarse desde el navegador.
-    if (strlen($pass) < 8 || strlen($pass) > 16) {
-        header("Location: ../html/register.html?error=contrasena_longitud");
-        exit();
-    }
-
     // Se revisa primero si ya existe un usuario con el mismo nombre.
     $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
     $stmt->bind_param("s", $user);
@@ -24,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        header("Location: ../html/register.html?error=usuario_existente");
+        header("Location: ../html/register.html?error=" . urlencode("El usuario ya existe."));
         exit();
     }
 
@@ -34,12 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("ss", $user, $hashedPassword);
 
     if ($stmt->execute()) {
-        header("Location: ../html/login.html?success=registro_correcto");
+        header("Location: ../html/login.html?success=" . urlencode("Registro realizado. Ya puedes iniciar sesión."));
         exit();
     }
 
     // Este mensaje aparece si ocurre otro error al guardar la cuenta.
-    header("Location: ../html/register.html?error=registro_error");
+    header("Location: ../html/register.html?error=" . urlencode("No se pudo crear la cuenta."));
     exit();
 }
 

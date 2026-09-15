@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $pass = $_POST["password"];
 
     if ($user === "" || $pass === "") {
-        header("Location: ../html/login.html?error=datos_incompletos");
+        header("Location: ../html/login.html?error=" . urlencode("Completa el usuario y la contraseña."));
         exit();
     }
 
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Si el usuario no existe o la contraseña no coincide, vuelve al formulario.
-    header("Location: ../html/login.html?error=credenciales_incorrectas");
+    header("Location: ../html/login.html?error=" . urlencode("Usuario o contraseña incorrectos."));
     exit();
 }
 

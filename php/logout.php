@@ -4,6 +4,6 @@ session_start();
 session_unset();
 session_destroy();
 
-header("Location: ../html/login.html?success=sesion_cerrada");
+header("Location: ../html/login.html?success=" . urlencode("La sesión se cerró correctamente."));
 exit();
 ?>

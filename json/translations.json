@@ -22,16 +22,7 @@
     "registerButton": "<button type=\"submit\" class=\"primary-btn\">Crear cuenta</button>",
     "registerSwitch": "<p class=\"auth-switch\">¿Ya tienes cuenta? <a href=\"login.html\">Inicia sesión aquí</a>.</p>",
     "supportContent": "<div class=\"section-header\"><h1>Soporte y ayuda</h1><p>Respondemos tus dudas sobre pedidos, entregas y productos frescos.</p></div><div class=\"support-grid\"><div class=\"support-card\"><h2>Preguntas frecuentes</h2><div class=\"faq-item\"><h3>¿Cuánto tarda la entrega?</h3><p>Las entregas suelen realizarse en el mismo día o en el horario que confirmemos al momento de la compra.</p></div><div class=\"faq-item\"><h3>¿Los productos son de producción propia?</h3><p>Sí, muchas verduras y frutas provienen de nuestra producción y se seleccionan todos los días.</p></div><div class=\"faq-item\"><h3>¿Puedo retirar mi pedido en la tienda?</h3><p>Claro, puedes recoger tus productos en la tienda o pedir entrega a domicilio.</p></div></div><div class=\"support-card contacts-card\"><h2>Contáctanos</h2><p>WhatsApp: <a href=\"https://wa.me/59892900122\">+598 92 900 122</a></p><p>Instagram: <a href=\"https://www.instagram.com\">@fruterianancy</a></p></div></div>",
-    "cartContent": "<div class=\"section-header\"><h1>Carrito</h1><p>Consulta los productos que te interesen desde la página de soporte.</p></div><div class=\"empty-cart\"><p>Esta versión simple no guarda productos en un carrito.</p><a class=\"btn btn-primary\" href=\"support.html\">Consultar productos</a></div>",
-    "messages": {
-      "datos_incompletos": "Completa el usuario y la contraseña.",
-      "credenciales_incorrectas": "Usuario o contraseña incorrectos.",
-      "contrasena_longitud": "La contraseña debe tener entre 8 y 16 caracteres.",
-      "usuario_existente": "El usuario ya existe. Elige otro nombre de usuario.",
-      "registro_error": "No se pudo crear la cuenta. Inténtalo nuevamente.",
-      "registro_correcto": "Registro realizado. Ya puedes iniciar sesión.",
-      "sesion_cerrada": "La sesión se cerró correctamente."
-    }
+    "cartContent": "<div class=\"section-header\"><h1>Carrito</h1><p>Consulta los productos que te interesen desde la página de soporte.</p></div><div class=\"empty-cart\"><p>Esta versión simple no guarda productos en un carrito.</p><a class=\"btn btn-primary\" href=\"support.html\">Consultar productos</a></div>"
   },
   "en": {
     "buttonText": "ES",
@@ -56,15 +47,6 @@
     "registerButton": "<button type=\"submit\" class=\"primary-btn\">Create account</button>",
     "registerSwitch": "<p class=\"auth-switch\">Already have an account? <a href=\"login.html\">Log in here</a>.</p>",
     "supportContent": "<div class=\"section-header\"><h1>Support and help</h1><p>We answer your questions about orders, deliveries, and fresh products.</p></div><div class=\"support-grid\"><div class=\"support-card\"><h2>Frequently asked questions</h2><div class=\"faq-item\"><h3>How long does delivery take?</h3><p>Deliveries are usually made on the same day or at the time confirmed when you make the purchase.</p></div><div class=\"faq-item\"><h3>Are the products home-grown?</h3><p>Yes, many vegetables and fruits come from our own production and are selected every day.</p></div><div class=\"faq-item\"><h3>Can I pick up my order at the store?</h3><p>Of course. You can collect your products at the store or request home delivery.</p></div></div><div class=\"support-card contacts-card\"><h2>Contact us</h2><p>WhatsApp: <a href=\"https://wa.me/59892900122\">+598 92 900 122</a></p><p>Instagram: <a href=\"https://www.instagram.com\">@fruterianancy</a></p></div></div>",
-    "cartContent": "<div class=\"section-header\"><h1>Cart</h1><p>Ask about products you are interested in from the support page.</p></div><div class=\"empty-cart\"><p>This simple version does not store products in a cart.</p><a class=\"btn btn-primary\" href=\"support.html\">Ask about products</a></div>",
-    "messages": {
-      "datos_incompletos": "Enter your username and password.",
-      "credenciales_incorrectas": "Incorrect username or password.",
-      "contrasena_longitud": "The password must be between 8 and 16 characters.",
-      "usuario_existente": "This username already exists. Choose another username.",
-      "registro_error": "The account could not be created. Please try again.",
-      "registro_correcto": "Registration completed. You can now log in.",
-      "sesion_cerrada": "You have logged out successfully."
-    }
+    "cartContent": "<div class=\"section-header\"><h1>Cart</h1><p>Ask about products you are interested in from the support page.</p></div><div class=\"empty-cart\"><p>This simple version does not store products in a cart.</p><a class=\"btn btn-primary\" href=\"support.html\">Ask about products</a></div>"
   }
 }

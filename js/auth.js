@@ -1,49 +1,42 @@
-// Este elemento muestra los avisos enviados desde los archivos PHP.
-var feedback;
-
-// Busca el texto del mensaje en el idioma actual.
-function obtenerMensaje(code) {
-    if (translations[currentLang] && translations[currentLang].messages[code]) {
-        return translations[currentLang].messages[code];
-    }
-
-    return "Ocurrió un problema. Inténtalo nuevamente.";
-}
-
-// Muestra un error o una confirmación que llega en la dirección de la página.
-function mostrarMensaje() {
-    if (!feedback) {
-        return;
-    }
-
-    var params = new URLSearchParams(window.location.search);
+document.addEventListener("DOMContentLoaded", () => {
+    const feedback = document.getElementById("feedback");
+    const params = new URLSearchParams(window.location.search);
 
     if (params.has("error")) {
-        feedback.textContent = obtenerMensaje(params.get("error"));
-        feedback.className = "message error";
+        feedback.textContent = params.get("error");
+        feedback.className = "error";
+    } else if (params.has("success")) {
+        feedback.textContent = params.get("success");
+        feedback.className = "success";
     }
 
-    if (params.has("success")) {
-        feedback.textContent = obtenerMensaje(params.get("success"));
-        feedback.className = "message success";
-    }
-}
+    const registerForm = document.getElementById("registerForm");
 
-document.addEventListener("DOMContentLoaded", function () {
-    feedback = document.getElementById("feedback");
-    mostrarMensaje();
-
-    var registerForm = document.getElementById("registerForm");
-
-    // Comprueba la longitud antes de enviar el formulario de registro.
     if (registerForm) {
-        registerForm.addEventListener("submit", function (event) {
-            var password = document.getElementById("password").value;
+        registerForm.addEventListener("submit", function(event) {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
 
-            if (password.length < 8 || password.length > 16) {
+            const hasLetter = /[a-zA-Z]/.test(username);
+            const hasNumber = /[0-9]/.test(username);
+
+            if (!hasLetter || !hasNumber) {
                 event.preventDefault();
-                feedback.textContent = obtenerMensaje("contrasena_longitud");
-                feedback.className = "message error";
+                feedback.textContent = "El usuario debe contener al menos una letra y un número.";
+                feedback.className = "error";
+                return;
+            }
+
+            const hasLowercase = /[a-z]/.test(password);
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasDigit = /[0-9]/.test(password);
+            const hasSpecialChar = /[!@#\$%\^&\*\(\)_\+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+
+            if (!hasLowercase || !hasUppercase || !hasDigit || !hasSpecialChar) {
+                event.preventDefault();
+                feedback.textContent = "La contraseña debe contener una minúscula, una mayúscula, un número y un carácter especial.";
+                feedback.className = "error";
+                return;
             }
         });
     }
