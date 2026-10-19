@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: #243028;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
+
+h1,
+p,
+label {
+    cursor: default;
+    user-select: text;
+}
+
+a,
+button {
+    cursor: pointer;
+}
+
+input {
+    cursor: text;
+}
+
+.authentication-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 30px;
+    background-image: url("../img/jpg/fruits_background.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.authentication-card {
+    width: 460px;
+    max-width: 100%;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 18px;
+}
+
+.authentication-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-actions {
+    text-align: right;
+}
+
+.language-button {
+    width: auto;
+    padding: 8px 12px;
+    color: #287c32;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #eaf6e9;
+    border: 1px solid #d9ead8;
+    border-radius: 8px;
+}
+
+.language-button:hover {
+    background-color: #d9ead8;
+}
+
+.authentication-brand {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.authentication-logo {
+    display: block;
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 14px;
+}
+
+.authentication-brand p {
+    margin: 0;
+    color: #5f7360;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 14px;
+    color: #287c32;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.authentication-form label {
+    margin: 15px 0 6px;
+    font-weight: bold;
+}
+
+.authentication-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #aebfae;
+    border-radius: 8px;
+}
+
+.primary-button {
+    padding: 13px;
+    margin-top: 25px;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #49a14b;
+    border: 0;
+    border-radius: 8px;
+}
+
+.primary-button:hover {
+    background-color: #61b464;
+}
+
+.primary-button:active {
+    background-color: #287c32;
+}
+
+.feedback-message {
+    min-height: 20px;
+    margin: 20px 0 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.success-message {
+    color: #287c32;
+}
+
+.error-message {
+    color: #b63838;
+}
+
+.account-switch {
+    text-align: center;
+}
+
+.account-switch a {
+    color: #287c32;
+    font-weight: bold;
+}

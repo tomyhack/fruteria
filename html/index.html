@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-title="inicio">Frutería Nancy | Inicio</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/media.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="site-logo">
+                <img class="site-logo-image" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy">
+            </div>
+            <nav class="primary-navigation" data-i18n-block="navegacionInicio">
+                <a class="navigation-link active-navigation-link" href="index.html">Inicio</a>
+                <a class="navigation-link" href="store.html">Tienda</a>
+                <a class="navigation-link" href="support.html">Soporte</a>
+            </nav>
+            <div class="header-actions" data-i18n-block="accionesEncabezado">
+                <a class="cart-button" href="cart.html">🛒 <span>Carrito</span><span id="cart-count" class="cart-count">0</span></a>
+                <div class="profile-menu">
+                    <button id="profile-menu-button" class="profile-menu-button" type="button" aria-expanded="false" aria-controls="profile-menu-list">👤 Perfil</button>
+                    <div id="profile-menu-list" class="profile-menu-list">
+                        <a href="login.html">Iniciar sesión</a>
+                        <a href="register.html">Registrarte</a>
+                        <a href="../php/logout.php">Cerrar sesión</a>
+                    </div>
+                </div>
+                <button id="language-button" class="language-button" type="button" onclick="cambiarIdioma()">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="content-section" data-i18n-block="contenidoInicio">
+            <div class="content-card">
+                <h1>Sobre Frutería Nancy</h1>
+                <p>Somos una frutería familiar que cultiva sus propias verduras y selecciona frutas frescas todos los días. Nuestra misión es ofrecer productos sanos, cercanos y de calidad a nuestros clientes.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-heading" data-i18n-block="tituloUbicacion">
+                <h2>Ubicación de la tienda</h2>
+                <p>Puedes visitarnos en nuestra tienda física.</p>
+            </div>
+            <div class="map-layout">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2841.111105370098!2d-58.078432124966206!3d-32.299837739513144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95afcbe9f8f84dab%3A0x76d2877ee62e5147!2sFruteria%20Nancy.%20Verduras%20De%20Producci%C3%B3n%20Propia!5e1!3m2!1ses-419!2suy!4v1784809514677!5m2!1ses-419!2suy" title="Mapa de Frutería Nancy" loading="lazy"></iframe>
+                </div>
+                <div class="content-card" data-i18n-block="datosUbicacion">
+                    <h3>Frutería Nancy</h3>
+                    <p>Vizconde de Mauá, 60000 Paysandú<br>Departamento de Paysandú</p>
+                    <p>Tel: 092 900 122</p>
+                    <p>Horario: lunes a sábado, 7:45 a 20:00</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" data-i18n-block="piePagina">
+        <p>Frutería | Entrega de frutas frescas y tienda en línea.</p>
+    </footer>
+    <script src="../js/translations.js"></script>
+    <script src="../js/tienda.js"></script>
+</body>
+</html>
