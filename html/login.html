@@ -8,18 +8,18 @@
     <link rel="stylesheet" href="../css/media.css">
 </head>
 <body>
-    <main class="authentication-page">
-        <form class="authentication-card authentication-form" action="../php/login.php" method="post" data-i18n-block="formularioInicioSesion">
-            <div class="top-actions"><button id="language-button" class="language-button" type="button" onclick="cambiarIdioma()">EN</button></div>
-            <div class="authentication-brand"><img class="authentication-logo" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p>Productos de producción propia.</p><a class="back-link" href="index.html">← Volver a la tienda</a></div>
+    <main class="pagina-autenticacion">
+        <form class="tarjeta-autenticacion formulario-autenticacion" action="../php/login.php" method="post" data-i18n-block="formularioInicioSesion">
+            <div class="acciones-superiores"><button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button></div>
+            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p>Productos de producción propia.</p><a class="enlace-regreso" href="index.html">← Volver a la tienda</a></div>
             <h1>Iniciar sesión</h1>
             <label for="username">Usuario</label>
             <input id="username" type="text" name="username" placeholder="Ingrese su usuario" required>
             <label for="password">Contraseña</label>
             <input id="password" type="password" name="password" placeholder="Ingrese su contraseña" minlength="8" maxlength="16" required>
-            <button type="submit" class="primary-button">Ingresar</button>
-            <div id="feedback" class="feedback-message"></div>
-            <p class="account-switch">¿No tienes cuenta? <a href="register.html">Regístrate aquí</a>.</p>
+            <button type="submit" class="boton-principal">Ingresar</button>
+            <div id="retroalimentacion" class="mensaje-retroalimentacion"></div>
+            <p class="cambio-cuenta">¿No tienes cuenta? <a href="register.html">Regístrate aquí</a>.</p>
         </form>
     </main>
     <script src="../js/translations.js"></script>

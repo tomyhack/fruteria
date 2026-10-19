@@ -1,9 +1,9 @@
 const showAuthenticationFeedback = (message, messageClass) => {
-    const feedback = document.getElementById("feedback");
+    const feedback = document.getElementById("retroalimentacion");
 
     if (feedback) {
         feedback.textContent = message;
-        feedback.className = `feedback-message ${messageClass}`;
+        feedback.className = `mensaje-retroalimentacion ${messageClass}`;
     }
 };
 
@@ -11,14 +11,14 @@ const showUrlFeedback = () => {
     const parameters = new URLSearchParams(window.location.search);
 
     if (parameters.has("error")) {
-        showAuthenticationFeedback(parameters.get("error"), "error-message");
+        showAuthenticationFeedback(parameters.get("error"), "mensaje-error");
     } else if (parameters.has("success")) {
-        showAuthenticationFeedback(parameters.get("success"), "success-message");
+        showAuthenticationFeedback(parameters.get("success"), "mensaje-exito");
     }
 };
 
 const configureRegistrationValidation = () => {
-    const registrationForm = document.getElementById("registration-form");
+    const registrationForm = document.getElementById("formulario-registro");
 
     if (!registrationForm || registrationForm.dataset.validationConfigured === "true") {
         return;
@@ -32,7 +32,7 @@ const configureRegistrationValidation = () => {
 
         if (!hasLetter || !hasNumber) {
             event.preventDefault();
-            showAuthenticationFeedback(getTranslatedMessage("usernameValidation", "El usuario debe tener al menos una letra y un número."), "error-message");
+            showAuthenticationFeedback(getTranslatedMessage("usernameValidation", "El usuario debe tener al menos una letra y un número."), "mensaje-error");
             return;
         }
 
@@ -43,7 +43,7 @@ const configureRegistrationValidation = () => {
 
         if (!hasLowercase || !hasUppercase || !hasDigit || !hasSpecialCharacter) {
             event.preventDefault();
-            showAuthenticationFeedback(getTranslatedMessage("passwordValidation", "La contraseña debe tener una minúscula, una mayúscula, un número y un carácter especial."), "error-message");
+            showAuthenticationFeedback(getTranslatedMessage("passwordValidation", "La contraseña debe tener una minúscula, una mayúscula, un número y un carácter especial."), "mensaje-error");
         }
     });
 

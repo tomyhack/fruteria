@@ -9,47 +9,47 @@
     <link rel="stylesheet" href="../css/media.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-content">
-            <div class="site-logo">
-                <img class="site-logo-image" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy">
+    <header class="encabezado-sitio">
+        <div class="contenido-encabezado">
+            <div class="logo-sitio">
+                <img class="imagen-logo-sitio" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy">
             </div>
-            <nav class="primary-navigation" data-i18n-block="navegacionCarrito">
-                <a class="navigation-link" href="index.html">Inicio</a>
-                <a class="navigation-link" href="store.html">Tienda</a>
-                <a class="navigation-link" href="support.html">Soporte</a>
+            <nav class="navegacion-principal" data-i18n-block="navegacionCarrito">
+                <a class="enlace-navegacion" href="index.html">Inicio</a>
+                <a class="enlace-navegacion" href="store.html">Tienda</a>
+                <a class="enlace-navegacion" href="support.html">Soporte</a>
             </nav>
-            <div class="header-actions" data-i18n-block="accionesEncabezado">
-                <a class="cart-button" href="cart.html">🛒 <span>Carrito</span><span id="cart-count" class="cart-count">0</span></a>
-                <div class="profile-menu">
-                    <button id="profile-menu-button" class="profile-menu-button" type="button" aria-expanded="false" aria-controls="profile-menu-list">👤 Perfil</button>
-                    <div id="profile-menu-list" class="profile-menu-list">
+            <div class="acciones-encabezado" data-i18n-block="accionesEncabezado">
+                <a class="boton-carrito" href="cart.html">🛒 <span>Carrito</span><span id="contador-carrito" class="contador-carrito">0</span></a>
+                <div class="menu-perfil">
+                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button" aria-expanded="false" aria-controls="lista-menu-perfil">👤 Perfil</button>
+                    <div id="lista-menu-perfil" class="lista-menu-perfil">
                         <a href="login.html">Iniciar sesión</a>
                         <a href="register.html">Registrarte</a>
                         <a href="../php/logout.php">Cerrar sesión</a>
                     </div>
                 </div>
-                <button id="language-button" class="language-button" type="button" onclick="cambiarIdioma()">EN</button>
+                <button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button>
             </div>
         </div>
     </header>
 
-    <main class="page-content" data-i18n-block="contenidoCarrito">
-        <section class="content-section">
-            <div class="section-heading">
+    <main class="contenido-pagina" data-i18n-block="contenidoCarrito">
+        <section class="seccion-contenido">
+            <div class="encabezado-seccion">
                 <h1>Carrito</h1>
                 <p>Revisa tus productos antes de comprar.</p>
             </div>
-            <p id="cart-feedback" class="confirmation-message" role="status" aria-live="polite"></p>
-            <div id="cart-list" class="cart-list"></div>
-            <div id="cart-summary" class="cart-summary">
-                <p>Total: $<span id="cart-total">0</span></p>
-                <button id="purchase-button" class="primary-button" type="button">Comprar todo</button>
+            <p id="retroalimentacion-carrito" class="mensaje-confirmacion" role="status" aria-live="polite"></p>
+            <div id="lista-carrito" class="lista-carrito"></div>
+            <div id="resumen-carrito" class="resumen-carrito">
+                <p>Total: $<span id="total-carrito">0</span></p>
+                <button id="boton-comprar" class="boton-principal" type="button">Comprar todo</button>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer" data-i18n-block="piePagina">
+    <footer class="pie-sitio" data-i18n-block="piePagina">
         <p>Frutería | Entrega de frutas frescas y tienda en línea.</p>
     </footer>
     <script src="../js/translations.js"></script>

@@ -25,7 +25,7 @@ input {
     cursor: text;
 }
 
-.authentication-page {
+.pagina-autenticacion {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +36,7 @@ input {
     background-size: cover;
 }
 
-.authentication-card {
+.tarjeta-autenticacion {
     width: 460px;
     max-width: 100%;
     padding: 40px;
@@ -44,16 +44,16 @@ input {
     border-radius: 18px;
 }
 
-.authentication-form {
+.formulario-autenticacion {
     display: flex;
     flex-direction: column;
 }
 
-.top-actions {
+.acciones-superiores {
     text-align: right;
 }
 
-.language-button {
+.boton-idioma {
     width: auto;
     padding: 8px 12px;
     color: #287c32;
@@ -64,16 +64,16 @@ input {
     border-radius: 8px;
 }
 
-.language-button:hover {
+.boton-idioma:hover {
     background-color: #d9ead8;
 }
 
-.authentication-brand {
+.marca-autenticacion {
     margin-bottom: 30px;
     text-align: center;
 }
 
-.authentication-logo {
+.logo-autenticacion {
     display: block;
     width: 280px;
     max-width: 100%;
@@ -81,35 +81,35 @@ input {
     margin: 0 auto 14px;
 }
 
-.authentication-brand p {
+.marca-autenticacion p {
     margin: 0;
     color: #5f7360;
 }
 
-.back-link {
+.enlace-regreso {
     display: inline-block;
     margin-top: 14px;
     color: #287c32;
     font-weight: bold;
 }
 
-.back-link:hover {
+.enlace-regreso:hover {
     text-decoration: underline;
 }
 
-.authentication-form label {
+.formulario-autenticacion label {
     margin: 15px 0 6px;
     font-weight: bold;
 }
 
-.authentication-form input {
+.formulario-autenticacion input {
     width: 100%;
     padding: 12px;
     border: 1px solid #aebfae;
     border-radius: 8px;
 }
 
-.primary-button {
+.boton-principal {
     padding: 13px;
     margin-top: 25px;
     color: #ffffff;
@@ -120,34 +120,34 @@ input {
     border-radius: 8px;
 }
 
-.primary-button:hover {
+.boton-principal:hover {
     background-color: #61b464;
 }
 
-.primary-button:active {
+.boton-principal:active {
     background-color: #287c32;
 }
 
-.feedback-message {
+.mensaje-retroalimentacion {
     min-height: 20px;
     margin: 20px 0 0;
     font-weight: bold;
     text-align: center;
 }
 
-.success-message {
+.mensaje-exito {
     color: #287c32;
 }
 
-.error-message {
+.mensaje-error {
     color: #b63838;
 }
 
-.account-switch {
+.cambio-cuenta {
     text-align: center;
 }
 
-.account-switch a {
+.cambio-cuenta a {
     color: #287c32;
     font-weight: bold;
 }

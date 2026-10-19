@@ -14,11 +14,11 @@ const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => (
 }[character]));
 
 const showConfirmation = (message, isError = false) => {
-    const cartFeedback = document.getElementById("cart-feedback");
+    const cartFeedback = document.getElementById("retroalimentacion-carrito");
 
     if (cartFeedback) {
         cartFeedback.textContent = message;
-        cartFeedback.className = `confirmation-message confirmation-message-visible${isError ? " confirmation-message-error" : ""}`;
+        cartFeedback.className = `mensaje-confirmacion mensaje-confirmacion-visible${isError ? " mensaje-confirmacion-error" : ""}`;
     }
 };
 
@@ -41,7 +41,7 @@ const getSession = async () => {
 };
 
 const updateCartCount = () => {
-    const cartCount = document.getElementById("cart-count");
+    const cartCount = document.getElementById("contador-carrito");
 
     if (cartCount) {
         cartCount.textContent = shopState.cart.length;
@@ -49,8 +49,8 @@ const updateCartCount = () => {
 };
 
 const updateAccountInterface = () => {
-    const profileMenuButton = document.getElementById("profile-menu-button");
-    const profileMenuList = document.getElementById("profile-menu-list");
+    const profileMenuButton = document.getElementById("boton-menu-perfil");
+    const profileMenuList = document.getElementById("lista-menu-perfil");
 
     if (!profileMenuButton || !profileMenuList) {
         return;
@@ -124,7 +124,7 @@ const loadCart = async () => {
 };
 
 const renderProductCards = () => {
-    const productGrid = document.getElementById("product-grid");
+    const productGrid = document.getElementById("cuadricula-productos");
     const products = getTranslationData("products", []);
 
     if (!productGrid || !Array.isArray(products)) {
@@ -132,13 +132,13 @@ const renderProductCards = () => {
     }
 
     productGrid.innerHTML = products.map((product) => `
-        <article class="product-card">
-            <img class="product-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}">
-            <div class="product-content">
+        <article class="tarjeta-producto">
+            <img class="imagen-producto" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}">
+            <div class="contenido-producto">
                 <h2>${escapeHtml(product.name)}</h2>
-                <div class="product-footer">
-                    <span class="product-price">$${escapeHtml(product.price)} ${escapeHtml(product.unit)}</span>
-                    <button class="primary-button add-product-button" type="button" data-name="${escapeHtml(product.name)}" data-price="${escapeHtml(product.price)}">${getMessage("addProduct", "Agregar")}</button>
+                <div class="pie-producto">
+                    <span class="precio-producto">$${escapeHtml(product.price)} ${escapeHtml(product.unit)}</span>
+                    <button class="boton-principal boton-agregar-producto" type="button" data-name="${escapeHtml(product.name)}" data-price="${escapeHtml(product.price)}">${getMessage("addProduct", "Agregar")}</button>
                 </div>
             </div>
         </article>
@@ -146,22 +146,22 @@ const renderProductCards = () => {
 };
 
 const renderCart = () => {
-    const cartList = document.getElementById("cart-list");
-    const cartSummary = document.getElementById("cart-summary");
-    const cartTotal = document.getElementById("cart-total");
+    const cartList = document.getElementById("lista-carrito");
+    const cartSummary = document.getElementById("resumen-carrito");
+    const cartTotal = document.getElementById("total-carrito");
 
     if (!cartList || !cartSummary || !cartTotal) {
         return;
     }
 
     if (!shopState.user) {
-        cartList.innerHTML = `<div class="empty-cart"><p>${getMessage("loginRequired", "Primero tienes que iniciar sesión.")}</p><a class="primary-button" href="login.html">${getMessage("logIn", "Iniciar sesión")}</a></div>`;
+        cartList.innerHTML = `<div class="carrito-vacio"><p>${getMessage("loginRequired", "Primero tienes que iniciar sesión.")}</p><a class="boton-principal" href="login.html">${getMessage("logIn", "Iniciar sesión")}</a></div>`;
         cartSummary.style.display = "none";
         return;
     }
 
     if (shopState.cart.length === 0) {
-        cartList.innerHTML = `<div class="empty-cart"><p>${getMessage("emptyCart", "El carrito está vacío.")}</p><a class="primary-button" href="store.html">${getMessage("goToStore", "Ir a la tienda")}</a></div>`;
+        cartList.innerHTML = `<div class="carrito-vacio"><p>${getMessage("emptyCart", "El carrito está vacío.")}</p><a class="boton-principal" href="store.html">${getMessage("goToStore", "Ir a la tienda")}</a></div>`;
         cartSummary.style.display = "none";
         return;
     }
@@ -169,12 +169,12 @@ const renderCart = () => {
     const total = shopState.cart.reduce((currentTotal, product) => currentTotal + Number(product.price), 0);
 
     cartList.innerHTML = shopState.cart.map((product) => `
-        <article class="cart-product">
+        <article class="producto-carrito">
             <div>
                 <h2>${escapeHtml(product.name)}</h2>
                 <p>${getMessage("price", "Precio")}: $${escapeHtml(product.price)}</p>
             </div>
-            <button class="primary-button remove-product-button" type="button" data-cart-id="${escapeHtml(product.id)}">${getMessage("removeProduct", "Quitar")}</button>
+            <button class="boton-principal boton-quitar-producto" type="button" data-cart-id="${escapeHtml(product.id)}">${getMessage("removeProduct", "Quitar")}</button>
         </article>
     `).join("");
 
@@ -250,23 +250,23 @@ const completePurchase = async () => {
 };
 
 const toggleProfileMenu = () => {
-    const profileMenuButton = document.getElementById("profile-menu-button");
-    const profileMenuList = document.getElementById("profile-menu-list");
+    const profileMenuButton = document.getElementById("boton-menu-perfil");
+    const profileMenuList = document.getElementById("lista-menu-perfil");
 
     if (!profileMenuButton || !profileMenuList) {
         return;
     }
 
-    const isOpen = profileMenuList.classList.toggle("profile-menu-visible");
+    const isOpen = profileMenuList.classList.toggle("menu-perfil-visible");
     profileMenuButton.setAttribute("aria-expanded", isOpen);
 };
 
 const closeProfileMenu = () => {
-    const profileMenuButton = document.getElementById("profile-menu-button");
-    const profileMenuList = document.getElementById("profile-menu-list");
+    const profileMenuButton = document.getElementById("boton-menu-perfil");
+    const profileMenuList = document.getElementById("lista-menu-perfil");
 
     if (profileMenuButton && profileMenuList) {
-        profileMenuList.classList.remove("profile-menu-visible");
+        profileMenuList.classList.remove("menu-perfil-visible");
         profileMenuButton.setAttribute("aria-expanded", "false");
     }
 };
@@ -279,10 +279,10 @@ const initializeStore = async () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (event) => {
-        const addProductButton = event.target.closest(".add-product-button");
-        const removeProductButton = event.target.closest(".remove-product-button");
-        const purchaseButton = event.target.closest("#purchase-button");
-        const profileMenuButton = event.target.closest("#profile-menu-button");
+        const addProductButton = event.target.closest(".boton-agregar-producto");
+        const removeProductButton = event.target.closest(".boton-quitar-producto");
+        const purchaseButton = event.target.closest("#boton-comprar");
+        const profileMenuButton = event.target.closest("#boton-menu-perfil");
 
         if (addProductButton) {
             addProductToCart(addProductButton);
@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        if (!event.target.closest(".profile-menu")) {
+        if (!event.target.closest(".menu-perfil")) {
             closeProfileMenu();
         }
     });

@@ -8,49 +8,49 @@
     <link rel="stylesheet" href="../css/media.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-content">
-            <div class="site-logo">
-                <img class="site-logo-image" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy">
+    <header class="encabezado-sitio">
+        <div class="contenido-encabezado">
+            <div class="logo-sitio">
+                <img class="imagen-logo-sitio" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy">
             </div>
-            <nav class="primary-navigation" data-i18n-block="navegacionInicio">
-                <a class="navigation-link active-navigation-link" href="index.html">Inicio</a>
-                <a class="navigation-link" href="store.html">Tienda</a>
-                <a class="navigation-link" href="support.html">Soporte</a>
+            <nav class="navegacion-principal" data-i18n-block="navegacionInicio">
+                <a class="enlace-navegacion enlace-navegacion-activo" href="index.html">Inicio</a>
+                <a class="enlace-navegacion" href="store.html">Tienda</a>
+                <a class="enlace-navegacion" href="support.html">Soporte</a>
             </nav>
-            <div class="header-actions" data-i18n-block="accionesEncabezado">
-                <a class="cart-button" href="cart.html">🛒 <span>Carrito</span><span id="cart-count" class="cart-count">0</span></a>
-                <div class="profile-menu">
-                    <button id="profile-menu-button" class="profile-menu-button" type="button" aria-expanded="false" aria-controls="profile-menu-list">👤 Perfil</button>
-                    <div id="profile-menu-list" class="profile-menu-list">
+            <div class="acciones-encabezado" data-i18n-block="accionesEncabezado">
+                <a class="boton-carrito" href="cart.html">🛒 <span>Carrito</span><span id="contador-carrito" class="contador-carrito">0</span></a>
+                <div class="menu-perfil">
+                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button" aria-expanded="false" aria-controls="lista-menu-perfil">👤 Perfil</button>
+                    <div id="lista-menu-perfil" class="lista-menu-perfil">
                         <a href="login.html">Iniciar sesión</a>
                         <a href="register.html">Registrarte</a>
                         <a href="../php/logout.php">Cerrar sesión</a>
                     </div>
                 </div>
-                <button id="language-button" class="language-button" type="button" onclick="cambiarIdioma()">EN</button>
+                <button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button>
             </div>
         </div>
     </header>
 
-    <main class="page-content">
-        <section class="content-section" data-i18n-block="contenidoInicio">
-            <div class="content-card">
+    <main class="contenido-pagina">
+        <section class="seccion-contenido" data-i18n-block="contenidoInicio">
+            <div class="tarjeta-contenido">
                 <h1>Sobre Frutería Nancy</h1>
                 <p>Somos una frutería familiar que cultiva sus propias verduras y selecciona frutas frescas todos los días. Nuestra misión es ofrecer productos sanos, cercanos y de calidad a nuestros clientes.</p>
             </div>
         </section>
 
-        <section class="content-section">
-            <div class="section-heading" data-i18n-block="tituloUbicacion">
+        <section class="seccion-contenido">
+            <div class="encabezado-seccion" data-i18n-block="tituloUbicacion">
                 <h2>Ubicación de la tienda</h2>
                 <p>Puedes visitarnos en nuestra tienda física.</p>
             </div>
-            <div class="map-layout">
-                <div class="map-container">
+            <div class="diseno-mapa">
+                <div class="contenedor-mapa">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2841.111105370098!2d-58.078432124966206!3d-32.299837739513144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95afcbe9f8f84dab%3A0x76d2877ee62e5147!2sFruteria%20Nancy.%20Verduras%20De%20Producci%C3%B3n%20Propia!5e1!3m2!1ses-419!2suy!4v1784809514677!5m2!1ses-419!2suy" title="Mapa de Frutería Nancy" loading="lazy"></iframe>
                 </div>
-                <div class="content-card" data-i18n-block="datosUbicacion">
+                <div class="tarjeta-contenido" data-i18n-block="datosUbicacion">
                     <h3>Frutería Nancy</h3>
                     <p>Vizconde de Mauá, 60000 Paysandú<br>Departamento de Paysandú</p>
                     <p>Tel: 092 900 122</p>
@@ -60,7 +60,7 @@
         </section>
     </main>
 
-    <footer class="site-footer" data-i18n-block="piePagina">
+    <footer class="pie-sitio" data-i18n-block="piePagina">
         <p>Frutería | Entrega de frutas frescas y tienda en línea.</p>
     </footer>
     <script src="../js/translations.js"></script>
