@@ -14,15 +14,15 @@
             <div class="logo-sitio">
                 <img class="imagen-logo-sitio" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy">
             </div>
-            <nav class="navegacion-principal" data-i18n-block="navegacionTienda">
-                <a class="enlace-navegacion" href="index.html">Inicio</a>
-                <a class="enlace-navegacion enlace-navegacion-activo" href="store.html">Tienda</a>
-                <a class="enlace-navegacion" href="support.html">Soporte</a>
+            <nav class="navegacion-principal">
+                <a class="enlace-navegacion" href="index.html" data-i18n="navHome">Inicio</a>
+                <a class="enlace-navegacion enlace-navegacion-activo" href="store.html" data-i18n="navStore">Tienda</a>
+                <a class="enlace-navegacion" href="support.html" data-i18n="navSupport">Soporte</a>
             </nav>
-            <div class="acciones-encabezado" data-i18n-block="accionesEncabezado">
-                <a class="boton-carrito" href="cart.html">🛒 <span>Carrito</span><span id="contador-carrito" class="contador-carrito">0</span></a>
+            <div class="acciones-encabezado">
+                <a class="boton-carrito" href="cart.html">🛒 <span data-i18n="cartLabel">Carrito</span><span id="contador-carrito" class="contador-carrito">0</span></a>
                 <div class="menu-perfil">
-                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button" aria-expanded="false" aria-controls="lista-menu-perfil">👤 Perfil</button>
+                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button" aria-expanded="false" aria-controls="lista-menu-perfil">👤 <span data-i18n="profile">Perfil</span></button>
                     <div id="lista-menu-perfil" class="lista-menu-perfil">
                         <a href="login.html">Iniciar sesión</a>
                         <a href="register.html">Registrarte</a>
@@ -34,19 +34,19 @@
         </div>
     </header>
 
-    <main class="contenido-pagina" data-i18n-block="contenidoTienda">
+    <main class="contenido-pagina">
         <section class="seccion-contenido">
             <div class="encabezado-seccion">
-                <h1>Productos</h1>
-                <p>Elige los productos que quieras agregar al carrito.</p>
+                <h1 data-i18n="storeProductsTitle">Productos</h1>
+                <p data-i18n="storeProductsIntro">Elige los productos que quieras agregar al carrito.</p>
             </div>
             <p id="retroalimentacion-carrito" class="mensaje-confirmacion" role="status" aria-live="polite"></p>
             <div id="cuadricula-productos" class="cuadricula-productos"></div>
         </section>
     </main>
 
-    <footer class="pie-sitio" data-i18n-block="piePagina">
-        <p>Frutería | Entrega de frutas frescas y tienda en línea.</p>
+    <footer class="pie-sitio">
+        <p data-i18n="footerText">Frutería | Entrega de frutas frescas y tienda en línea.</p>
     </footer>
     <script src="../js/translations.js"></script>
     <script src="../js/tienda.js"></script>

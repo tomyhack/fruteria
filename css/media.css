@@ -76,4 +76,9 @@
     .tarjeta-autenticacion {
         padding: 28px 22px;
     }
+
+    .campo-contrasena {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }

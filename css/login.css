@@ -109,6 +109,32 @@ input {
     border-radius: 8px;
 }
 
+.campo-contrasena {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.formulario-autenticacion .campo-contrasena input {
+    min-width: 0;
+    flex: 1;
+}
+
+.boton-mostrar-contrasena {
+    padding: 12px;
+    color: #287c32;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    background-color: #eaf6e9;
+    border: 1px solid #aebfae;
+    border-radius: 8px;
+}
+
+.boton-mostrar-contrasena:hover {
+    background-color: #d9ead8;
+}
+
 .boton-principal {
     padding: 13px;
     margin-top: 25px;

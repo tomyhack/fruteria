@@ -28,7 +28,14 @@ function getCartItems($conn, $userId) {
     $stmt->bind_param("i", $userId);
     $stmt->execute();
 
-    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $result = $stmt->get_result();
+    $items = [];
+
+    while ($item = $result->fetch_assoc()) {
+        $items[] = $item;
+    }
+
+    return $items;
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
@@ -59,7 +66,7 @@ if (!is_array($payload)) {
     respond(422, ["message" => "Datos inválidos."]);
 }
 
-if (($payload["action"] ?? "") === "clear") {
+if (isset($payload["action"]) && $payload["action"] === "clear") {
     $stmt = $conn->prepare("DELETE FROM productos_carrito WHERE id_usuario = ?");
     $stmt->bind_param("i", $userId);
     $stmt->execute();
@@ -67,8 +74,17 @@ if (($payload["action"] ?? "") === "clear") {
     respond(200, ["items" => []]);
 }
 
-$name = trim((string) ($payload["name"] ?? ""));
-$price = $payload["price"] ?? null;
+$name = "";
+$price = null;
+
+if (isset($payload["name"]) && is_string($payload["name"])) {
+    $name = trim($payload["name"]);
+}
+
+if (isset($payload["price"])) {
+    $price = $payload["price"];
+}
+
 if (
     $name === "" || strlen($name) > 100 || !is_numeric($price) || (float) $price < 0
 ) {

@@ -9,17 +9,20 @@
 </head>
 <body>
     <main class="pagina-autenticacion">
-        <form class="tarjeta-autenticacion formulario-autenticacion" action="../php/login.php" method="post" data-i18n-block="formularioInicioSesion">
+        <form class="tarjeta-autenticacion formulario-autenticacion" action="../php/login.php" method="post">
             <div class="acciones-superiores"><button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button></div>
-            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p>Productos de producción propia.</p><a class="enlace-regreso" href="index.html">← Volver a la tienda</a></div>
-            <h1>Iniciar sesión</h1>
-            <label for="username">Usuario</label>
-            <input id="username" type="text" name="username" placeholder="Ingrese su usuario" required>
-            <label for="password">Contraseña</label>
-            <input id="password" type="password" name="password" placeholder="Ingrese su contraseña" minlength="8" maxlength="16" required>
-            <button type="submit" class="boton-principal">Ingresar</button>
+            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p data-i18n="brandText">Productos de producción propia.</p><a class="enlace-regreso" href="index.html" data-i18n="backToStore">← Volver a la tienda</a></div>
+            <h1 data-i18n="loginHeading">Iniciar sesión</h1>
+            <label for="username" data-i18n="usernameLabel">Usuario</label>
+            <input id="username" type="text" name="username" placeholder="Ingrese su usuario" data-i18n-placeholder="usernameLoginPlaceholder" minlength="6" maxlength="12" pattern="[A-Za-z0-9]+" title="Usa entre 6 y 12 letras o números, con al menos una letra y un número." data-i18n-title-attr="usernameValidationTitle" required>
+            <label for="password" data-i18n="passwordLabel">Contraseña</label>
+            <div class="campo-contrasena">
+                <input id="password" type="password" name="password" placeholder="Ingrese su contraseña" data-i18n-placeholder="passwordLoginPlaceholder" minlength="6" maxlength="12" required>
+                <button id="boton-mostrar-contrasena" class="boton-mostrar-contrasena" type="button" aria-controls="password" aria-pressed="false" data-i18n="showPassword">Mostrar contraseña</button>
+            </div>
+            <button type="submit" class="boton-principal" data-i18n="loginSubmit">Ingresar</button>
             <div id="retroalimentacion" class="mensaje-retroalimentacion"></div>
-            <p class="cambio-cuenta">¿No tienes cuenta? <a href="register.html">Regístrate aquí</a>.</p>
+            <p class="cambio-cuenta"><span data-i18n="noAccount">¿No tienes cuenta?</span> <a href="register.html" data-i18n="signUpHere">Regístrate aquí</a>.</p>
         </form>
     </main>
     <script src="../js/translations.js"></script>

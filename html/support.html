@@ -14,15 +14,15 @@
             <div class="logo-sitio">
                 <img class="imagen-logo-sitio" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy">
             </div>
-            <nav class="navegacion-principal" data-i18n-block="navegacionSoporte">
-                <a class="enlace-navegacion" href="index.html">Inicio</a>
-                <a class="enlace-navegacion" href="store.html">Tienda</a>
-                <a class="enlace-navegacion enlace-navegacion-activo" href="support.html">Soporte</a>
+            <nav class="navegacion-principal">
+                <a class="enlace-navegacion" href="index.html" data-i18n="navHome">Inicio</a>
+                <a class="enlace-navegacion" href="store.html" data-i18n="navStore">Tienda</a>
+                <a class="enlace-navegacion enlace-navegacion-activo" href="support.html" data-i18n="navSupport">Soporte</a>
             </nav>
-            <div class="acciones-encabezado" data-i18n-block="accionesEncabezado">
-                <a class="boton-carrito" href="cart.html">🛒 <span>Carrito</span><span id="contador-carrito" class="contador-carrito">0</span></a>
+            <div class="acciones-encabezado">
+                <a class="boton-carrito" href="cart.html">🛒 <span data-i18n="cartLabel">Carrito</span><span id="contador-carrito" class="contador-carrito">0</span></a>
                 <div class="menu-perfil">
-                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button" aria-expanded="false" aria-controls="lista-menu-perfil">👤 Perfil</button>
+                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button" aria-expanded="false" aria-controls="lista-menu-perfil">👤 <span data-i18n="profile">Perfil</span></button>
                     <div id="lista-menu-perfil" class="lista-menu-perfil">
                         <a href="login.html">Iniciar sesión</a>
                         <a href="register.html">Registrarte</a>
@@ -34,34 +34,34 @@
         </div>
     </header>
 
-    <main class="contenido-pagina" data-i18n-block="contenidoSoporte">
+    <main class="contenido-pagina">
         <section class="seccion-soporte">
             <div class="tarjeta-contenido">
-                <h1>Soporte</h1>
-                <p>Para consultar por productos, pedidos o entregas escríbenos.</p>
-                <p>WhatsApp: <a href="https://wa.me/59892900122">+598 92 900 122</a></p>
-                <p>Instagram: <a href="https://www.instagram.com/">@fruterianancy</a></p>
+                <h1 data-i18n="supportTitle">Soporte</h1>
+                <p data-i18n="supportIntro">Para consultar por productos, pedidos o entregas escríbenos.</p>
+                <p><span data-i18n="whatsAppLabel">WhatsApp:</span> <a href="https://wa.me/59892900122">+598 92 900 122</a></p>
+                <p><span data-i18n="instagramLabel">Instagram:</span> <a href="https://www.instagram.com/">@fruterianancy</a></p>
             </div>
             <div class="tarjeta-contenido preguntas-frecuentes">
-                <h2>Preguntas frecuentes</h2>
+                <h2 data-i18n="faqTitle">Preguntas frecuentes</h2>
                 <details>
-                    <summary>¿Cuánto demora el envío?</summary>
-                    <p>Las entregas se realizan en el día o en el horario coordinado al confirmar el pedido.</p>
+                    <summary data-i18n="faqDeliveryQuestion">¿Cuánto demora el envío?</summary>
+                    <p data-i18n="faqDeliveryAnswer">Las entregas se realizan en el día o en el horario coordinado al confirmar el pedido.</p>
                 </details>
                 <details>
-                    <summary>¿Se puede retirar el pedido en la tienda?</summary>
-                    <p>Sí. Puedes retirar tus productos directamente en nuestra tienda de Paysandú.</p>
+                    <summary data-i18n="faqPickupQuestion">¿Se puede retirar el pedido en la tienda?</summary>
+                    <p data-i18n="faqPickupAnswer">Sí. Puedes retirar tus productos directamente en nuestra tienda de Paysandú.</p>
                 </details>
                 <details>
-                    <summary>¿Los productos son de producción propia?</summary>
-                    <p>Sí. Cultivamos productos propios y seleccionamos frutas frescas todos los días.</p>
+                    <summary data-i18n="faqOwnProductsQuestion">¿Los productos son de producción propia?</summary>
+                    <p data-i18n="faqOwnProductsAnswer">Sí. Cultivamos productos propios y seleccionamos frutas frescas todos los días.</p>
                 </details>
             </div>
         </section>
     </main>
 
-    <footer class="pie-sitio" data-i18n-block="piePagina">
-        <p>Frutería | Entrega de frutas frescas y tienda en línea.</p>
+    <footer class="pie-sitio">
+        <p data-i18n="footerText">Frutería | Entrega de frutas frescas y tienda en línea.</p>
     </footer>
     <script src="../js/translations.js"></script>
     <script src="../js/tienda.js"></script>

@@ -1,315 +1,395 @@
-const shopState = {
-    user: null,
-    cart: []
+// Stores the current user and the products shown in the cart.
+const estadoTienda = {
+    usuario: null,
+    carrito: []
 };
 
-const getMessage = (key, defaultValue) => getTranslatedMessage(key, defaultValue);
+// Creates one page element and optionally gives it a class and visible text.
+function crearElemento(etiqueta, clase, texto) {
+    const elemento = document.createElement(etiqueta);
 
-const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    "'": "&#39;",
-    "\"": "&quot;"
-}[character]));
-
-const showConfirmation = (message, isError = false) => {
-    const cartFeedback = document.getElementById("retroalimentacion-carrito");
-
-    if (cartFeedback) {
-        cartFeedback.textContent = message;
-        cartFeedback.className = `mensaje-confirmacion mensaje-confirmacion-visible${isError ? " mensaje-confirmacion-error" : ""}`;
+    if (clase) {
+        elemento.className = clase;
     }
-};
 
-const getSession = async () => {
+    elemento.textContent = texto || "";
+    return elemento;
+}
+
+// Shows a success or error message near the cart content.
+function mostrarConfirmacion(mensaje, esError) {
+    const retroalimentacionCarrito = document.getElementById("retroalimentacion-carrito");
+
+    if (retroalimentacionCarrito) {
+        retroalimentacionCarrito.textContent = mensaje;
+        retroalimentacionCarrito.className = "mensaje-confirmacion mensaje-confirmacion-visible";
+
+        if (esError) {
+            retroalimentacionCarrito.className += " mensaje-confirmacion-error";
+        }
+    }
+}
+
+// Asks PHP if the visitor has an active session.
+async function obtenerSesion() {
     try {
-        const response = await fetch("../php/session.php", {
+        const respuesta = await fetch("../php/session.php", {
             credentials: "same-origin",
             cache: "no-store"
         });
 
-        if (!response.ok) {
+        if (!respuesta.ok) {
             throw new Error("No se pudo consultar la sesión.");
         }
 
-        return response.json();
+        return respuesta.json();
     } catch (error) {
         console.error(error);
         return { authenticated: false };
     }
-};
+}
 
-const updateCartCount = () => {
-    const cartCount = document.getElementById("contador-carrito");
+// Updates the number beside the cart icon.
+function actualizarContadorCarrito() {
+    const contadorCarrito = document.getElementById("contador-carrito");
 
-    if (cartCount) {
-        cartCount.textContent = shopState.cart.length;
+    if (contadorCarrito) {
+        contadorCarrito.textContent = estadoTienda.carrito.length;
     }
-};
+}
 
-const updateAccountInterface = () => {
-    const profileMenuButton = document.getElementById("boton-menu-perfil");
-    const profileMenuList = document.getElementById("lista-menu-perfil");
+// Shows profile links that match whether the visitor is signed in or not.
+function actualizarInterfazCuenta() {
+    const botonMenuPerfil = document.getElementById("boton-menu-perfil");
+    const listaMenuPerfil = document.getElementById("lista-menu-perfil");
 
-    if (!profileMenuButton || !profileMenuList) {
+    if (!botonMenuPerfil || !listaMenuPerfil) {
         return;
     }
 
-    if (shopState.user) {
-        profileMenuButton.textContent = `👤 ${shopState.user.username}`;
-        profileMenuButton.setAttribute("aria-label", `${getMessage("profile", "Perfil")}: ${shopState.user.username}`);
-        profileMenuList.innerHTML = `<a href="../php/logout.php">${getMessage("logOut", "Cerrar sesión")}</a>`;
+    if (estadoTienda.usuario) {
+        botonMenuPerfil.textContent = "👤 " + estadoTienda.usuario.username;
+        botonMenuPerfil.setAttribute("aria-label", obtenerMensajeTraducido("profile", "Perfil") + ": " + estadoTienda.usuario.username);
+        const enlaceCerrarSesion = crearElemento("a", "", obtenerMensajeTraducido("logOut", "Cerrar sesión"));
+        enlaceCerrarSesion.href = "../php/logout.php";
+        listaMenuPerfil.textContent = "";
+        listaMenuPerfil.appendChild(enlaceCerrarSesion);
         return;
     }
 
-    profileMenuButton.textContent = `👤 ${getMessage("profile", "Perfil")}`;
-    profileMenuButton.setAttribute("aria-label", getMessage("profile", "Perfil"));
-    profileMenuList.innerHTML = `
-        <a href="login.html">${getMessage("logIn", "Iniciar sesión")}</a>
-        <a href="register.html">${getMessage("signUp", "Registrarte")}</a>
-    `;
-};
+    botonMenuPerfil.textContent = "👤 " + obtenerMensajeTraducido("profile", "Perfil");
+    botonMenuPerfil.setAttribute("aria-label", obtenerMensajeTraducido("profile", "Perfil"));
+    const enlaceIniciarSesion = crearElemento("a", "", obtenerMensajeTraducido("logIn", "Iniciar sesión"));
+    const enlaceRegistro = crearElemento("a", "", obtenerMensajeTraducido("signUp", "Registrarte"));
+    enlaceIniciarSesion.href = "login.html";
+    enlaceRegistro.href = "register.html";
+    listaMenuPerfil.textContent = "";
+    listaMenuPerfil.appendChild(enlaceIniciarSesion);
+    listaMenuPerfil.appendChild(enlaceRegistro);
+}
 
-const updateSession = async () => {
-    const session = await getSession();
-    shopState.user = session.authenticated ? session : null;
-    updateAccountInterface();
-};
+// Saves the session response so the page knows which account is active.
+async function actualizarSesion() {
+    const sesion = await obtenerSesion();
 
-const requestCart = async (path = "", options = {}) => {
-    const response = await fetch(`../php/cart.php${path}`, {
-        credentials: "same-origin",
-        ...options,
-        headers: {
-            ...(options.body ? { "Content-Type": "application/json" } : {}),
-            ...(options.headers || {})
-        }
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-        if (response.status === 401) {
-            shopState.user = null;
-            shopState.cart = [];
-            updateAccountInterface();
-        }
-
-        throw new Error(data.message || getMessage("cartSaveError", "No se pudo actualizar el carrito."));
+    if (sesion.authenticated) {
+        estadoTienda.usuario = sesion;
+    } else {
+        estadoTienda.usuario = null;
     }
 
-    return data;
-};
+    actualizarInterfazCuenta();
+}
 
-const loadCart = async () => {
-    if (!shopState.user) {
-        shopState.cart = [];
-        updateCartCount();
-        renderCart();
-        return;
-    }
-
-    try {
-        const data = await requestCart();
-        shopState.cart = data.items || [];
-    } catch (error) {
-        shopState.cart = [];
-        showConfirmation(getMessage("cartLoadError", "No se pudo cargar el carrito."), true);
-        console.error(error);
-    }
-
-    updateCartCount();
-    renderCart();
-};
-
-const renderProductCards = () => {
-    const productGrid = document.getElementById("cuadricula-productos");
-    const products = getTranslationData("products", []);
-
-    if (!productGrid || !Array.isArray(products)) {
-        return;
-    }
-
-    productGrid.innerHTML = products.map((product) => `
-        <article class="tarjeta-producto">
-            <img class="imagen-producto" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}">
-            <div class="contenido-producto">
-                <h2>${escapeHtml(product.name)}</h2>
-                <div class="pie-producto">
-                    <span class="precio-producto">$${escapeHtml(product.price)} ${escapeHtml(product.unit)}</span>
-                    <button class="boton-principal boton-agregar-producto" type="button" data-name="${escapeHtml(product.name)}" data-price="${escapeHtml(product.price)}">${getMessage("addProduct", "Agregar")}</button>
-                </div>
-            </div>
-        </article>
-    `).join("");
-};
-
-const renderCart = () => {
-    const cartList = document.getElementById("lista-carrito");
-    const cartSummary = document.getElementById("resumen-carrito");
-    const cartTotal = document.getElementById("total-carrito");
-
-    if (!cartList || !cartSummary || !cartTotal) {
-        return;
-    }
-
-    if (!shopState.user) {
-        cartList.innerHTML = `<div class="carrito-vacio"><p>${getMessage("loginRequired", "Primero tienes que iniciar sesión.")}</p><a class="boton-principal" href="login.html">${getMessage("logIn", "Iniciar sesión")}</a></div>`;
-        cartSummary.style.display = "none";
-        return;
-    }
-
-    if (shopState.cart.length === 0) {
-        cartList.innerHTML = `<div class="carrito-vacio"><p>${getMessage("emptyCart", "El carrito está vacío.")}</p><a class="boton-principal" href="store.html">${getMessage("goToStore", "Ir a la tienda")}</a></div>`;
-        cartSummary.style.display = "none";
-        return;
-    }
-
-    const total = shopState.cart.reduce((currentTotal, product) => currentTotal + Number(product.price), 0);
-
-    cartList.innerHTML = shopState.cart.map((product) => `
-        <article class="producto-carrito">
-            <div>
-                <h2>${escapeHtml(product.name)}</h2>
-                <p>${getMessage("price", "Precio")}: $${escapeHtml(product.price)}</p>
-            </div>
-            <button class="boton-principal boton-quitar-producto" type="button" data-cart-id="${escapeHtml(product.id)}">${getMessage("removeProduct", "Quitar")}</button>
-        </article>
-    `).join("");
-
-    cartTotal.textContent = total.toFixed(2);
-    cartSummary.style.display = "block";
-};
-
-const addProductToCart = async (button) => {
-    if (!shopState.user) {
-        showConfirmation(getMessage("loginRequired", "Primero tienes que iniciar sesión."), true);
-        return;
-    }
-
-    const product = {
-        name: button.getAttribute("data-name"),
-        price: button.getAttribute("data-price")
+// Sends every cart request to PHP and returns the saved cart information.
+async function solicitarCarrito(ruta, metodo, producto) {
+    const opciones = {
+        method: metodo,
+        credentials: "same-origin"
     };
 
-    button.disabled = true;
-
-    try {
-        const data = await requestCart("", {
-            method: "POST",
-            body: JSON.stringify(product)
-        });
-        shopState.cart = data.items || [];
-        updateCartCount();
-        showConfirmation(`${product.name} ${getMessage("addedToCart", "fue agregado al carrito.")}`);
-    } catch (error) {
-        showConfirmation(error.message, true);
-        console.error(error);
-    } finally {
-        button.disabled = false;
+    if (producto) {
+        opciones.headers = { "Content-Type": "application/json" };
+        opciones.body = JSON.stringify(producto);
     }
-};
 
-const removeProductFromCart = async (button) => {
-    const itemId = button.getAttribute("data-cart-id");
-    button.disabled = true;
+    const respuesta = await fetch("../php/cart.php" + ruta, opciones);
 
-    try {
-        const data = await requestCart(`?id=${encodeURIComponent(itemId)}`, { method: "DELETE" });
-        shopState.cart = data.items || [];
-        updateCartCount();
-        renderCart();
-    } catch (error) {
-        showConfirmation(error.message, true);
-        console.error(error);
-    } finally {
-        button.disabled = false;
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+        if (respuesta.status === 401) {
+            estadoTienda.usuario = null;
+            estadoTienda.carrito = [];
+            actualizarInterfazCuenta();
+        }
+
+        throw new Error(datos.message || obtenerMensajeTraducido("cartSaveError", "No se pudo actualizar el carrito."));
     }
-};
 
-const completePurchase = async () => {
-    if (!shopState.user) {
-        showConfirmation(getMessage("loginRequired", "Primero tienes que iniciar sesión."), true);
+    return datos;
+}
+
+// Loads the saved cart for the signed-in user and refreshes the page.
+async function cargarCarrito() {
+    if (!estadoTienda.usuario) {
+        estadoTienda.carrito = [];
+        actualizarContadorCarrito();
+        renderizarCarrito();
         return;
     }
 
     try {
-        const data = await requestCart("", {
-            method: "POST",
-            body: JSON.stringify({ action: "clear" })
-        });
-        shopState.cart = data.items || [];
-        updateCartCount();
-        renderCart();
-        showConfirmation(getMessage("purchaseCompleted", "Gracias por tu compra."));
+        const datos = await solicitarCarrito("", "GET");
+        estadoTienda.carrito = datos.items || [];
     } catch (error) {
-        showConfirmation(error.message, true);
+        estadoTienda.carrito = [];
+        mostrarConfirmacion(obtenerMensajeTraducido("cartLoadError", "No se pudo cargar el carrito."), true);
         console.error(error);
     }
-};
 
-const toggleProfileMenu = () => {
-    const profileMenuButton = document.getElementById("boton-menu-perfil");
-    const profileMenuList = document.getElementById("lista-menu-perfil");
+    actualizarContadorCarrito();
+    renderizarCarrito();
+}
 
-    if (!profileMenuButton || !profileMenuList) {
+// Creates product cards from the list stored in the translation file.
+function renderizarTarjetasProductos() {
+    const cuadriculaProductos = document.getElementById("cuadricula-productos");
+    const productos = obtenerDatosTraduccion("products", []);
+
+    if (!cuadriculaProductos || !Array.isArray(productos)) {
         return;
     }
 
-    const isOpen = profileMenuList.classList.toggle("menu-perfil-visible");
-    profileMenuButton.setAttribute("aria-expanded", isOpen);
-};
+    cuadriculaProductos.textContent = "";
 
-const closeProfileMenu = () => {
-    const profileMenuButton = document.getElementById("boton-menu-perfil");
-    const profileMenuList = document.getElementById("lista-menu-perfil");
+    for (let indice = 0; indice < productos.length; indice++) {
+        const producto = productos[indice];
+        const tarjeta = crearElemento("article", "tarjeta-producto");
+        const imagen = document.createElement("img");
+        imagen.className = "imagen-producto";
+        imagen.src = producto.image;
+        imagen.alt = producto.name;
 
-    if (profileMenuButton && profileMenuList) {
-        profileMenuList.classList.remove("menu-perfil-visible");
-        profileMenuButton.setAttribute("aria-expanded", "false");
+        const contenido = crearElemento("div", "contenido-producto");
+        const nombre = crearElemento("h2", "", producto.name);
+        const pie = crearElemento("div", "pie-producto");
+        const precio = crearElemento("span", "precio-producto", "$" + producto.price + " " + producto.unit);
+        const botonAgregar = crearElemento("button", "boton-principal boton-agregar-producto", obtenerMensajeTraducido("addProduct", "Agregar"));
+        botonAgregar.type = "button";
+        botonAgregar.setAttribute("data-name", producto.name);
+        botonAgregar.setAttribute("data-price", producto.price);
+        botonAgregar.addEventListener("click", function () {
+            agregarProductoAlCarrito(botonAgregar);
+        });
+
+        pie.appendChild(precio);
+        pie.appendChild(botonAgregar);
+        contenido.appendChild(nombre);
+        contenido.appendChild(pie);
+        tarjeta.appendChild(imagen);
+        tarjeta.appendChild(contenido);
+        cuadriculaProductos.appendChild(tarjeta);
     }
-};
+}
 
-const initializeStore = async () => {
-    renderProductCards();
-    await updateSession();
-    await loadCart();
-};
+// Shows a message and a link when the visitor has no cart products to display.
+function mostrarCarritoVacio(listaCarrito, mensajeTexto, ruta, textoEnlace) {
+    const contenedor = crearElemento("div", "carrito-vacio");
+    const mensaje = crearElemento("p", "", mensajeTexto);
+    const enlace = crearElemento("a", "boton-principal", textoEnlace);
+    enlace.href = ruta;
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.addEventListener("click", (event) => {
-        const addProductButton = event.target.closest(".boton-agregar-producto");
-        const removeProductButton = event.target.closest(".boton-quitar-producto");
-        const purchaseButton = event.target.closest("#boton-comprar");
-        const profileMenuButton = event.target.closest("#boton-menu-perfil");
+    contenedor.appendChild(mensaje);
+    contenedor.appendChild(enlace);
+    listaCarrito.textContent = "";
+    listaCarrito.appendChild(contenedor);
+}
 
-        if (addProductButton) {
-            addProductToCart(addProductButton);
-            return;
-        }
+// Draws the current cart, its total, or the right empty-state message.
+function renderizarCarrito() {
+    const listaCarrito = document.getElementById("lista-carrito");
+    const resumenCarrito = document.getElementById("resumen-carrito");
+    const totalCarrito = document.getElementById("total-carrito");
 
-        if (removeProductButton) {
-            removeProductFromCart(removeProductButton);
-            return;
-        }
+    if (!listaCarrito || !resumenCarrito || !totalCarrito) {
+        return;
+    }
 
-        if (purchaseButton) {
-            completePurchase();
-            return;
-        }
+    if (!estadoTienda.usuario) {
+        mostrarCarritoVacio(
+            listaCarrito,
+            obtenerMensajeTraducido("loginRequired", "Primero tienes que iniciar sesión."),
+            "login.html",
+            obtenerMensajeTraducido("logIn", "Iniciar sesión")
+        );
+        resumenCarrito.style.display = "none";
+        return;
+    }
 
-        if (profileMenuButton) {
-            toggleProfileMenu();
-            return;
-        }
+    if (estadoTienda.carrito.length === 0) {
+        mostrarCarritoVacio(
+            listaCarrito,
+            obtenerMensajeTraducido("emptyCart", "El carrito está vacío."),
+            "store.html",
+            obtenerMensajeTraducido("goToStore", "Ir a la tienda")
+        );
+        resumenCarrito.style.display = "none";
+        return;
+    }
 
-        if (!event.target.closest(".menu-perfil")) {
-            closeProfileMenu();
-        }
-    });
+    let total = 0;
+    listaCarrito.textContent = "";
 
-    initializeStore();
+    for (let indice = 0; indice < estadoTienda.carrito.length; indice++) {
+        const producto = estadoTienda.carrito[indice];
+        total = total + Number(producto.price);
+        const articulo = crearElemento("article", "producto-carrito");
+        const datosProducto = crearElemento("div");
+        const nombre = crearElemento("h2", "", producto.name);
+        const precio = crearElemento("p", "", obtenerMensajeTraducido("price", "Precio") + ": $" + producto.price);
+        const botonQuitar = crearElemento("button", "boton-principal boton-quitar-producto", obtenerMensajeTraducido("removeProduct", "Quitar"));
+        botonQuitar.type = "button";
+        botonQuitar.setAttribute("data-cart-id", producto.id);
+        botonQuitar.addEventListener("click", function () {
+            quitarProductoDelCarrito(botonQuitar);
+        });
+
+        datosProducto.appendChild(nombre);
+        datosProducto.appendChild(precio);
+        articulo.appendChild(datosProducto);
+        articulo.appendChild(botonQuitar);
+        listaCarrito.appendChild(articulo);
+    }
+
+    totalCarrito.textContent = total.toFixed(2);
+    resumenCarrito.style.display = "block";
+}
+
+// Sends the selected product to PHP and refreshes the saved cart.
+async function agregarProductoAlCarrito(boton) {
+    if (!estadoTienda.usuario) {
+        mostrarConfirmacion(obtenerMensajeTraducido("loginRequired", "Primero tienes que iniciar sesión."), true);
+        return;
+    }
+
+    // Keeps these keys in English because cart.php expects this exact JSON format.
+    const producto = {
+        name: boton.getAttribute("data-name"),
+        price: boton.getAttribute("data-price")
+    };
+
+    boton.disabled = true;
+
+    try {
+        const datos = await solicitarCarrito("", "POST", producto);
+        estadoTienda.carrito = datos.items || [];
+        actualizarContadorCarrito();
+        mostrarConfirmacion(producto.name + " " + obtenerMensajeTraducido("addedToCart", "fue agregado al carrito."));
+    } catch (error) {
+        mostrarConfirmacion(error.message, true);
+        console.error(error);
+    } finally {
+        boton.disabled = false;
+    }
+}
+
+// Removes one saved product and then redraws the cart.
+async function quitarProductoDelCarrito(boton) {
+    const idProducto = boton.getAttribute("data-cart-id");
+    boton.disabled = true;
+
+    try {
+        const datos = await solicitarCarrito("?id=" + encodeURIComponent(idProducto), "DELETE");
+        estadoTienda.carrito = datos.items || [];
+        actualizarContadorCarrito();
+        renderizarCarrito();
+    } catch (error) {
+        mostrarConfirmacion(error.message, true);
+        console.error(error);
+    } finally {
+        boton.disabled = false;
+    }
+}
+
+// Clears the saved cart after the visitor chooses to buy everything.
+async function completarCompra() {
+    if (!estadoTienda.usuario) {
+        mostrarConfirmacion(obtenerMensajeTraducido("loginRequired", "Primero tienes que iniciar sesión."), true);
+        return;
+    }
+
+    try {
+        const datos = await solicitarCarrito("", "POST", { action: "clear" });
+        estadoTienda.carrito = datos.items || [];
+        actualizarContadorCarrito();
+        renderizarCarrito();
+        mostrarConfirmacion(obtenerMensajeTraducido("purchaseCompleted", "Gracias por tu compra."));
+    } catch (error) {
+        mostrarConfirmacion(error.message, true);
+        console.error(error);
+    }
+}
+
+// Opens or closes the profile menu when its button is pressed.
+function alternarMenuPerfil() {
+    const botonMenuPerfil = document.getElementById("boton-menu-perfil");
+    const listaMenuPerfil = document.getElementById("lista-menu-perfil");
+
+    if (!botonMenuPerfil || !listaMenuPerfil) {
+        return;
+    }
+
+    if (listaMenuPerfil.classList.contains("menu-perfil-visible")) {
+        listaMenuPerfil.classList.remove("menu-perfil-visible");
+        botonMenuPerfil.setAttribute("aria-expanded", "false");
+    } else {
+        listaMenuPerfil.classList.add("menu-perfil-visible");
+        botonMenuPerfil.setAttribute("aria-expanded", "true");
+    }
+}
+
+// Closes the profile menu when the click happens outside it.
+function cerrarMenuPerfil() {
+    const botonMenuPerfil = document.getElementById("boton-menu-perfil");
+    const listaMenuPerfil = document.getElementById("lista-menu-perfil");
+
+    if (botonMenuPerfil && listaMenuPerfil) {
+        listaMenuPerfil.classList.remove("menu-perfil-visible");
+        botonMenuPerfil.setAttribute("aria-expanded", "false");
+    }
+}
+
+// Starts products, account information, and cart data in the right order.
+async function inicializarTienda() {
+    renderizarTarjetasProductos();
+    await actualizarSesion();
+    await cargarCarrito();
+}
+
+// Connects the fixed page buttons after their HTML is ready.
+document.addEventListener("DOMContentLoaded", function () {
+    const botonComprar = document.getElementById("boton-comprar");
+    const botonMenuPerfil = document.getElementById("boton-menu-perfil");
+
+    if (botonComprar) {
+        botonComprar.addEventListener("click", completarCompra);
+    }
+
+    if (botonMenuPerfil) {
+        botonMenuPerfil.addEventListener("click", alternarMenuPerfil);
+
+        document.addEventListener("click", function (evento) {
+            const listaMenuPerfil = document.getElementById("lista-menu-perfil");
+
+            if (listaMenuPerfil && !botonMenuPerfil.contains(evento.target) && !listaMenuPerfil.contains(evento.target)) {
+                cerrarMenuPerfil();
+            }
+        });
+    }
+
+    inicializarTienda();
 });
 
-document.addEventListener("translationsUpdated", initializeStore);
+// Redraws the store after the language file updates the page text.
+document.addEventListener("translationsUpdated", inicializarTienda);

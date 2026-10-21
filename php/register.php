@@ -6,7 +6,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST["email"]);
     $pass = $_POST["password"];
 
-    if ($user === "" || $pass === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $usuarioValido = preg_match('/^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{6,12}$/', $user) === 1;
+    $contrasenaValida =
+        strlen($pass) >= 6 && strlen($pass) <= 12 &&
+        preg_match('/[a-z]/', $pass) &&
+        preg_match('/[A-Z]/', $pass) &&
+        preg_match('/[0-9]/', $pass) &&
+        preg_match('/[^A-Za-z0-9]/', $pass);
+
+    if (!$usuarioValido || !$contrasenaValida || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         header("Location: ../html/register.html?error=" . urlencode("Completa los datos correctamente."));
         exit();
     }

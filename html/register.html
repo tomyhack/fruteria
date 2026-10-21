@@ -9,19 +9,22 @@
 </head>
 <body>
     <main class="pagina-autenticacion">
-        <form id="formulario-registro" class="tarjeta-autenticacion formulario-autenticacion" action="../php/register.php" method="post" data-i18n-block="formularioRegistro">
+        <form id="formulario-registro" class="tarjeta-autenticacion formulario-autenticacion" action="../php/register.php" method="post">
             <div class="acciones-superiores"><button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button></div>
-            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p>Productos de producción propia.</p><a class="enlace-regreso" href="index.html">← Volver a la tienda</a></div>
-            <h1>Registrarse</h1>
-            <label for="username">Usuario</label>
-            <input id="username" type="text" name="username" placeholder="Elija un usuario" required>
-            <label for="email">Correo electrónico</label>
-            <input id="email" type="email" name="email" placeholder="nombre@correo.com" required>
-            <label for="password">Contraseña</label>
-            <input id="password" type="password" name="password" placeholder="Cree una contraseña" minlength="8" maxlength="16" required>
-            <button type="submit" class="boton-principal">Crear cuenta</button>
+            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p data-i18n="brandText">Productos de producción propia.</p><a class="enlace-regreso" href="index.html" data-i18n="backToStore">← Volver a la tienda</a></div>
+            <h1 data-i18n="registerHeading">Registrarse</h1>
+            <label for="username" data-i18n="usernameLabel">Usuario</label>
+            <input id="username" type="text" name="username" placeholder="Elija un usuario" data-i18n-placeholder="usernameRegisterPlaceholder" minlength="6" maxlength="12" pattern="[A-Za-z0-9]+" title="Usa entre 6 y 12 letras o números, con al menos una letra y un número." data-i18n-title-attr="usernameValidationTitle" required>
+            <label for="email" data-i18n="emailLabel">Correo electrónico</label>
+            <input id="email" type="email" name="email" placeholder="nombre@correo.com" data-i18n-placeholder="emailPlaceholder" required>
+            <label for="password" data-i18n="passwordLabel">Contraseña</label>
+            <div class="campo-contrasena">
+                <input id="password" type="password" name="password" placeholder="Cree una contraseña" data-i18n-placeholder="passwordRegisterPlaceholder" minlength="6" maxlength="12" required>
+                <button id="boton-mostrar-contrasena" class="boton-mostrar-contrasena" type="button" aria-controls="password" aria-pressed="false" data-i18n="showPassword">Mostrar contraseña</button>
+            </div>
+            <button type="submit" class="boton-principal" data-i18n="registerSubmit">Crear cuenta</button>
             <div id="retroalimentacion" class="mensaje-retroalimentacion"></div>
-            <p class="cambio-cuenta">¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>.</p>
+            <p class="cambio-cuenta"><span data-i18n="alreadyAccount">¿Ya tienes cuenta?</span> <a href="login.html" data-i18n="loginHere">Inicia sesión aquí</a>.</p>
         </form>
     </main>
     <script src="../js/translations.js"></script>
