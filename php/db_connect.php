@@ -5,10 +5,10 @@ $usuarioBase = "root";
 $contrasenaBase = "";
 $nombreBase = "fruteria";
 
-$conn = new mysqli($servidor, $usuarioBase, $contrasenaBase, $nombreBase);
+$conexion = new mysqli($servidor, $usuarioBase, $contrasenaBase, $nombreBase);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($conexion->connect_error) {
+    die("Connection failed: " . $conexion->connect_error);
 }
 
 ?>

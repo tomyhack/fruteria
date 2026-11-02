@@ -23,12 +23,6 @@
     }
 
     .contenido-encabezado,
-    .contenido-pagina {
-        padding-right: var(--page-spacing);
-        padding-left: var(--page-spacing);
-    }
-
-    .contenido-encabezado,
     .acciones-encabezado,
     .navegacion-principal,
     .pie-producto {
@@ -54,19 +48,6 @@
     .pie-producto {
         flex-direction: column;
         align-items: stretch;
-    }
-
-    .producto-carrito {
-        grid-template-columns: 70px 1fr;
-    }
-
-    .imagen-producto-carrito {
-        width: 70px;
-        height: 60px;
-    }
-
-    .boton-quitar-producto {
-        grid-column: 1 / -1;
     }
 
     .pagina-autenticacion {

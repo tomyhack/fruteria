@@ -1,21 +1,18 @@
 // Shows a clear success or error message below the authentication form.
-const mostrarRetroalimentacionAutenticacion = (mensaje, claseMensaje) => {
-    const retroalimentacion = document.getElementById("retroalimentacion");
-
-    if (retroalimentacion) {
-        retroalimentacion.textContent = mensaje;
-        retroalimentacion.className = `mensaje-retroalimentacion ${claseMensaje}`;
-    }
+const mostrarMensajeFormulario = (mensaje, claseMensaje) => {
+    const mensajeFormulario = document.getElementById("mensaje-formulario");
+    mensajeFormulario.textContent = mensaje;
+    mensajeFormulario.className = `mensaje-formulario ${claseMensaje}`;
 };
 
 // Reads messages added to the URL by the PHP login and registration files.
-const mostrarRetroalimentacionUrl = () => {
+const mostrarMensajesUrl = () => {
     const parametros = new URLSearchParams(window.location.search);
 
     if (parametros.has("error")) {
-        mostrarRetroalimentacionAutenticacion(parametros.get("error"), "mensaje-error");
-    } else if (parametros.has("success")) {
-        mostrarRetroalimentacionAutenticacion(parametros.get("success"), "mensaje-exito");
+        mostrarMensajeFormulario(parametros.get("error"), "mensaje-error");
+    } else if (parametros.has("exito")) {
+        mostrarMensajeFormulario(parametros.get("exito"), "mensaje-exito");
     }
 };
 
@@ -28,8 +25,8 @@ const configurarValidacionRegistro = () => {
     }
 
     formularioRegistro.addEventListener("submit", (evento) => {
-        const nombreUsuario = document.getElementById("username").value;
-        const contrasena = document.getElementById("password").value;
+        const nombreUsuario = document.getElementById("usuario").value;
+        const contrasena = document.getElementById("contrasena").value;
         const tieneSoloLetrasYNumeros = /^[a-zA-Z0-9]+$/.test(nombreUsuario);
         const tieneLetra = /[a-zA-Z]/.test(nombreUsuario);
         const tieneNumero = /[0-9]/.test(nombreUsuario);
@@ -37,7 +34,7 @@ const configurarValidacionRegistro = () => {
 
         if (!tieneSoloLetrasYNumeros || !tieneLetra || !tieneNumero || !longitudUsuarioValida) {
             evento.preventDefault();
-            mostrarRetroalimentacionAutenticacion(obtenerMensajeTraducido("usernameValidation", "El usuario debe tener entre 6 y 12 caracteres, usar solo letras y números, e incluir al menos una letra y un número."), "mensaje-error");
+            mostrarMensajeFormulario(obtenerMensajeTraducido("errorUsuario"), "mensaje-error");
             return;
         }
 
@@ -49,36 +46,28 @@ const configurarValidacionRegistro = () => {
 
         if (!longitudContrasenaValida || !tieneMinuscula || !tieneMayuscula || !tieneDigito || !tieneCaracterEspecial) {
             evento.preventDefault();
-            mostrarRetroalimentacionAutenticacion(obtenerMensajeTraducido("passwordValidation", "La contraseña debe tener entre 6 y 12 caracteres, una minúscula, una mayúscula, un número y un carácter especial."), "mensaje-error");
+            mostrarMensajeFormulario(obtenerMensajeTraducido("errorContrasena"), "mensaje-error");
         }
     });
 };
 
 // Switches the password field between hidden and visible text.
 const actualizarBotonContrasena = () => {
-    const campoContrasena = document.getElementById("password");
+    const campoContrasena = document.getElementById("contrasena");
     const boton = document.getElementById("boton-mostrar-contrasena");
 
-    if (!campoContrasena || !boton) {
-        return;
-    }
-
     if (campoContrasena.type === "text") {
-        boton.textContent = obtenerMensajeTraducido("hidePassword", "Ocultar contraseña");
+        boton.textContent = obtenerMensajeTraducido("ocultarContrasena");
         boton.setAttribute("aria-pressed", "true");
     } else {
-        boton.textContent = obtenerMensajeTraducido("showPassword", "Mostrar contraseña");
+        boton.textContent = obtenerMensajeTraducido("mostrarContrasena");
         boton.setAttribute("aria-pressed", "false");
     }
 };
 
 // Switches the password field between hidden and visible text.
 const alternarVisibilidadContrasena = () => {
-    const campoContrasena = document.getElementById("password");
-
-    if (!campoContrasena) {
-        return;
-    }
+    const campoContrasena = document.getElementById("contrasena");
 
     if (campoContrasena.type === "password") {
         campoContrasena.type = "text";
@@ -88,21 +77,17 @@ const alternarVisibilidadContrasena = () => {
     actualizarBotonContrasena();
 };
 
-// Starts the authentication page after its HTML is ready.
-document.addEventListener("DOMContentLoaded", () => {
-    mostrarRetroalimentacionUrl();
+// Starts the authentication page after its HTML and translations are ready.
+document.addEventListener("DOMContentLoaded", async () => {
+    await traduccionesCargadas;
     configurarValidacionRegistro();
-    actualizarBotonContrasena();
 
     const botonMostrarContrasena = document.getElementById("boton-mostrar-contrasena");
-
-    if (botonMostrarContrasena) {
-        botonMostrarContrasena.addEventListener("click", alternarVisibilidadContrasena);
-    }
+    botonMostrarContrasena.addEventListener("click", alternarVisibilidadContrasena);
 });
 
 // Shows the same feedback again after the page text changes language.
-document.addEventListener("translationsUpdated", () => {
-    mostrarRetroalimentacionUrl();
+document.addEventListener("traduccionesActualizadas", () => {
+    mostrarMensajesUrl();
     actualizarBotonContrasena();
 });

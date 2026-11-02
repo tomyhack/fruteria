@@ -1,4 +1,13 @@
 // Stores the current user and the products shown in the cart.
+let catalogoProductos = {};
+
+async function cargarProductos() {
+    const respuesta = await fetch("../json/productos.json");
+    catalogoProductos = await respuesta.json();
+}
+
+const productosCargados = cargarProductos();
+
 const estadoTienda = {
     usuario: null,
     carrito: []
@@ -17,45 +26,33 @@ function crearElemento(etiqueta, clase, texto) {
 }
 
 // Shows a success or error message near the cart content.
-function mostrarConfirmacion(mensaje, esError) {
-    const retroalimentacionCarrito = document.getElementById("retroalimentacion-carrito");
+function mostrarMensajeCarrito(mensaje, esError) {
+    const mensajeCarrito = document.getElementById("mensaje-carrito");
 
-    if (retroalimentacionCarrito) {
-        retroalimentacionCarrito.textContent = mensaje;
-        retroalimentacionCarrito.className = "mensaje-confirmacion mensaje-confirmacion-visible";
+    if (mensajeCarrito) {
+        mensajeCarrito.textContent = mensaje;
+        mensajeCarrito.className = "aviso-carrito aviso-visible";
 
         if (esError) {
-            retroalimentacionCarrito.className += " mensaje-confirmacion-error";
+            mensajeCarrito.className += " aviso-error";
         }
     }
 }
 
 // Asks PHP if the visitor has an active session.
 async function obtenerSesion() {
-    try {
-        const respuesta = await fetch("../php/session.php", {
-            credentials: "same-origin",
-            cache: "no-store"
-        });
+    const respuesta = await fetch("../php/session.php", {
+        credentials: "same-origin",
+        cache: "no-store"
+    });
 
-        if (!respuesta.ok) {
-            throw new Error("No se pudo consultar la sesión.");
-        }
-
-        return respuesta.json();
-    } catch (error) {
-        console.error(error);
-        return { authenticated: false };
-    }
+    return respuesta.json();
 }
 
 // Updates the number beside the cart icon.
 function actualizarContadorCarrito() {
     const contadorCarrito = document.getElementById("contador-carrito");
-
-    if (contadorCarrito) {
-        contadorCarrito.textContent = estadoTienda.carrito.length;
-    }
+    contadorCarrito.textContent = estadoTienda.carrito.length;
 }
 
 // Shows profile links that match whether the visitor is signed in or not.
@@ -63,24 +60,20 @@ function actualizarInterfazCuenta() {
     const botonMenuPerfil = document.getElementById("boton-menu-perfil");
     const listaMenuPerfil = document.getElementById("lista-menu-perfil");
 
-    if (!botonMenuPerfil || !listaMenuPerfil) {
-        return;
-    }
-
     if (estadoTienda.usuario) {
-        botonMenuPerfil.textContent = "👤 " + estadoTienda.usuario.username;
-        botonMenuPerfil.setAttribute("aria-label", obtenerMensajeTraducido("profile", "Perfil") + ": " + estadoTienda.usuario.username);
-        const enlaceCerrarSesion = crearElemento("a", "", obtenerMensajeTraducido("logOut", "Cerrar sesión"));
+        botonMenuPerfil.textContent = "👤 " + estadoTienda.usuario.usuario;
+        botonMenuPerfil.setAttribute("aria-label", obtenerDatosTraduccion("perfil") + ": " + estadoTienda.usuario.usuario);
+        const enlaceCerrarSesion = crearElemento("a", "", obtenerMensajeTraducido("cerrarSesion"));
         enlaceCerrarSesion.href = "../php/logout.php";
         listaMenuPerfil.textContent = "";
         listaMenuPerfil.appendChild(enlaceCerrarSesion);
         return;
     }
 
-    botonMenuPerfil.textContent = "👤 " + obtenerMensajeTraducido("profile", "Perfil");
-    botonMenuPerfil.setAttribute("aria-label", obtenerMensajeTraducido("profile", "Perfil"));
-    const enlaceIniciarSesion = crearElemento("a", "", obtenerMensajeTraducido("logIn", "Iniciar sesión"));
-    const enlaceRegistro = crearElemento("a", "", obtenerMensajeTraducido("signUp", "Registrarte"));
+    botonMenuPerfil.textContent = "👤 " + obtenerDatosTraduccion("perfil");
+    botonMenuPerfil.setAttribute("aria-label", obtenerDatosTraduccion("perfil"));
+    const enlaceIniciarSesion = crearElemento("a", "", obtenerMensajeTraducido("iniciarSesion"));
+    const enlaceRegistro = crearElemento("a", "", obtenerMensajeTraducido("registrarse"));
     enlaceIniciarSesion.href = "login.html";
     enlaceRegistro.href = "register.html";
     listaMenuPerfil.textContent = "";
@@ -92,7 +85,7 @@ function actualizarInterfazCuenta() {
 async function actualizarSesion() {
     const sesion = await obtenerSesion();
 
-    if (sesion.authenticated) {
+    if (sesion.autenticado) {
         estadoTienda.usuario = sesion;
     } else {
         estadoTienda.usuario = null;
@@ -124,7 +117,7 @@ async function solicitarCarrito(ruta, metodo, producto) {
             actualizarInterfazCuenta();
         }
 
-        throw new Error(datos.message || obtenerMensajeTraducido("cartSaveError", "No se pudo actualizar el carrito."));
+        throw new Error(datos.mensaje);
     }
 
     return datos;
@@ -141,10 +134,10 @@ async function cargarCarrito() {
 
     try {
         const datos = await solicitarCarrito("", "GET");
-        estadoTienda.carrito = datos.items || [];
+        estadoTienda.carrito = datos.productos;
     } catch (error) {
         estadoTienda.carrito = [];
-        mostrarConfirmacion(obtenerMensajeTraducido("cartLoadError", "No se pudo cargar el carrito."), true);
+        mostrarMensajeCarrito(obtenerMensajeTraducido("errorCargarCarrito"), true);
         console.error(error);
     }
 
@@ -152,33 +145,33 @@ async function cargarCarrito() {
     renderizarCarrito();
 }
 
-// Creates product cards from the list stored in the translation file.
+// Creates product cards from the product catalog.
 function renderizarTarjetasProductos() {
     const cuadriculaProductos = document.getElementById("cuadricula-productos");
-    const productos = obtenerDatosTraduccion("products", []);
+    const listaProductos = catalogoProductos[idiomaActual];
 
-    if (!cuadriculaProductos || !Array.isArray(productos)) {
+    if (!cuadriculaProductos) {
         return;
     }
 
     cuadriculaProductos.textContent = "";
 
-    for (let indice = 0; indice < productos.length; indice++) {
-        const producto = productos[indice];
+    for (let indice = 0; indice < listaProductos.length; indice++) {
+        const producto = listaProductos[indice];
         const tarjeta = crearElemento("article", "tarjeta-producto");
         const imagen = document.createElement("img");
         imagen.className = "imagen-producto";
-        imagen.src = producto.image;
-        imagen.alt = producto.name;
+        imagen.src = producto.imagen;
+        imagen.alt = producto.nombre;
 
         const contenido = crearElemento("div", "contenido-producto");
-        const nombre = crearElemento("h2", "", producto.name);
+        const nombre = crearElemento("h2", "", producto.nombre);
         const pie = crearElemento("div", "pie-producto");
-        const precio = crearElemento("span", "precio-producto", "$" + producto.price + " " + producto.unit);
-        const botonAgregar = crearElemento("button", "boton-principal boton-agregar-producto", obtenerMensajeTraducido("addProduct", "Agregar"));
+        const precio = crearElemento("span", "precio-producto", "$" + producto.precio + " " + producto.unidad);
+        const botonAgregar = crearElemento("button", "boton-principal boton-agregar-producto", obtenerMensajeTraducido("agregar"));
         botonAgregar.type = "button";
-        botonAgregar.setAttribute("data-name", producto.name);
-        botonAgregar.setAttribute("data-price", producto.price);
+        botonAgregar.setAttribute("data-nombre", producto.nombre);
+        botonAgregar.setAttribute("data-precio", producto.precio);
         botonAgregar.addEventListener("click", function () {
             agregarProductoAlCarrito(botonAgregar);
         });
@@ -219,9 +212,9 @@ function renderizarCarrito() {
     if (!estadoTienda.usuario) {
         mostrarCarritoVacio(
             listaCarrito,
-            obtenerMensajeTraducido("loginRequired", "Primero tienes que iniciar sesión."),
+            obtenerMensajeTraducido("requiereInicioSesion"),
             "login.html",
-            obtenerMensajeTraducido("logIn", "Iniciar sesión")
+            obtenerMensajeTraducido("iniciarSesion")
         );
         resumenCarrito.style.display = "none";
         return;
@@ -230,9 +223,9 @@ function renderizarCarrito() {
     if (estadoTienda.carrito.length === 0) {
         mostrarCarritoVacio(
             listaCarrito,
-            obtenerMensajeTraducido("emptyCart", "El carrito está vacío."),
+            obtenerMensajeTraducido("carritoVacio"),
             "store.html",
-            obtenerMensajeTraducido("goToStore", "Ir a la tienda")
+            obtenerMensajeTraducido("irATienda")
         );
         resumenCarrito.style.display = "none";
         return;
@@ -243,14 +236,14 @@ function renderizarCarrito() {
 
     for (let indice = 0; indice < estadoTienda.carrito.length; indice++) {
         const producto = estadoTienda.carrito[indice];
-        total = total + Number(producto.price);
+        total = total + Number(producto.precio);
         const articulo = crearElemento("article", "producto-carrito");
         const datosProducto = crearElemento("div");
-        const nombre = crearElemento("h2", "", producto.name);
-        const precio = crearElemento("p", "", obtenerMensajeTraducido("price", "Precio") + ": $" + producto.price);
-        const botonQuitar = crearElemento("button", "boton-principal boton-quitar-producto", obtenerMensajeTraducido("removeProduct", "Quitar"));
+        const nombre = crearElemento("h2", "", producto.nombre);
+        const precio = crearElemento("p", "", obtenerMensajeTraducido("precio") + ": $" + producto.precio);
+        const botonQuitar = crearElemento("button", "boton-principal boton-quitar-producto", obtenerMensajeTraducido("quitar"));
         botonQuitar.type = "button";
-        botonQuitar.setAttribute("data-cart-id", producto.id);
+        botonQuitar.setAttribute("data-id-producto", producto.id);
         botonQuitar.addEventListener("click", function () {
             quitarProductoDelCarrito(botonQuitar);
         });
@@ -269,26 +262,25 @@ function renderizarCarrito() {
 // Sends the selected product to PHP and refreshes the saved cart.
 async function agregarProductoAlCarrito(boton) {
     if (!estadoTienda.usuario) {
-        mostrarConfirmacion(obtenerMensajeTraducido("loginRequired", "Primero tienes que iniciar sesión."), true);
+        mostrarMensajeCarrito(obtenerMensajeTraducido("requiereInicioSesion"), true);
         return;
     }
 
-    // Keeps these keys in English because cart.php expects this exact JSON format.
+    // Sends these Spanish keys in the JSON format expected by cart.php.
     const producto = {
-        name: boton.getAttribute("data-name"),
-        price: boton.getAttribute("data-price")
+        nombre: boton.getAttribute("data-nombre"),
+        precio: boton.getAttribute("data-precio")
     };
 
     boton.disabled = true;
 
     try {
         const datos = await solicitarCarrito("", "POST", producto);
-        estadoTienda.carrito = datos.items || [];
+        estadoTienda.carrito = datos.productos;
         actualizarContadorCarrito();
-        mostrarConfirmacion(producto.name + " " + obtenerMensajeTraducido("addedToCart", "fue agregado al carrito."));
+        mostrarMensajeCarrito(producto.nombre + " " + obtenerMensajeTraducido("agregadoAlCarrito"));
     } catch (error) {
-        mostrarConfirmacion(error.message, true);
-        console.error(error);
+        mostrarMensajeCarrito(error.message, true);
     } finally {
         boton.disabled = false;
     }
@@ -296,17 +288,16 @@ async function agregarProductoAlCarrito(boton) {
 
 // Removes one saved product and then redraws the cart.
 async function quitarProductoDelCarrito(boton) {
-    const idProducto = boton.getAttribute("data-cart-id");
+    const idProducto = boton.getAttribute("data-id-producto");
     boton.disabled = true;
 
     try {
-        const datos = await solicitarCarrito("?id=" + encodeURIComponent(idProducto), "DELETE");
-        estadoTienda.carrito = datos.items || [];
+        const datos = await solicitarCarrito("?id_producto=" + encodeURIComponent(idProducto), "DELETE");
+        estadoTienda.carrito = datos.productos;
         actualizarContadorCarrito();
         renderizarCarrito();
     } catch (error) {
-        mostrarConfirmacion(error.message, true);
-        console.error(error);
+        mostrarMensajeCarrito(error.message, true);
     } finally {
         boton.disabled = false;
     }
@@ -315,19 +306,18 @@ async function quitarProductoDelCarrito(boton) {
 // Clears the saved cart after the visitor chooses to buy everything.
 async function completarCompra() {
     if (!estadoTienda.usuario) {
-        mostrarConfirmacion(obtenerMensajeTraducido("loginRequired", "Primero tienes que iniciar sesión."), true);
+        mostrarMensajeCarrito(obtenerMensajeTraducido("requiereInicioSesion"), true);
         return;
     }
 
     try {
-        const datos = await solicitarCarrito("", "POST", { action: "clear" });
-        estadoTienda.carrito = datos.items || [];
+        const datos = await solicitarCarrito("", "POST", { accion: "vaciar" });
+        estadoTienda.carrito = datos.productos;
         actualizarContadorCarrito();
         renderizarCarrito();
-        mostrarConfirmacion(obtenerMensajeTraducido("purchaseCompleted", "Gracias por tu compra."));
+        mostrarMensajeCarrito(obtenerMensajeTraducido("compraCompletada"));
     } catch (error) {
-        mostrarConfirmacion(error.message, true);
-        console.error(error);
+        mostrarMensajeCarrito(error.message, true);
     }
 }
 
@@ -335,10 +325,6 @@ async function completarCompra() {
 function alternarMenuPerfil() {
     const botonMenuPerfil = document.getElementById("boton-menu-perfil");
     const listaMenuPerfil = document.getElementById("lista-menu-perfil");
-
-    if (!botonMenuPerfil || !listaMenuPerfil) {
-        return;
-    }
 
     if (listaMenuPerfil.classList.contains("menu-perfil-visible")) {
         listaMenuPerfil.classList.remove("menu-perfil-visible");
@@ -354,14 +340,14 @@ function cerrarMenuPerfil() {
     const botonMenuPerfil = document.getElementById("boton-menu-perfil");
     const listaMenuPerfil = document.getElementById("lista-menu-perfil");
 
-    if (botonMenuPerfil && listaMenuPerfil) {
-        listaMenuPerfil.classList.remove("menu-perfil-visible");
-        botonMenuPerfil.setAttribute("aria-expanded", "false");
-    }
+    listaMenuPerfil.classList.remove("menu-perfil-visible");
+    botonMenuPerfil.setAttribute("aria-expanded", "false");
 }
 
 // Starts products, account information, and cart data in the right order.
 async function inicializarTienda() {
+    await traduccionesCargadas;
+    await productosCargados;
     renderizarTarjetasProductos();
     await actualizarSesion();
     await cargarCarrito();
@@ -376,20 +362,23 @@ document.addEventListener("DOMContentLoaded", function () {
         botonComprar.addEventListener("click", completarCompra);
     }
 
-    if (botonMenuPerfil) {
-        botonMenuPerfil.addEventListener("click", alternarMenuPerfil);
+    botonMenuPerfil.addEventListener("click", alternarMenuPerfil);
 
-        document.addEventListener("click", function (evento) {
-            const listaMenuPerfil = document.getElementById("lista-menu-perfil");
+    document.addEventListener("click", function (evento) {
+        const listaMenuPerfil = document.getElementById("lista-menu-perfil");
 
-            if (listaMenuPerfil && !botonMenuPerfil.contains(evento.target) && !listaMenuPerfil.contains(evento.target)) {
-                cerrarMenuPerfil();
-            }
-        });
-    }
+        if (!botonMenuPerfil.contains(evento.target) && !listaMenuPerfil.contains(evento.target)) {
+            cerrarMenuPerfil();
+        }
+    });
 
     inicializarTienda();
 });
 
-// Redraws the store after the language file updates the page text.
-document.addEventListener("translationsUpdated", inicializarTienda);
+// Redraws translated content without reloading the session or cart.
+document.addEventListener("traduccionesActualizadas", async function () {
+    await productosCargados;
+    renderizarTarjetasProductos();
+    actualizarInterfazCuenta();
+    renderizarCarrito();
+});

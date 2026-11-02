@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n-title="registro">Frutería Nancy | Registrarse</title>
+    <title data-i18n-title="tituloRegistro">Frutería Nancy | Registrarse</title>
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/media.css">
 </head>
@@ -11,20 +11,20 @@
     <main class="pagina-autenticacion">
         <form id="formulario-registro" class="tarjeta-autenticacion formulario-autenticacion" action="../php/register.php" method="post">
             <div class="acciones-superiores"><button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button></div>
-            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p data-i18n="brandText">Productos de producción propia.</p><a class="enlace-regreso" href="index.html" data-i18n="backToStore">← Volver a la tienda</a></div>
-            <h1 data-i18n="registerHeading">Registrarse</h1>
-            <label for="username" data-i18n="usernameLabel">Usuario</label>
-            <input id="username" type="text" name="username" placeholder="Elija un usuario" data-i18n-placeholder="usernameRegisterPlaceholder" minlength="6" maxlength="12" pattern="[A-Za-z0-9]+" title="Usa entre 6 y 12 letras o números, con al menos una letra y un número." data-i18n-title-attr="usernameValidationTitle" required>
-            <label for="email" data-i18n="emailLabel">Correo electrónico</label>
-            <input id="email" type="email" name="email" placeholder="nombre@correo.com" data-i18n-placeholder="emailPlaceholder" required>
-            <label for="password" data-i18n="passwordLabel">Contraseña</label>
+            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p data-i18n="textoMarca">Productos de producción propia.</p><a class="enlace-regreso" href="index.html" data-i18n="volverInicio">← Volver a la tienda</a></div>
+            <h1 data-i18n="encabezadoRegistro">Registrarse</h1>
+            <label for="usuario" data-i18n="etiquetaUsuario">Usuario</label>
+            <input id="usuario" type="text" name="usuario" placeholder="Elija un usuario" data-i18n-placeholder="ayudaUsuarioRegistro" required>
+            <label for="correo" data-i18n="etiquetaCorreo">Correo electrónico</label>
+            <input id="correo" type="email" name="correo" placeholder="nombre@correo.com" data-i18n-placeholder="ayudaCorreo" required>
+            <label for="contrasena" data-i18n="etiquetaContrasena">Contraseña</label>
             <div class="campo-contrasena">
-                <input id="password" type="password" name="password" placeholder="Cree una contraseña" data-i18n-placeholder="passwordRegisterPlaceholder" minlength="6" maxlength="12" required>
-                <button id="boton-mostrar-contrasena" class="boton-mostrar-contrasena" type="button" aria-controls="password" aria-pressed="false" data-i18n="showPassword">Mostrar contraseña</button>
+                <input id="contrasena" type="password" name="contrasena" placeholder="Cree una contraseña" data-i18n-placeholder="ayudaContrasenaRegistro" required>
+                <button id="boton-mostrar-contrasena" class="boton-mostrar-contrasena" type="button" aria-controls="contrasena" aria-pressed="false" data-i18n="mostrarContrasena">Mostrar contraseña</button>
             </div>
-            <button type="submit" class="boton-principal" data-i18n="registerSubmit">Crear cuenta</button>
-            <div id="retroalimentacion" class="mensaje-retroalimentacion"></div>
-            <p class="cambio-cuenta"><span data-i18n="alreadyAccount">¿Ya tienes cuenta?</span> <a href="login.html" data-i18n="loginHere">Inicia sesión aquí</a>.</p>
+            <button type="submit" class="boton-principal" data-i18n="botonCrearCuenta">Crear cuenta</button>
+            <div id="mensaje-formulario" class="mensaje-formulario"></div>
+            <p class="cambio-cuenta"><span data-i18n="yaTieneCuenta">¿Ya tienes cuenta?</span> <a href="login.html" data-i18n="enlaceInicioSesion">Inicia sesión aquí</a>.</p>
         </form>
     </main>
     <script src="../js/translations.js"></script>

@@ -28,8 +28,7 @@
     padding: var(--content-spacing);
 }
 
-.contenido-producto h2,
-.contenido-producto p {
+.contenido-producto h2 {
     margin: 0;
 }
 

@@ -4,21 +4,14 @@ let traducciones = {};
 // Keeps track of the language currently shown on the page.
 let idiomaActual = "es";
 
-// Gets a translated value and keeps the original value when the key is missing.
-function obtenerDatosTraduccion(clave, valorPredeterminado = "") {
-    const traduccionesActuales = traducciones[idiomaActual];
-
-    if (!traduccionesActuales || !traduccionesActuales[clave]) {
-        return valorPredeterminado;
-    }
-
-    return traduccionesActuales[clave];
+// Gets a value from the currently selected language.
+function obtenerDatosTraduccion(clave) {
+    return traducciones[idiomaActual][clave];
 }
 
 // Gets short messages, such as button labels and validation feedback.
-function obtenerMensajeTraducido(clave, valorPredeterminado) {
-    const mensajes = obtenerDatosTraduccion("messages", {});
-    return mensajes[clave] || valorPredeterminado;
+function obtenerMensajeTraducido(clave) {
+    return obtenerDatosTraduccion("mensajes")[clave];
 }
 
 // Changes the marked page text to the selected language.
@@ -29,7 +22,7 @@ function renderizarTraducciones() {
     for (let indice = 0; indice < textos.length; indice++) {
         const elemento = textos[indice];
         const clave = elemento.getAttribute("data-i18n");
-        elemento.textContent = obtenerDatosTraduccion(clave, elemento.textContent);
+        elemento.textContent = obtenerDatosTraduccion(clave);
     }
 
     const campos = document.querySelectorAll("[data-i18n-placeholder]");
@@ -37,7 +30,7 @@ function renderizarTraducciones() {
     for (let indice = 0; indice < campos.length; indice++) {
         const elemento = campos[indice];
         const clave = elemento.getAttribute("data-i18n-placeholder");
-        elemento.placeholder = obtenerDatosTraduccion(clave, elemento.placeholder);
+        elemento.placeholder = obtenerDatosTraduccion(clave);
     }
 
     const elementosConTitulo = document.querySelectorAll("[data-i18n-title-attr]");
@@ -45,44 +38,31 @@ function renderizarTraducciones() {
     for (let indice = 0; indice < elementosConTitulo.length; indice++) {
         const elemento = elementosConTitulo[indice];
         const clave = elemento.getAttribute("data-i18n-title-attr");
-        elemento.title = obtenerDatosTraduccion(clave, elemento.title);
+        elemento.title = obtenerDatosTraduccion(clave);
     }
 
     const botonIdioma = document.getElementById("boton-idioma");
 
-    if (botonIdioma) {
-        if (idiomaActual === "es") {
-            botonIdioma.textContent = "EN";
-        } else {
-            botonIdioma.textContent = "ES";
-        }
+    if (idiomaActual === "es") {
+        botonIdioma.textContent = "EN";
+    } else {
+        botonIdioma.textContent = "ES";
     }
 
-    if (tituloPagina) {
-        tituloPagina.textContent = obtenerDatosTraduccion(tituloPagina.getAttribute("data-i18n-title"), tituloPagina.textContent);
-    }
+    tituloPagina.textContent = obtenerDatosTraduccion(tituloPagina.getAttribute("data-i18n-title"));
 
     document.documentElement.lang = idiomaActual;
-    document.dispatchEvent(new Event("translationsUpdated"));
+    document.dispatchEvent(new Event("traduccionesActualizadas"));
 }
 
 // Loads the translation file before the page can switch languages.
 async function cargarTraducciones() {
-    try {
-        const respuesta = await fetch("../json/translations.json");
-
-        if (!respuesta.ok) {
-            throw new Error("No se pudo cargar el archivo de traducciones.");
-        }
-
-        traducciones = await respuesta.json();
-        renderizarTraducciones();
-    } catch (error) {
-        console.error(error);
-    }
+    const respuesta = await fetch("../json/translations.json");
+    traducciones = await respuesta.json();
+    renderizarTraducciones();
 }
 
-cargarTraducciones();
+const traduccionesCargadas = cargarTraducciones();
 
 // Switches between Spanish and English when the language button is pressed.
 function cambiarIdioma() {

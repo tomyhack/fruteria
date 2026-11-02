@@ -36,7 +36,6 @@ p,
 span,
 label {
     cursor: default;
-    user-select: text;
 }
 
 a,
@@ -250,7 +249,7 @@ input {
     background-color: #287c32;
 }
 
-.mensaje-confirmacion {
+.aviso-carrito {
     display: none;
     padding: 12px 18px;
     margin: 0 0 20px;
@@ -261,11 +260,11 @@ input {
     border-radius: 8px;
 }
 
-.mensaje-confirmacion.mensaje-confirmacion-visible {
+.aviso-carrito.aviso-visible {
     display: block;
 }
 
-.mensaje-confirmacion.mensaje-confirmacion-error {
+.aviso-carrito.aviso-error {
     color: #8f4035;
     background-color: #fff0ed;
     border-color: #cf7566;

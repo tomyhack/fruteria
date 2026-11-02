@@ -1,0 +1,258 @@
+{
+  "es": [
+    {
+      "nombre": "Apio",
+      "precio": 100,
+      "unidad": "por unidad",
+      "imagen": "../img/jpeg/apio.jpeg"
+    },
+    {
+      "nombre": "Brócoli",
+      "precio": 90,
+      "unidad": "por unidad",
+      "imagen": "../img/jpeg/brocoli.jpeg"
+    },
+    {
+      "nombre": "Rabanitos",
+      "precio": 60,
+      "unidad": "por atado",
+      "imagen": "../img/jpeg/rabanitos.jpeg"
+    },
+    {
+      "nombre": "Frutillas",
+      "precio": 190,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/frutillas.jpeg"
+    },
+    {
+      "nombre": "Mandarinas",
+      "precio": 55,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/mandarinas.jpeg"
+    },
+    {
+      "nombre": "Zapallito",
+      "precio": 130,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/zapallito.jpeg"
+    },
+    {
+      "nombre": "Naranjas",
+      "precio": 55,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/naranjas.jpeg"
+    },
+    {
+      "nombre": "Jengibre",
+      "precio": 220,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/jengibre.jpeg"
+    },
+    {
+      "nombre": "Tomates",
+      "precio": 260,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/tomates.jpeg"
+    },
+    {
+      "nombre": "Zapallo",
+      "precio": 65,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/zapallo.jpeg"
+    },
+    {
+      "nombre": "Mangos",
+      "precio": 250,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/mangos.jpeg"
+    },
+    {
+      "nombre": "Peras",
+      "precio": 130,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/peras.jpeg"
+    },
+    {
+      "nombre": "Cilantro",
+      "precio": 70,
+      "unidad": "por atado",
+      "imagen": "../img/jpeg/cilantro.jpeg"
+    },
+    {
+      "nombre": "Choclo",
+      "precio": 40,
+      "unidad": "por unidad",
+      "imagen": "../img/jpeg/choclo.jpeg"
+    },
+    {
+      "nombre": "Kiwis",
+      "precio": 300,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/kiwis.jpeg"
+    },
+    {
+      "nombre": "Paltas",
+      "precio": 320,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/paltas.jpeg"
+    },
+    {
+      "nombre": "Arándanos",
+      "precio": 1000,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/arandanos.jpeg"
+    },
+    {
+      "nombre": "Pepinos",
+      "precio": 200,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/pepinos.jpeg"
+    },
+    {
+      "nombre": "Berenjenas",
+      "precio": 220,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/berenjenas.jpeg"
+    },
+    {
+      "nombre": "Manzanas",
+      "precio": 110,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/manzanas.jpeg"
+    },
+    {
+      "nombre": "Nueces",
+      "precio": 600,
+      "unidad": "por kg",
+      "imagen": "../img/jpeg/nueces.jpeg"
+    }
+  ],
+  "en": [
+    {
+      "nombre": "Celery",
+      "precio": 100,
+      "unidad": "per unit",
+      "imagen": "../img/jpeg/apio.jpeg"
+    },
+    {
+      "nombre": "Broccoli",
+      "precio": 90,
+      "unidad": "per unit",
+      "imagen": "../img/jpeg/brocoli.jpeg"
+    },
+    {
+      "nombre": "Radishes",
+      "precio": 60,
+      "unidad": "per bunch",
+      "imagen": "../img/jpeg/rabanitos.jpeg"
+    },
+    {
+      "nombre": "Strawberries",
+      "precio": 190,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/frutillas.jpeg"
+    },
+    {
+      "nombre": "Mandarins",
+      "precio": 55,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/mandarinas.jpeg"
+    },
+    {
+      "nombre": "Zucchini",
+      "precio": 130,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/zapallito.jpeg"
+    },
+    {
+      "nombre": "Oranges",
+      "precio": 55,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/naranjas.jpeg"
+    },
+    {
+      "nombre": "Ginger",
+      "precio": 220,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/jengibre.jpeg"
+    },
+    {
+      "nombre": "Tomatoes",
+      "precio": 260,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/tomates.jpeg"
+    },
+    {
+      "nombre": "Pumpkin",
+      "precio": 65,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/zapallo.jpeg"
+    },
+    {
+      "nombre": "Mangoes",
+      "precio": 250,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/mangos.jpeg"
+    },
+    {
+      "nombre": "Pears",
+      "precio": 130,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/peras.jpeg"
+    },
+    {
+      "nombre": "Cilantro",
+      "precio": 70,
+      "unidad": "per bunch",
+      "imagen": "../img/jpeg/cilantro.jpeg"
+    },
+    {
+      "nombre": "Corn",
+      "precio": 40,
+      "unidad": "per unit",
+      "imagen": "../img/jpeg/choclo.jpeg"
+    },
+    {
+      "nombre": "Kiwis",
+      "precio": 300,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/kiwis.jpeg"
+    },
+    {
+      "nombre": "Avocados",
+      "precio": 320,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/paltas.jpeg"
+    },
+    {
+      "nombre": "Blueberries",
+      "precio": 1000,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/arandanos.jpeg"
+    },
+    {
+      "nombre": "Cucumbers",
+      "precio": 200,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/pepinos.jpeg"
+    },
+    {
+      "nombre": "Eggplants",
+      "precio": 220,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/berenjenas.jpeg"
+    },
+    {
+      "nombre": "Apples",
+      "precio": 110,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/manzanas.jpeg"
+    },
+    {
+      "nombre": "Walnuts",
+      "precio": 600,
+      "unidad": "per kg",
+      "imagen": "../img/jpeg/nueces.jpeg"
+    }
+  ]
+}

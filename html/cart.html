@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n-title="carrito">Frutería Nancy | Carrito</title>
+    <title data-i18n-title="tituloCarrito">Frutería Nancy | Carrito</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="../css/media.css">
@@ -15,19 +15,15 @@
                 <img class="imagen-logo-sitio" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy">
             </div>
             <nav class="navegacion-principal">
-                <a class="enlace-navegacion" href="index.html" data-i18n="navHome">Inicio</a>
-                <a class="enlace-navegacion" href="store.html" data-i18n="navStore">Tienda</a>
-                <a class="enlace-navegacion" href="support.html" data-i18n="navSupport">Soporte</a>
+                <a class="enlace-navegacion" href="index.html" data-i18n="navInicio">Inicio</a>
+                <a class="enlace-navegacion" href="store.html" data-i18n="navTienda">Tienda</a>
+                <a class="enlace-navegacion" href="support.html" data-i18n="navSoporte">Soporte</a>
             </nav>
             <div class="acciones-encabezado">
-                <a class="boton-carrito" href="cart.html">🛒 <span data-i18n="cartLabel">Carrito</span><span id="contador-carrito" class="contador-carrito">0</span></a>
+                <a class="boton-carrito" href="cart.html">🛒 <span data-i18n="etiquetaCarrito">Carrito</span><span id="contador-carrito" class="contador-carrito">0</span></a>
                 <div class="menu-perfil">
-                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button" aria-expanded="false" aria-controls="lista-menu-perfil">👤 <span data-i18n="profile">Perfil</span></button>
-                    <div id="lista-menu-perfil" class="lista-menu-perfil">
-                        <a href="login.html">Iniciar sesión</a>
-                        <a href="register.html">Registrarte</a>
-                        <a href="../php/logout.php">Cerrar sesión</a>
-                    </div>
+                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button" aria-expanded="false" aria-controls="lista-menu-perfil">👤 <span data-i18n="perfil">Perfil</span></button>
+                    <div id="lista-menu-perfil" class="lista-menu-perfil"></div>
                 </div>
                 <button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button>
             </div>
@@ -37,20 +33,20 @@
     <main class="contenido-pagina">
         <section class="seccion-contenido">
             <div class="encabezado-seccion">
-                <h1 data-i18n="cartTitle">Carrito</h1>
-                <p data-i18n="cartIntro">Revisa tus productos antes de comprar.</p>
+                <h1 data-i18n="carritoEncabezado">Carrito</h1>
+                <p data-i18n="carritoIntro">Revisa tus productos antes de comprar.</p>
             </div>
-            <p id="retroalimentacion-carrito" class="mensaje-confirmacion" role="status" aria-live="polite"></p>
+            <p id="mensaje-carrito" class="aviso-carrito" role="status" aria-live="polite"></p>
             <div id="lista-carrito" class="lista-carrito"></div>
             <div id="resumen-carrito" class="resumen-carrito">
-                <p><span data-i18n="totalLabel">Total:</span> $<span id="total-carrito">0</span></p>
-                <button id="boton-comprar" class="boton-principal" type="button" data-i18n="buyAll">Comprar todo</button>
+                <p><span data-i18n="total">Total:</span> $<span id="total-carrito">0</span></p>
+                <button id="boton-comprar" class="boton-principal" type="button" data-i18n="comprarTodo">Comprar todo</button>
             </div>
         </section>
     </main>
 
     <footer class="pie-sitio">
-        <p data-i18n="footerText">Frutería | Entrega de frutas frescas y tienda en línea.</p>
+        <p data-i18n="textoPie">Frutería | Entrega de frutas frescas y tienda en línea.</p>
     </footer>
     <script src="../js/translations.js"></script>
     <script src="../js/tienda.js"></script>

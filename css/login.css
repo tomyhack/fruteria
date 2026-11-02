@@ -13,7 +13,6 @@ h1,
 p,
 label {
     cursor: default;
-    user-select: text;
 }
 
 a,
@@ -154,7 +153,7 @@ input {
     background-color: #287c32;
 }
 
-.mensaje-retroalimentacion {
+.mensaje-formulario {
     min-height: 20px;
     margin: 20px 0 0;
     font-weight: bold;

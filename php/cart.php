@@ -4,100 +4,100 @@ session_start();
 header("Content-Type: application/json; charset=utf-8");
 header("Cache-Control: no-store");
 
-function respond($statusCode, $data) {
-    http_response_code($statusCode);
-    echo json_encode($data);
+function responder($codigoEstado, $datos) {
+    http_response_code($codigoEstado);
+    echo json_encode($datos);
     exit();
 }
 
-if (!isset($_SESSION["user_id"])) {
-    respond(401, ["message" => "Primero tienes que iniciar sesión."]);
+if (!isset($_SESSION["id_usuario"])) {
+    responder(401, ["mensaje" => "Primero tienes que iniciar sesión."]);
 }
 
 require_once "db_connect.php";
 
-$userId = (int) $_SESSION["user_id"];
+$idUsuario = (int) $_SESSION["id_usuario"];
 
-function getCartItems($conn, $userId) {
-    $stmt = $conn->prepare(
-        "SELECT id, nombre AS name, precio AS price
+function obtenerProductosCarrito($conexion, $idUsuario) {
+    $consulta = $conexion->prepare(
+        "SELECT id, nombre, precio
          FROM productos_carrito
          WHERE id_usuario = ?
          ORDER BY id"
     );
-    $stmt->bind_param("i", $userId);
-    $stmt->execute();
+    $consulta->bind_param("i", $idUsuario);
+    $consulta->execute();
 
-    $result = $stmt->get_result();
-    $items = [];
+    $resultado = $consulta->get_result();
+    $productos = [];
 
-    while ($item = $result->fetch_assoc()) {
-        $items[] = $item;
+    while ($producto = $resultado->fetch_assoc()) {
+        $productos[] = $producto;
     }
 
-    return $items;
+    return $productos;
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    respond(200, ["items" => getCartItems($conn, $userId)]);
+    responder(200, ["productos" => obtenerProductosCarrito($conexion, $idUsuario)]);
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
-    $itemId = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+    $idProducto = filter_input(INPUT_GET, "id_producto", FILTER_VALIDATE_INT);
 
-    if (!$itemId) {
-        respond(422, ["message" => "Producto inválido."]);
+    if (!$idProducto) {
+        responder(422, ["mensaje" => "Producto inválido."]);
     }
 
-    $stmt = $conn->prepare("DELETE FROM productos_carrito WHERE id = ? AND id_usuario = ?");
-    $stmt->bind_param("ii", $itemId, $userId);
-    $stmt->execute();
+    $consulta = $conexion->prepare("DELETE FROM productos_carrito WHERE id = ? AND id_usuario = ?");
+    $consulta->bind_param("ii", $idProducto, $idUsuario);
+    $consulta->execute();
 
-    respond(200, ["items" => getCartItems($conn, $userId)]);
+    responder(200, ["productos" => obtenerProductosCarrito($conexion, $idUsuario)]);
 }
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    respond(405, ["message" => "Método no permitido."]);
+    responder(405, ["mensaje" => "Método no permitido."]);
 }
 
-$payload = json_decode(file_get_contents("php://input"), true);
+$datosRecibidos = json_decode(file_get_contents("php://input"), true);
 
-if (!is_array($payload)) {
-    respond(422, ["message" => "Datos inválidos."]);
+if (!is_array($datosRecibidos)) {
+    responder(422, ["mensaje" => "Datos inválidos."]);
 }
 
-if (isset($payload["action"]) && $payload["action"] === "clear") {
-    $stmt = $conn->prepare("DELETE FROM productos_carrito WHERE id_usuario = ?");
-    $stmt->bind_param("i", $userId);
-    $stmt->execute();
+if (isset($datosRecibidos["accion"]) && $datosRecibidos["accion"] === "vaciar") {
+    $consulta = $conexion->prepare("DELETE FROM productos_carrito WHERE id_usuario = ?");
+    $consulta->bind_param("i", $idUsuario);
+    $consulta->execute();
 
-    respond(200, ["items" => []]);
+    responder(200, ["productos" => []]);
 }
 
-$name = "";
-$price = null;
+$nombre = "";
+$precio = null;
 
-if (isset($payload["name"]) && is_string($payload["name"])) {
-    $name = trim($payload["name"]);
+if (isset($datosRecibidos["nombre"]) && is_string($datosRecibidos["nombre"])) {
+    $nombre = trim($datosRecibidos["nombre"]);
 }
 
-if (isset($payload["price"])) {
-    $price = $payload["price"];
+if (isset($datosRecibidos["precio"])) {
+    $precio = $datosRecibidos["precio"];
 }
 
 if (
-    $name === "" || strlen($name) > 100 || !is_numeric($price) || (float) $price < 0
+    $nombre === "" || strlen($nombre) > 100 || !is_numeric($precio) || (float) $precio < 0
 ) {
-    respond(422, ["message" => "Datos de producto inválidos."]);
+    responder(422, ["mensaje" => "Datos de producto inválidos."]);
 }
 
-$price = (float) $price;
-$stmt = $conn->prepare(
+$precio = (float) $precio;
+$consulta = $conexion->prepare(
     "INSERT INTO productos_carrito (id_usuario, nombre, precio)
      VALUES (?, ?, ?)"
 );
-$stmt->bind_param("isd", $userId, $name, $price);
-$stmt->execute();
+$consulta->bind_param("isd", $idUsuario, $nombre, $precio);
+$consulta->execute();
 
-respond(201, ["items" => getCartItems($conn, $userId)]);
+responder(201, ["productos" => obtenerProductosCarrito($conexion, $idUsuario)]);
 ?>

@@ -3,7 +3,6 @@
     grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.45fr);
     align-items: start;
     gap: 24px;
-    max-width: none;
 }
 
 .seccion-soporte > .tarjeta-contenido {

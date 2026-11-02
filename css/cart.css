@@ -5,20 +5,13 @@
 
 .producto-carrito {
     display: grid;
-    grid-template-columns: 90px 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: 16px;
     padding: 14px;
     background-color: #ffffff;
     border: 1px solid #d9ead8;
     border-radius: 12px;
-}
-
-.imagen-producto-carrito {
-    width: 90px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 8px;
 }
 
 .producto-carrito h2,
