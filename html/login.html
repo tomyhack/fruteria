@@ -11,14 +11,14 @@
     <main class="pagina-autenticacion">
         <form class="tarjeta-autenticacion formulario-autenticacion" action="../php/login.php" method="post">
             <div class="acciones-superiores"><button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button></div>
-            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p data-i18n="textoMarca">Productos de producción propia.</p><a class="enlace-regreso" href="index.html" data-i18n="volverInicio">← Volver a la tienda</a></div>
+            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg"><p data-i18n="textoMarca">Productos de producción propia.</p><a class="enlace-regreso" href="index.html" data-i18n="volverInicio">← Volver a la tienda</a></div>
             <h1 data-i18n="encabezadoInicioSesion">Iniciar sesión</h1>
             <label for="usuario" data-i18n="etiquetaUsuario">Usuario</label>
-            <input id="usuario" type="text" name="usuario" placeholder="Ingrese su usuario" data-i18n-placeholder="ayudaUsuarioInicioSesion" minlength="6" maxlength="12" pattern="[A-Za-z0-9]+" title="Usa entre 6 y 12 letras o números, con al menos una letra y un número." data-i18n-title-attr="ayudaValidacionUsuario" required>
+            <input id="usuario" type="text" name="usuario" placeholder="Ingrese su usuario" data-i18n-placeholder="ayudaUsuarioInicioSesion">
             <label for="contrasena" data-i18n="etiquetaContrasena">Contraseña</label>
             <div class="campo-contrasena">
-                <input id="contrasena" type="password" name="contrasena" placeholder="Ingrese su contraseña" data-i18n-placeholder="ayudaContrasenaInicioSesion" minlength="6" maxlength="12" required>
-                <button id="boton-mostrar-contrasena" class="boton-mostrar-contrasena" type="button" aria-controls="contrasena" aria-pressed="false" data-i18n="mostrarContrasena">Mostrar contraseña</button>
+                <input id="contrasena" type="password" name="contrasena" placeholder="Ingrese su contraseña" data-i18n-placeholder="ayudaContrasenaInicioSesion">
+                <button id="boton-mostrar-contrasena" class="boton-mostrar-contrasena" type="button" data-i18n="mostrarContrasena">Mostrar contraseña</button>
             </div>
             <button type="submit" class="boton-principal" data-i18n="botonIngresar">Ingresar</button>
             <div id="mensaje-formulario" class="mensaje-formulario"></div>

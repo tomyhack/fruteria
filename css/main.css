@@ -29,15 +29,6 @@ input {
     font: inherit;
 }
 
-h1,
-h2,
-h3,
-p,
-span,
-label {
-    cursor: default;
-}
-
 a,
 button,
 summary {
@@ -127,10 +118,6 @@ input {
 
 .menu-perfil {
     position: relative;
-}
-
-.boton-menu-perfil {
-    cursor: pointer;
 }
 
 .lista-menu-perfil {
@@ -235,7 +222,6 @@ input {
     color: #ffffff;
     font-weight: bold;
     text-align: center;
-    cursor: pointer;
     background-color: #49a14b;
     border: 0;
     border-radius: 8px;

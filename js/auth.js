@@ -16,41 +16,6 @@ const mostrarMensajesUrl = () => {
     }
 };
 
-// Checks the registration fields before the form is sent to PHP.
-const configurarValidacionRegistro = () => {
-    const formularioRegistro = document.getElementById("formulario-registro");
-
-    if (!formularioRegistro) {
-        return;
-    }
-
-    formularioRegistro.addEventListener("submit", (evento) => {
-        const nombreUsuario = document.getElementById("usuario").value;
-        const contrasena = document.getElementById("contrasena").value;
-        const tieneSoloLetrasYNumeros = /^[a-zA-Z0-9]+$/.test(nombreUsuario);
-        const tieneLetra = /[a-zA-Z]/.test(nombreUsuario);
-        const tieneNumero = /[0-9]/.test(nombreUsuario);
-        const longitudUsuarioValida = nombreUsuario.length >= 6 && nombreUsuario.length <= 12;
-
-        if (!tieneSoloLetrasYNumeros || !tieneLetra || !tieneNumero || !longitudUsuarioValida) {
-            evento.preventDefault();
-            mostrarMensajeFormulario(obtenerMensajeTraducido("errorUsuario"), "mensaje-error");
-            return;
-        }
-
-        const longitudContrasenaValida = contrasena.length >= 6 && contrasena.length <= 12;
-        const tieneMinuscula = /[a-z]/.test(contrasena);
-        const tieneMayuscula = /[A-Z]/.test(contrasena);
-        const tieneDigito = /[0-9]/.test(contrasena);
-        const tieneCaracterEspecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(contrasena);
-
-        if (!longitudContrasenaValida || !tieneMinuscula || !tieneMayuscula || !tieneDigito || !tieneCaracterEspecial) {
-            evento.preventDefault();
-            mostrarMensajeFormulario(obtenerMensajeTraducido("errorContrasena"), "mensaje-error");
-        }
-    });
-};
-
 // Switches the password field between hidden and visible text.
 const actualizarBotonContrasena = () => {
     const campoContrasena = document.getElementById("contrasena");
@@ -58,10 +23,8 @@ const actualizarBotonContrasena = () => {
 
     if (campoContrasena.type === "text") {
         boton.textContent = obtenerMensajeTraducido("ocultarContrasena");
-        boton.setAttribute("aria-pressed", "true");
     } else {
         boton.textContent = obtenerMensajeTraducido("mostrarContrasena");
-        boton.setAttribute("aria-pressed", "false");
     }
 };
 
@@ -77,11 +40,8 @@ const alternarVisibilidadContrasena = () => {
     actualizarBotonContrasena();
 };
 
-// Starts the authentication page after its HTML and translations are ready.
-document.addEventListener("DOMContentLoaded", async () => {
-    await traduccionesCargadas;
-    configurarValidacionRegistro();
-
+// Connects the password button after the HTML is ready.
+document.addEventListener("DOMContentLoaded", () => {
     const botonMostrarContrasena = document.getElementById("boton-mostrar-contrasena");
     botonMostrarContrasena.addEventListener("click", alternarVisibilidadContrasena);
 });

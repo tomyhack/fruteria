@@ -42,7 +42,6 @@ function mostrarMensajeCarrito(mensaje, esError) {
 // Asks PHP if the visitor has an active session.
 async function obtenerSesion() {
     const respuesta = await fetch("../php/session.php", {
-        credentials: "same-origin",
         cache: "no-store"
     });
 
@@ -62,7 +61,6 @@ function actualizarInterfazCuenta() {
 
     if (estadoTienda.usuario) {
         botonMenuPerfil.textContent = "👤 " + estadoTienda.usuario.usuario;
-        botonMenuPerfil.setAttribute("aria-label", obtenerDatosTraduccion("perfil") + ": " + estadoTienda.usuario.usuario);
         const enlaceCerrarSesion = crearElemento("a", "", obtenerMensajeTraducido("cerrarSesion"));
         enlaceCerrarSesion.href = "../php/logout.php";
         listaMenuPerfil.textContent = "";
@@ -71,7 +69,6 @@ function actualizarInterfazCuenta() {
     }
 
     botonMenuPerfil.textContent = "👤 " + obtenerDatosTraduccion("perfil");
-    botonMenuPerfil.setAttribute("aria-label", obtenerDatosTraduccion("perfil"));
     const enlaceIniciarSesion = crearElemento("a", "", obtenerMensajeTraducido("iniciarSesion"));
     const enlaceRegistro = crearElemento("a", "", obtenerMensajeTraducido("registrarse"));
     enlaceIniciarSesion.href = "login.html";
@@ -97,8 +94,7 @@ async function actualizarSesion() {
 // Sends every cart request to PHP and returns the saved cart information.
 async function solicitarCarrito(ruta, metodo, producto) {
     const opciones = {
-        method: metodo,
-        credentials: "same-origin"
+        method: metodo
     };
 
     if (producto) {
@@ -162,7 +158,6 @@ function renderizarTarjetasProductos() {
         const imagen = document.createElement("img");
         imagen.className = "imagen-producto";
         imagen.src = producto.imagen;
-        imagen.alt = producto.nombre;
 
         const contenido = crearElemento("div", "contenido-producto");
         const nombre = crearElemento("h2", "", producto.nombre);
@@ -323,25 +318,20 @@ async function completarCompra() {
 
 // Opens or closes the profile menu when its button is pressed.
 function alternarMenuPerfil() {
-    const botonMenuPerfil = document.getElementById("boton-menu-perfil");
     const listaMenuPerfil = document.getElementById("lista-menu-perfil");
 
     if (listaMenuPerfil.classList.contains("menu-perfil-visible")) {
         listaMenuPerfil.classList.remove("menu-perfil-visible");
-        botonMenuPerfil.setAttribute("aria-expanded", "false");
     } else {
         listaMenuPerfil.classList.add("menu-perfil-visible");
-        botonMenuPerfil.setAttribute("aria-expanded", "true");
     }
 }
 
 // Closes the profile menu when the click happens outside it.
 function cerrarMenuPerfil() {
-    const botonMenuPerfil = document.getElementById("boton-menu-perfil");
     const listaMenuPerfil = document.getElementById("lista-menu-perfil");
 
     listaMenuPerfil.classList.remove("menu-perfil-visible");
-    botonMenuPerfil.setAttribute("aria-expanded", "false");
 }
 
 // Starts products, account information, and cart data in the right order.

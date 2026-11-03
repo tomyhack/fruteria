@@ -12,7 +12,7 @@
     <header class="encabezado-sitio">
         <div class="contenido-encabezado">
             <div class="logo-sitio">
-                <img class="imagen-logo-sitio" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy">
+                <img class="imagen-logo-sitio" src="../img/jpeg/logo.jpeg">
             </div>
             <nav class="navegacion-principal">
                 <a class="enlace-navegacion" href="index.html" data-i18n="navInicio">Inicio</a>
@@ -22,7 +22,7 @@
             <div class="acciones-encabezado">
                 <a class="boton-carrito" href="cart.html">🛒 <span data-i18n="etiquetaCarrito">Carrito</span><span id="contador-carrito" class="contador-carrito">0</span></a>
                 <div class="menu-perfil">
-                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button" aria-expanded="false" aria-controls="lista-menu-perfil">👤 <span data-i18n="perfil">Perfil</span></button>
+                    <button id="boton-menu-perfil" class="boton-menu-perfil" type="button">👤 <span data-i18n="perfil">Perfil</span></button>
                     <div id="lista-menu-perfil" class="lista-menu-perfil"></div>
                 </div>
                 <button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button>
@@ -36,7 +36,7 @@
                 <h1 data-i18n="carritoEncabezado">Carrito</h1>
                 <p data-i18n="carritoIntro">Revisa tus productos antes de comprar.</p>
             </div>
-            <p id="mensaje-carrito" class="aviso-carrito" role="status" aria-live="polite"></p>
+            <p id="mensaje-carrito" class="aviso-carrito"></p>
             <div id="lista-carrito" class="lista-carrito"></div>
             <div id="resumen-carrito" class="resumen-carrito">
                 <p><span data-i18n="total">Total:</span> $<span id="total-carrito">0</span></p>

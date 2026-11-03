@@ -9,18 +9,18 @@
 </head>
 <body>
     <main class="pagina-autenticacion">
-        <form id="formulario-registro" class="tarjeta-autenticacion formulario-autenticacion" action="../php/register.php" method="post">
+        <form class="tarjeta-autenticacion formulario-autenticacion" action="../php/register.php" method="post">
             <div class="acciones-superiores"><button id="boton-idioma" class="boton-idioma" type="button" onclick="cambiarIdioma()">EN</button></div>
-            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg" alt="Frutería Nancy"><p data-i18n="textoMarca">Productos de producción propia.</p><a class="enlace-regreso" href="index.html" data-i18n="volverInicio">← Volver a la tienda</a></div>
+            <div class="marca-autenticacion"><img class="logo-autenticacion" src="../img/jpeg/logo.jpeg"><p data-i18n="textoMarca">Productos de producción propia.</p><a class="enlace-regreso" href="index.html" data-i18n="volverInicio">← Volver a la tienda</a></div>
             <h1 data-i18n="encabezadoRegistro">Registrarse</h1>
             <label for="usuario" data-i18n="etiquetaUsuario">Usuario</label>
-            <input id="usuario" type="text" name="usuario" placeholder="Elija un usuario" data-i18n-placeholder="ayudaUsuarioRegistro" required>
+            <input id="usuario" type="text" name="usuario" placeholder="Elija un usuario" data-i18n-placeholder="ayudaUsuarioRegistro">
             <label for="correo" data-i18n="etiquetaCorreo">Correo electrónico</label>
-            <input id="correo" type="email" name="correo" placeholder="nombre@correo.com" data-i18n-placeholder="ayudaCorreo" required>
+            <input id="correo" type="text" name="correo" placeholder="nombre@correo.com" data-i18n-placeholder="ayudaCorreo">
             <label for="contrasena" data-i18n="etiquetaContrasena">Contraseña</label>
             <div class="campo-contrasena">
-                <input id="contrasena" type="password" name="contrasena" placeholder="Cree una contraseña" data-i18n-placeholder="ayudaContrasenaRegistro" required>
-                <button id="boton-mostrar-contrasena" class="boton-mostrar-contrasena" type="button" aria-controls="contrasena" aria-pressed="false" data-i18n="mostrarContrasena">Mostrar contraseña</button>
+                <input id="contrasena" type="password" name="contrasena" placeholder="Cree una contraseña" data-i18n-placeholder="ayudaContrasenaRegistro">
+                <button id="boton-mostrar-contrasena" class="boton-mostrar-contrasena" type="button" data-i18n="mostrarContrasena">Mostrar contraseña</button>
             </div>
             <button type="submit" class="boton-principal" data-i18n="botonCrearCuenta">Crear cuenta</button>
             <div id="mensaje-formulario" class="mensaje-formulario"></div>

@@ -49,7 +49,6 @@
     "etiquetaContrasena": "Contraseña",
     "ayudaContrasenaInicioSesion": "Ingrese su contraseña",
     "ayudaContrasenaRegistro": "Cree una contraseña",
-    "ayudaValidacionUsuario": "Usa entre 6 y 12 letras o números, con al menos una letra y un número.",
     "mostrarContrasena": "Mostrar contraseña",
     "botonIngresar": "Ingresar",
     "sinCuenta": "¿No tienes cuenta?",
@@ -70,8 +69,6 @@
       "cerrarSesion": "Cerrar sesión",
       "requiereInicioSesion": "Primero tienes que iniciar sesión.",
       "errorCargarCarrito": "No se pudo cargar el carrito.",
-      "errorUsuario": "El usuario debe tener entre 6 y 12 caracteres, usar solo letras y números, e incluir al menos una letra y un número.",
-      "errorContrasena": "La contraseña debe tener entre 6 y 12 caracteres, una minúscula, una mayúscula, un número y un carácter especial.",
       "mostrarContrasena": "Mostrar contraseña",
       "ocultarContrasena": "Ocultar contraseña"
     }
@@ -126,7 +123,6 @@
     "etiquetaContrasena": "Password",
     "ayudaContrasenaInicioSesion": "Enter your password",
     "ayudaContrasenaRegistro": "Create your password",
-    "ayudaValidacionUsuario": "Use 6 to 12 letters or numbers, including at least one letter and one number.",
     "mostrarContrasena": "Show password",
     "botonIngresar": "Log in",
     "sinCuenta": "Don't have an account?",
@@ -147,8 +143,6 @@
       "cerrarSesion": "Log out",
       "requiereInicioSesion": "Please log in first.",
       "errorCargarCarrito": "The cart could not be loaded.",
-      "errorUsuario": "The username must be 6 to 12 characters long, use only letters and numbers, and include at least one letter and one number.",
-      "errorContrasena": "The password must be 6 to 12 characters long and include a lowercase letter, an uppercase letter, a number, and a special character.",
       "mostrarContrasena": "Show password",
       "ocultarContrasena": "Hide password"
     }

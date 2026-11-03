@@ -33,14 +33,6 @@ function renderizarTraducciones() {
         elemento.placeholder = obtenerDatosTraduccion(clave);
     }
 
-    const elementosConTitulo = document.querySelectorAll("[data-i18n-title-attr]");
-
-    for (let indice = 0; indice < elementosConTitulo.length; indice++) {
-        const elemento = elementosConTitulo[indice];
-        const clave = elemento.getAttribute("data-i18n-title-attr");
-        elemento.title = obtenerDatosTraduccion(clave);
-    }
-
     const botonIdioma = document.getElementById("boton-idioma");
 
     if (idiomaActual === "es") {
